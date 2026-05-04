@@ -1,0 +1,55 @@
+{
+  "@@locale": "en",
+  "loginButton": "Login",
+  "@loginButton": {
+    "description": "Main button text for logging in"
+  },
+  "emailLabel": "Institutional Email",
+  "@emailLabel": {
+    "description": "Label for the academic email input field"
+  },
+  "passwordLabel": "Password",
+  "@passwordLabel": {
+    "description": "Label for the password input field"
+  },
+  "registerPrompt": "Don't have an account? Sign up",
+  "@registerPrompt": {
+    "description": "Prompt for users who do not have an account yet"
+  },
+  "errorInvalidCredentials": "Invalid username or password.",
+  "@errorInvalidCredentials": {
+    "description": "Error message shown for incorrect login details"
+  },
+  "errorInvalidEmail": "Please enter a valid email",
+  "@errorInvalidEmail": {
+    "description": "Validation error for incorrect email formats or disallowed domains"
+  },
+  "errorShortPassword": "Password should be at least 6 characters long",
+  "@errorShortPassword": {
+    "description": "Security warning when the password is too short"
+  },
+  "signUpScreen": "Sign up",
+  "@signUpScreen": {
+    "description": "Title for the user registration screen"
+  },
+  "errorNoName": "Please enter your name",
+  "@errorNoName": {
+    "description": "Error message when the name field is left empty"
+  },
+  "driverRoleTitle": "I want to offer rides",
+  "@driverRoleTitle": {
+    "description": "Title for the option to act as a driver"
+  },
+  "driverRoleSubtitle": "Check if you also want to act as a driver",
+  "@driverRoleSubtitle": {
+    "description": "Subtitle explaining the driver role"
+  },
+  "registerSuccessMessage": "Account created! Please check your email",
+  "@registerSuccessMessage": {
+    "description": "Success message displayed after a successful sign-up"
+  },
+  "registerButton": "Sign Up",
+  "@registerButton": {
+    "description": "Text for the registration form submission button"
+  }
+}

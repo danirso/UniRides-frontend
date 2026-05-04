@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'auth_controller.dart';
+import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
+import '../../../../core/utils/language_switcher.dart';
 
 class RegisterScreen extends ConsumerStatefulWidget {
   const RegisterScreen({super.key});
@@ -17,6 +19,26 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
   bool _canDrive = false;
   bool _isPasswordVisible = false;
+
+  Future<void> _handleRegister() async {
+  if (!_formKey.currentState!.validate()) return;
+
+  final success = await ref.read(authControllerProvider.notifier).register(
+    _nameController.text,
+    _emailController.text,
+    _passwordController.text,
+    _canDrive,
+  );
+
+  if (success && mounted) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(AppLocalizations.of(context)!.registerSuccessMessage),
+      ),
+    );
+    Navigator.of(context).pop();
+  }
+  }
 
   @override
   void dispose() {
@@ -46,7 +68,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Criar Conta'),
+        title: Text(AppLocalizations.of(context)!.signUpScreen),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -56,101 +78,118 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                TextFormField(
-                  controller: _nameController,
-                  decoration: const InputDecoration(
-                    labelText: 'Nome',
-                    prefixIcon: Icon(Icons.person_outline),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) return 'Insira seu nome';
-                    return null;
-                  },
+                Semantics(
+                  identifier: 'name_input',
+                  child: TextFormField(
+                      key: const Key('name_input_key'),
+                      controller: _nameController,
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context)!.nameLabel,
+                        prefixIcon: Icon(Icons.person_outline),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) return AppLocalizations.of(context)!.errorNoName;
+                        return null;
+                      },
+                    ),
                 ),
                 const SizedBox(height: 16),
-                TextFormField(
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    labelText: 'E-mail institucional',
-                    prefixIcon: Icon(Icons.email_outlined),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty || !value.contains('@')) {
-                      return 'Insira um e-mail válido';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 16),
-                TextFormField(
-                  controller: _passwordController,
-                  obscureText: !_isPasswordVisible,
-                  decoration: InputDecoration(
-                    labelText: 'Senha',
-                    prefixIcon: Icon(Icons.lock_outline),
-                    suffixIcon: IconButton( 
-                      icon: Icon(
-                        _isPasswordVisible ? Icons.visibility : Icons.visibility_off),
-                      onPressed: (){
-                        setState(() {
-                          _isPasswordVisible = !_isPasswordVisible;
-                        });
+                Semantics(
+                    identifier: 'email_input',
+                    child: TextFormField(
+                      key: const Key('email_input_key'),
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context)!.emailLabel,
+                        prefixIcon: const Icon(Icons.email_outlined),
+                      ),
+                      validator: (value) {
+                         if (value == null || value.isEmpty || !value.contains('@')) {
+                          return AppLocalizations.of(context)!.errorInvalidEmail; 
+                        }
+
+                        final email = value.trim().toLowerCase();
+                        final isPuc = email.endsWith('@puccampinas.edu.br');
+                        final isUnicamp = email.endsWith('@dac.unicamp.br');
+
+                        if (!isPuc && !isUnicamp){
+                          return AppLocalizations.of(context)!.errorInvalidEmail;
+                        }
+
+                        return null;
                       },
                     ),
                   ),
-                  validator: (value) {
-                    if (value == null || value.length < 6) {
-                      return 'Mínimo de 6 caracteres';
-                    }
-                    return null;
-                  },
-                ),
                 const SizedBox(height: 16),
-                SwitchListTile(
-                  title: const Text('Quero oferecer caronas'),
-                  subtitle: const Text('Marque se você também deseja atuar como motorista'),
-                  value: _canDrive,
-                  onChanged: (bool value) {
-                    setState(() {
-                      _canDrive = value;
-                    });
-                  },
+                Semantics(
+                    identifier: 'password_input',
+                    child:TextFormField(
+                        key: const Key('password_input_key'),
+                        controller: _passwordController,
+                        obscureText: !_isPasswordVisible,
+                        decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context)!.passwordLabel,
+                          prefixIcon: Icon(Icons.lock_outline),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                            onPressed: () {
+                              setState(() {
+                                _isPasswordVisible = !_isPasswordVisible;
+                              });
+                            },
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty || value.length < 6) {
+                            return AppLocalizations.of(context)!.errorShortPassword;
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                const SizedBox(height: 16),
+                Semantics(
+                  identifier: 'register_can_drive_switch',
+                  child: SwitchListTile(
+                    key: const Key('register_can_drive_key'),
+                    title: Text(AppLocalizations.of(context)!.driverRoleTitle),
+                    subtitle: Text(AppLocalizations.of(context)!.driverRoleSubtitle),
+                    value: _canDrive,
+                    onChanged: (bool value) {
+                      setState(() {
+                        _canDrive = value;
+                      });
+                    },
+                  ),
                 ),
                 const SizedBox(height: 32),
-                ElevatedButton(
-                  onPressed: isLoading
-                      ? null
-                      : () async {
-                          if (_formKey.currentState!.validate()) {
-                            final success = await ref.read(authControllerProvider.notifier).register(
-                                  _nameController.text,
-                                  _emailController.text,
-                                  _passwordController.text,
-                                  _canDrive
-                                );
-                            if (success) {
-                              if (!context.mounted) return;
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Conta criada! Verifique seu e-mail.')),
-                              );
-                              Navigator.of(context).pop();
-                            }
-                          }
-                        },
-                        
-                  child: isLoading
-                      ? const SizedBox(
-                          height: 24, width: 24,
-                          child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
-                        )
-                      : const Text('Cadastrar'),
+                Semantics(
+                  identifier: 'register_submit_button',
+                  button: true,
+                  child: ElevatedButton(
+                    key: const Key('register_submit_key'),
+                    onPressed: isLoading ? null : _handleRegister,
+                    child: isLoading
+                        ? const SizedBox(
+                            height: 24,
+                            width: 24,
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 2,
+                            ),
+                          )
+                        : Text(AppLocalizations.of(context)!.registerButton),
+                  ),
                 ),
               ],
             ),
           ),
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      floatingActionButton: const LanguageSwitcher(),
     );
   }
 }

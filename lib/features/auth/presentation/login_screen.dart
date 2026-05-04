@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'auth_controller.dart';
 import '../../rides/presentation/home_screen.dart';
 import 'register_screen.dart';
+import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
+import '../../../../core/utils/language_switcher.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -18,6 +20,23 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   bool _isPasswordVisible = false;
 
+  Future<void> _handleLogin() async {
+  if (!_formKey.currentState!.validate()) return;
+
+  final success = await ref.read(authControllerProvider.notifier).login(
+    _emailController.text,
+    _passwordController.text,
+  );
+
+  if (success && mounted) {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => const HomeScreen(),
+      ),
+    );
+  }
+}
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -29,11 +48,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     
-    // Observa o estado do controlador e resolve o aviso de importação não utilizada.
     final authState = ref.watch(authControllerProvider);
     final isLoading = authState.isLoading;
 
-    // Escuta erros e exibe um alerta na tela
     ref.listen<AsyncValue<void>>(
       authControllerProvider,
       (_, state) {
@@ -68,87 +85,97 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                   ),
                   const SizedBox(height: 48),
-                  TextFormField(
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      labelText: 'E-mail',
-                      prefixIcon: Icon(Icons.email_outlined),
+                  Semantics(
+                    identifier: 'login_email_input',
+                    child: TextFormField(
+                      key: const Key('email_input_key'),
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        labelText: AppLocalizations.of(context)!.emailLabel,
+                        prefixIcon: const Icon(Icons.email_outlined),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty || !value.contains('@')) {
+                          return AppLocalizations.of(context)!.errorInvalidEmail; 
+                        }
+
+                        final email = value.trim().toLowerCase();
+                        final isPuc = email.endsWith('@puccampinas.edu.br');
+                        final isUnicamp = email.endsWith('@dac.unicamp.br');
+
+                        if (!isPuc && !isUnicamp){
+                          return AppLocalizations.of(context)!.errorInvalidEmail;
+                        }
+
+                        return null;
+                      },
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty || !value.contains('@')) {
-                        return 'Insira um e-mail válido';
-                      }
-                      return null;
-                    },
                   ),
                   const SizedBox(height: 16),
-                  TextFormField(
-                    controller: _passwordController,
-                    obscureText: !_isPasswordVisible,
-                    decoration: InputDecoration(
-                      labelText: 'Senha',
-                      prefixIcon: Icon(Icons.lock_outline),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _isPasswordVisible ? Icons.visibility : Icons.visibility_off),
-                        onPressed: () {
-                          setState(() {
-                            _isPasswordVisible = !_isPasswordVisible;
-                          });
+                  Semantics(
+                    identifier: 'password_input',
+                    child:TextFormField(
+                        key: const Key('password_input_key'),
+                        controller: _passwordController,
+                        obscureText: !_isPasswordVisible,
+                        decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context)!.passwordLabel,
+                          prefixIcon: Icon(Icons.lock_outline),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                            onPressed: () {
+                              setState(() {
+                                _isPasswordVisible = !_isPasswordVisible;
+                              });
+                            },
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty || value.length < 6) {
+                            return AppLocalizations.of(context)!.errorShortPassword;
+                          }
+                          return null;
                         },
                       ),
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty || value.length < 6) {
-                        return 'A senha deve conter no mínimo 6 caracteres';
-                      }
-                      return null;
-                    },
-                  ),
                   const SizedBox(height: 32),
-                  ElevatedButton(
-                    onPressed: isLoading
-                        ? null
-                        : () async {
-                            if (_formKey.currentState!.validate()) {
-                              final success = await ref.read(authControllerProvider.notifier).login(
-                                    _emailController.text,
-                                    _passwordController.text,
-                                  );
-                              if (success) {
-                                if (!context.mounted) return;  
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (context) => const HomeScreen(),
-                                  ),
-                                );
-                              }
-                            }
-                          },
-                    child: isLoading
-                        ? const SizedBox(
-                            height: 24,
-                            width: 24,
-                            child: CircularProgressIndicator(
-                              color: Colors.white,
-                              strokeWidth: 2,
-                            ),
-                          )
-                        : const Text('Entrar'),
+                  Semantics(
+                    identifier: 'login_submit_button',
+                    button: true,
+                    child: ElevatedButton(
+                      key: const Key('login_submit_key'),
+                      onPressed: isLoading ? null : _handleLogin,
+                      child: isLoading
+                          ? const SizedBox(
+                              height: 24,
+                              width: 24,
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                                strokeWidth: 2,
+                              ),
+                            )
+                          : Text(AppLocalizations.of(context)!.loginButton),
+                    ),
                   ),
                   const SizedBox(height: 16),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const RegisterScreen(),
-                        ),
-                      );
-                    },
-                    child: Text(
-                      'Ainda não tem uma conta? Cadastre-se',
-                      style: TextStyle(color: theme.colorScheme.primary),
+                  Semantics(
+                    identifier: 'login_to_register_button',
+                    button: true,
+                    child: TextButton(
+                      key: const Key('login_register_key'),
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterScreen(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        AppLocalizations.of(context)!.registerPrompt,
+                        style: TextStyle(color: theme.colorScheme.primary),
+                      ),
                     ),
                   ),
                 ],
@@ -157,6 +184,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           ),
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      floatingActionButton: const LanguageSwitcher(),
     );
   }
 }
