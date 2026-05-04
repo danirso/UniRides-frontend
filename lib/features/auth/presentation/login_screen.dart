@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'auth_controller.dart';
 import '../../rides/presentation/home_screen.dart';
+import 'register_screen.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -124,6 +125,20 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             ),
                           )
                         : const Text('Entrar'),
+                  ),
+                  const SizedBox(height: 16),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterScreen(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Ainda não tem uma conta? Cadastre-se',
+                      style: TextStyle(color: theme.colorScheme.primary),
+                    ),
                   ),
                 ],
               ),

@@ -40,4 +40,16 @@ class AuthController extends Notifier<AsyncValue<void>> {
       return false;
     }
   }
+
+  Future<bool> register(String name, String email, String password, bool canDrive) async {
+    state = const AsyncValue.loading();
+    try {
+      await _repository.register(name, email, password, canDrive);
+      state = const AsyncValue.data(null);
+      return true;
+    } catch (e, st) {
+      state = AsyncValue.error(e, st);
+      return false;
+    }
+  }
 }
