@@ -16,6 +16,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
+  bool _isPasswordVisible = false;
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -83,10 +85,19 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   const SizedBox(height: 16),
                   TextFormField(
                     controller: _passwordController,
-                    obscureText: true,
-                    decoration: const InputDecoration(
+                    obscureText: !_isPasswordVisible,
+                    decoration: InputDecoration(
                       labelText: 'Senha',
                       prefixIcon: Icon(Icons.lock_outline),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            _isPasswordVisible = !_isPasswordVisible;
+                          });
+                        },
+                      ),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty || value.length < 6) {
