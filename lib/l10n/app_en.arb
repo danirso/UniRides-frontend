@@ -12,6 +12,10 @@
   "@passwordLabel": {
     "description": "Label for the password input field"
   },
+  "nameLabel": "Name",
+  "@nameLabel": {
+    "description": "Label for the name imput field"
+  },
   "registerPrompt": "Don't have an account? Sign up",
   "@registerPrompt": {
     "description": "Prompt for users who do not have an account yet"
@@ -28,7 +32,7 @@
   "@errorShortPassword": {
     "description": "Security warning when the password is too short"
   },
-  "signUpScreen": "Sign up",
+  "signUpScreen": "Sign Up",
   "@signUpScreen": {
     "description": "Title for the user registration screen"
   },

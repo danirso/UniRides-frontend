@@ -18,7 +18,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordLabel => 'Password';
 
   @override
-  String get nameLabel => 'Nome';
+  String get nameLabel => 'Name';
 
   @override
   String get registerPrompt => 'Don\'t have an account? Sign up';
@@ -34,7 +34,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Password should be at least 6 characters long';
 
   @override
-  String get signUpScreen => 'Sign up';
+  String get signUpScreen => 'Sign Up';
 
   @override
   String get errorNoName => 'Please enter your name';
