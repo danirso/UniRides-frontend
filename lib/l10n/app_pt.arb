@@ -1,0 +1,59 @@
+{
+  "@@locale": "pt",
+  "loginButton": "Entrar",
+  "@loginButton": {
+    "description": "Texto do botão principal para realizar o login"
+  },
+  "emailLabel": "E-mail Institucional",
+  "@emailLabel": {
+    "description": "Rótulo do campo de entrada para o e-mail acadêmico"
+  },
+  "passwordLabel": "Senha",
+  "@passwordLabel": {
+    "description": "Rótulo do campo de entrada para a senha"
+  },
+  "nameLabel": "Nome",
+  "@nameLabel": {
+    "description": "Rótulo do campo de entrada para o nome completo do usuário"
+  },
+  "registerPrompt": "Ainda não tem uma conta? Cadastre-se",
+  "@registerPrompt": {
+    "description": "Texto de convite para usuários que ainda não possuem registro"
+  },
+  "errorInvalidCredentials": "Login ou senha incorretos.",
+  "@errorInvalidCredentials": {
+    "description": "Mensagem de erro exibida quando as credenciais não conferem"
+  },
+  "errorInvalidEmail": "Por favor insira um e-mail válido",
+  "@errorInvalidEmail": {
+    "description": "Erro de validação para formatos de e-mail incorretos ou domínios não permitidos"
+  },
+  "errorShortPassword": "A senha deve conter pelo menos 6 caracteres",
+  "@errorShortPassword": {
+    "description": "Aviso de segurança quando a senha inserida é muito curta"
+  },
+  "signUpScreen": "Criar Conta",
+  "@signUpScreen": {
+    "description": "Título da tela de cadastro de novos usuários"
+  },
+  "errorNoName": "Insira seu nome",
+  "@errorNoName": {
+    "description": "Mensagem de erro quando o campo de nome está vazio"
+  },
+  "driverRoleTitle": "Quero oferecer caronas",
+  "@driverRoleTitle": {
+    "description": "Título da opção para o usuário atuar como motorista"
+  },
+  "driverRoleSubtitle": "Marque se você também deseja atuar como motorista",
+  "@driverRoleSubtitle": {
+    "description": "Subtítulo explicativo sobre a função de motorista"
+  },
+  "registerSuccessMessage": "Conta criada! Verifique seu e-mail",
+  "@registerSuccessMessage": {
+    "description": "Mensagem de sucesso exibida após o registro concluído"
+  },
+  "registerButton": "Cadastrar",
+  "@registerButton": {
+    "description": "Texto do botão de submissão do formulário de cadastro"
+  }
+}
