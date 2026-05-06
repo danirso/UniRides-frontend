@@ -13,11 +13,9 @@ void main() {
   );
 }
 
-// 1. Troque StatelessWidget por ConsumerWidget
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
-  // 2. Adicione o WidgetRef ref aos parâmetros
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentLocale = ref.watch(localeStateProvider);
