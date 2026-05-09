@@ -55,5 +55,22 @@
   "registerButton": "Cadastrar",
   "@registerButton": {
     "description": "Texto do botão de submissão do formulário de cadastro"
+  }, 
+  "errorEmailNotVerified": "Sua conta ainda não foi ativada. Verifique seu e-mail.",
+  "@errorEmailNotVerified":{
+    "description": "Mensagem de erro quando o email do usuario não foi verificado"
+  },
+  "errorEmailAlreadyRegistered": "Este e-mail já está cadastrado.",
+  "@errorEmailAlreadyRegistered":{
+    "description": "Mensagem de erro quando se tenta cadastrar um email ja cadastrado"
+  },
+  "errorServer": "Erro de conexão com o servidor. Tente novamente mais tarde.",
+  "@errorServer":{
+    "description": "Erro de server (http 500)"
+  },
+  "errorGeneric": "Ocorreu um erro inesperado.",
+  "@errorGeneric":{
+    "description": "Erro generico"
   }
+  
 }

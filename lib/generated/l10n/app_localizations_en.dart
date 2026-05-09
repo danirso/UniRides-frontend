@@ -51,4 +51,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get registerButton => 'Sign Up';
+
+  @override
+  String get errorEmailNotVerified =>
+      'Account not activated. Please check your email.';
+
+  @override
+  String get errorEmailAlreadyRegistered => 'This email is already registered.';
+
+  @override
+  String get errorServer => 'Server connection error. Please try again later.';
+
+  @override
+  String get errorGeneric => 'An unexpected error occurred.';
 }

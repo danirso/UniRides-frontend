@@ -51,4 +51,18 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get registerButton => 'Cadastrar';
+
+  @override
+  String get errorEmailNotVerified =>
+      'Sua conta ainda não foi ativada. Verifique seu e-mail.';
+
+  @override
+  String get errorEmailAlreadyRegistered => 'Este e-mail já está cadastrado.';
+
+  @override
+  String get errorServer =>
+      'Erro de conexão com o servidor. Tente novamente mais tarde.';
+
+  @override
+  String get errorGeneric => 'Ocorreu um erro inesperado.';
 }

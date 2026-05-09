@@ -181,6 +181,30 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Cadastrar'**
   String get registerButton;
+
+  /// Mensagem de erro quando o email do usuario não foi verificado
+  ///
+  /// In pt, this message translates to:
+  /// **'Sua conta ainda não foi ativada. Verifique seu e-mail.'**
+  String get errorEmailNotVerified;
+
+  /// Mensagem de erro quando se tenta cadastrar um email ja cadastrado
+  ///
+  /// In pt, this message translates to:
+  /// **'Este e-mail já está cadastrado.'**
+  String get errorEmailAlreadyRegistered;
+
+  /// Erro de server (http 500)
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro de conexão com o servidor. Tente novamente mais tarde.'**
+  String get errorServer;
+
+  /// Erro generico
+  ///
+  /// In pt, this message translates to:
+  /// **'Ocorreu um erro inesperado.'**
+  String get errorGeneric;
 }
 
 class _AppLocalizationsDelegate

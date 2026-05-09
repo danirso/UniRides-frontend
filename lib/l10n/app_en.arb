@@ -55,5 +55,21 @@
   "registerButton": "Sign Up",
   "@registerButton": {
     "description": "Text for the registration form submission button"
+  },
+  "errorEmailNotVerified": "Account not activated. Please check your email.",
+  "@errorEmailNotVerified":{
+    "description": "Error message displayed when an unverified email tries to login"
+  },
+  "errorEmailAlreadyRegistered": "This email is already registered.",
+  "@errorEmailAlreadyRegistered":{
+    "description": "Error message displayed when user tries to register with an email that is in use"
+  },
+  "errorServer": "Server connection error. Please try again later.",
+  "@errorServer":{
+    "description": "Internal server error(http 500)"
+  },
+  "errorGeneric": "An unexpected error occurred.",
+  "@errorGeneric":{
+    "description": "Generic Error message"
   }
 }
