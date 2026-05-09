@@ -64,4 +64,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorGeneric => 'An unexpected error occurred.';
+
+  @override
+  String get navSearchLabel => 'Search Rides';
+
+  @override
+  String get navRidesLabel => 'My Rides';
+
+  @override
+  String get navOfferLabel => 'Offer Rides';
+
+  @override
+  String get navProfileLabel => 'Profile';
+
+  @override
+  String get errorProfileLoad => 'Error loading profile';
+
+  @override
+  String get semanticLoadingProfile => 'Loading user profile';
+
+  @override
+  String get semanticMainContent => 'Main content';
 }

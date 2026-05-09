@@ -71,5 +71,33 @@
   "errorGeneric": "An unexpected error occurred.",
   "@errorGeneric":{
     "description": "Generic Error message"
+  },
+  "navSearchLabel": "Search Rides",
+  "@navSearchLabel": {
+    "description": "Label for the ride search tab in the main navigation bar."
+  },
+  "navRidesLabel": "My Rides",
+  "@navRidesLabel": {
+    "description": "Label for the tab showing ride history and management."
+  },
+  "navOfferLabel": "Offer Rides",
+  "@navOfferLabel": {
+    "description": "Label for the driver's tab to create ride offers."
+  },
+  "navProfileLabel": "Profile",
+  "@navProfileLabel": {
+    "description": "Label for the user profile and settings tab."
+  },
+  "errorProfileLoad": "Error loading profile",
+  "@errorProfileLoad": {
+    "description": "Error message displayed when the logged-in user data request fails."
+  },
+  "semanticLoadingProfile": "Loading user profile",
+  "@semanticLoadingProfile": {
+    "description": "Descriptive text read by screen readers during the main screen loading state."
+  },
+  "semanticMainContent": "Main content",
+  "@semanticMainContent": {
+    "description": "Screen reader description indicating the currently active content area."
   }
 }

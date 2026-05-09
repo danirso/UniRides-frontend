@@ -65,4 +65,25 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get errorGeneric => 'Ocorreu um erro inesperado.';
+
+  @override
+  String get navSearchLabel => 'Procurar Caronas';
+
+  @override
+  String get navRidesLabel => 'Minhas Caronas';
+
+  @override
+  String get navOfferLabel => 'Oferecer Caronas';
+
+  @override
+  String get navProfileLabel => 'Perfil';
+
+  @override
+  String get errorProfileLoad => 'Erro ao carregar perfil';
+
+  @override
+  String get semanticLoadingProfile => 'Carregando perfil do usuário';
+
+  @override
+  String get semanticMainContent => 'Conteúdo principal';
 }

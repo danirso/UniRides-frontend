@@ -205,6 +205,48 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Ocorreu um erro inesperado.'**
   String get errorGeneric;
+
+  /// Rótulo da aba de busca de caronas na barra de navegação principal.
+  ///
+  /// In pt, this message translates to:
+  /// **'Procurar Caronas'**
+  String get navSearchLabel;
+
+  /// Rótulo da aba de histórico e gerenciamento de caronas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Minhas Caronas'**
+  String get navRidesLabel;
+
+  /// Rótulo da aba destinada ao motorista para criação de ofertas de carona.
+  ///
+  /// In pt, this message translates to:
+  /// **'Oferecer Caronas'**
+  String get navOfferLabel;
+
+  /// Rótulo da aba de perfil do usuário e configurações.
+  ///
+  /// In pt, this message translates to:
+  /// **'Perfil'**
+  String get navProfileLabel;
+
+  /// Mensagem exibida quando ocorre falha na requisição dos dados do usuário logado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao carregar perfil'**
+  String get errorProfileLoad;
+
+  /// Texto descritivo lido por leitores de tela durante o estado de carregamento da tela principal.
+  ///
+  /// In pt, this message translates to:
+  /// **'Carregando perfil do usuário'**
+  String get semanticLoadingProfile;
+
+  /// Descrição para leitores de tela indicando a área de conteúdo ativo exibido no momento.
+  ///
+  /// In pt, this message translates to:
+  /// **'Conteúdo principal'**
+  String get semanticMainContent;
 }
 
 class _AppLocalizationsDelegate

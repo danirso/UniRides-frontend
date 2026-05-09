@@ -71,6 +71,33 @@
   "errorGeneric": "Ocorreu um erro inesperado.",
   "@errorGeneric":{
     "description": "Erro generico"
+  },
+  "navSearchLabel": "Procurar Caronas",
+  "@navSearchLabel": {
+    "description": "Rótulo da aba de busca de caronas na barra de navegação principal."
+  },
+  "navRidesLabel": "Minhas Caronas",
+  "@navRidesLabel": {
+    "description": "Rótulo da aba de histórico e gerenciamento de caronas."
+  },
+  "navOfferLabel": "Oferecer Caronas",
+  "@navOfferLabel": {
+    "description": "Rótulo da aba destinada ao motorista para criação de ofertas de carona."
+  },
+  "navProfileLabel": "Perfil",
+  "@navProfileLabel": {
+    "description": "Rótulo da aba de perfil do usuário e configurações."
+  },
+  "errorProfileLoad": "Erro ao carregar perfil",
+  "@errorProfileLoad": {
+    "description": "Mensagem exibida quando ocorre falha na requisição dos dados do usuário logado."
+  },
+  "semanticLoadingProfile": "Carregando perfil do usuário",
+  "@semanticLoadingProfile": {
+    "description": "Texto descritivo lido por leitores de tela durante o estado de carregamento da tela principal."
+  },
+  "semanticMainContent": "Conteúdo principal",
+  "@semanticMainContent": {
+    "description": "Descrição para leitores de tela indicando a área de conteúdo ativo exibido no momento."
   }
-  
 }

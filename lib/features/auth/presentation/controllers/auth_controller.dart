@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:tcc_caronas_frontend/features/auth/domain/errors/auth_failures.dart';
+import 'package:tcc_caronas_frontend/features/auth/presentation/controllers/user_controller.dart';
+import 'package:tcc_caronas_frontend/features/vehicles/presentation/controllers/vehicle_controller.dart';
 import '../../../../core/network/dio_client.dart';
 import 'package:tcc_caronas_frontend/features/auth/domain/repositories/i_auth_repository.dart';
 import 'package:tcc_caronas_frontend/features/auth/data/repositories/auth_repository_impl.dart';
@@ -15,7 +17,7 @@ final authRepositoryProvider = Provider<IAuthRepository>((ref) {
 final authControllerProvider = NotifierProvider<AuthController, AsyncValue<void>>(AuthController.new);
 
 class AuthController extends Notifier<AsyncValue<void>> {
-  late IAuthRepository _repository; // Usa a Interface
+  late IAuthRepository _repository;
   final _storage = const FlutterSecureStorage();
 
   @override
@@ -65,6 +67,8 @@ Future<void> logout() async {
   state = const AsyncValue.loading();
   try {
     await _storage.delete(key: 'access_token');
+    ref.read(userControllerProvider.notifier).clear();
+    ref.invalidate(vehicleControllerProvider);
     
     state = const AsyncValue.data(null);
   } catch (e, st) {
