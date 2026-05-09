@@ -99,5 +99,65 @@
   "semanticMainContent": "Main content",
   "@semanticMainContent": {
     "description": "Screen reader description indicating the currently active content area."
+  },
+  "noVehicleTitle": "Vehicle Required",
+  "@noVehicleTitle": {
+    "description": "Dialog title when driver tries to offer a ride without vehicles."
+  },
+  "noVehicleMessage": "To offer rides, you must register at least one vehicle.",
+  "@noVehicleMessage": {
+    "description": "Explanatory message for the required vehicle dialog."
+  },
+  "registerVehicleAction": "Register Now",
+  "@registerVehicleAction": {
+    "description": "Button to redirect to vehicle registration."
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Standard text for cancel buttons."
+  },
+  "registerVehicleTitle": "Register Vehicle",
+  "@registerVehicleTitle": {
+    "description": "Title for the vehicle registration modal."
+  },
+  "vehiclePlateLabel": "License Plate",
+  "@vehiclePlateLabel": {
+    "description": "Label for the vehicle plate field."
+  },
+  "vehicleBrandLabel": "Brand (e.g., Hyundai, Chevrolet)",
+  "@vehicleBrandLabel": {
+    "description": "Label for the vehicle brand field."
+  },
+  "vehicleModelLabel": "Model (e.g., HB20)",
+  "@vehicleModelLabel": {
+    "description": "Label for the vehicle model field."
+  },
+  "vehicleColorLabel": "Color",
+  "@vehicleColorLabel": {
+    "description": "Label for the vehicle color field."
+  },
+  "vehicleCapacityLabel": "Passenger Capacity",
+  "@vehicleCapacityLabel": {
+    "description": "Label for the vehicle capacity field."
+  },
+  "saveVehicleAction": "Save Vehicle",
+  "@saveVehicleAction": {
+    "description": "Submit button for the vehicle form."
+  },
+  "vehicleRegisteredSuccess": "Vehicle registered successfully!",
+  "@vehicleRegisteredSuccess": {
+    "description": "Success message when registering a vehicle."
+  },
+  "vehicleRegisteredError": "Error registering vehicle. Check your data and try again.",
+  "@vehicleRegisteredError": {
+    "description": "Error message when vehicle registration fails."
+  },
+  "requiredField": "Required field",
+  "@requiredField": {
+    "description": "Generic error message for empty required fields."
+  },
+  "invalidValue": "Enter a valid value",
+  "@invalidValue": {
+    "description": "Error message for incorrect numeric values."
   }
 }

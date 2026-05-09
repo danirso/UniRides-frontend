@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
 import '../../../auth/presentation/controllers/user_controller.dart';
+import '../../../vehicles/presentation/controllers/vehicle_controller.dart';
+import '../../../profile/presentation/screens/profile_screen.dart';
+import '../../../vehicles/presentation/widgets/vehicle_registration_modal.dart';
 
 class MainScreen extends ConsumerStatefulWidget {
   const MainScreen({super.key});
@@ -12,6 +15,49 @@ class MainScreen extends ConsumerStatefulWidget {
 
 class _MainScreenState extends ConsumerState<MainScreen> {
   int _selectedIndex = 0;
+
+  void _showNoVehicleDialog(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(l10n.noVehicleTitle),
+        content: Text(l10n.noVehicleMessage),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(l10n.cancel),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled:true,
+                builder: (context) => const VehicleRegistrationModal(),
+                );
+            },
+            child: Text(l10n.registerVehicleAction),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _onItemTapped(int index, bool canDrive) async {
+    if (index == 2 && canDrive) {
+      await ref.read(vehicleControllerProvider.notifier).fetchVehicles();
+      if (!mounted) return;
+      final vehicles = ref.read(vehicleControllerProvider).value ?? [];
+
+      if (vehicles.isEmpty) {
+        _showNoVehicleDialog(context);
+        return;
+      }
+    }
+    
+    setState(() => _selectedIndex = index);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +72,6 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         ),
       ),
       error: (err, stack) {
-        debugPrint('Erro no MainScreen: $err');
         return Scaffold(
           body: Semantics(
             label: l10n.errorProfileLoad,
@@ -41,7 +86,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
           const Center(child: Text('TBI: Explorar Caronas')),
           const Center(child: Text('TBI: Minhas Viagens')),
           if (canDrive) const Center(child: Text('TBI: Oferecer Carona')),
-          const Center(child: Text('TBI: Perfil')),
+          const ProfileScreen(),
         ];
 
         final List<NavigationDestination> destinations = [
@@ -92,7 +137,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
           ),
           bottomNavigationBar: NavigationBar(
             selectedIndex: safeIndex,
-            onDestinationSelected: (index) => setState(() => _selectedIndex = index),
+            onDestinationSelected: (index) => _onItemTapped(index, canDrive),
             destinations: destinations,
           ),
         );

@@ -85,4 +85,51 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get semanticMainContent => 'Main content';
+
+  @override
+  String get noVehicleTitle => 'Vehicle Required';
+
+  @override
+  String get noVehicleMessage =>
+      'To offer rides, you must register at least one vehicle.';
+
+  @override
+  String get registerVehicleAction => 'Register Now';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get registerVehicleTitle => 'Register Vehicle';
+
+  @override
+  String get vehiclePlateLabel => 'License Plate';
+
+  @override
+  String get vehicleBrandLabel => 'Brand (e.g., Hyundai, Chevrolet)';
+
+  @override
+  String get vehicleModelLabel => 'Model (e.g., HB20)';
+
+  @override
+  String get vehicleColorLabel => 'Color';
+
+  @override
+  String get vehicleCapacityLabel => 'Passenger Capacity';
+
+  @override
+  String get saveVehicleAction => 'Save Vehicle';
+
+  @override
+  String get vehicleRegisteredSuccess => 'Vehicle registered successfully!';
+
+  @override
+  String get vehicleRegisteredError =>
+      'Error registering vehicle. Check your data and try again.';
+
+  @override
+  String get requiredField => 'Required field';
+
+  @override
+  String get invalidValue => 'Enter a valid value';
 }

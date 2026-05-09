@@ -36,14 +36,18 @@ class VehicleController extends Notifier<AsyncValue<List<VehicleEntity>>> {
 
   Future<bool> addVehicle({
     required String plate, 
+    required String brand, 
     required String model, 
-    required String color
+    required String color,
+    required int capacity,
   }) async {
     try {
       await _repository.registerVehicle(
         plate: plate, 
+        brand: brand,
         model: model, 
-        color: color
+        color: color,
+        capacity: capacity,
       );
       await fetchVehicles();
       return true;

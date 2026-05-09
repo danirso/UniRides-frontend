@@ -86,4 +86,51 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get semanticMainContent => 'Conteúdo principal';
+
+  @override
+  String get noVehicleTitle => 'Veículo Necessário';
+
+  @override
+  String get noVehicleMessage =>
+      'Para oferecer caronas, você precisa cadastrar pelo menos um veículo.';
+
+  @override
+  String get registerVehicleAction => 'Cadastrar Agora';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get registerVehicleTitle => 'Cadastrar Veículo';
+
+  @override
+  String get vehiclePlateLabel => 'Placa';
+
+  @override
+  String get vehicleBrandLabel => 'Marca (Ex: Hyundai, Chevrolet)';
+
+  @override
+  String get vehicleModelLabel => 'Modelo (Ex: HB20)';
+
+  @override
+  String get vehicleColorLabel => 'Cor';
+
+  @override
+  String get vehicleCapacityLabel => 'Capacidade de Passageiros';
+
+  @override
+  String get saveVehicleAction => 'Salvar Veículo';
+
+  @override
+  String get vehicleRegisteredSuccess => 'Veículo cadastrado com sucesso!';
+
+  @override
+  String get vehicleRegisteredError =>
+      'Erro ao cadastrar veículo. Verifique os dados e tente novamente.';
+
+  @override
+  String get requiredField => 'Campo obrigatório';
+
+  @override
+  String get invalidValue => 'Insira um valor válido';
 }

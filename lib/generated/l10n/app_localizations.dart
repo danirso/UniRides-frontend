@@ -247,6 +247,96 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Conteúdo principal'**
   String get semanticMainContent;
+
+  /// Título do diálogo quando o motorista tenta oferecer carona sem veículos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Veículo Necessário'**
+  String get noVehicleTitle;
+
+  /// Mensagem explicativa do diálogo de veículo necessário.
+  ///
+  /// In pt, this message translates to:
+  /// **'Para oferecer caronas, você precisa cadastrar pelo menos um veículo.'**
+  String get noVehicleMessage;
+
+  /// Botão para redirecionar ao cadastro de veículo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cadastrar Agora'**
+  String get registerVehicleAction;
+
+  /// Texto padrão para botões de cancelar.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cancelar'**
+  String get cancel;
+
+  /// Título do modal de cadastro de veículos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cadastrar Veículo'**
+  String get registerVehicleTitle;
+
+  /// Rótulo do campo de placa do veículo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Placa'**
+  String get vehiclePlateLabel;
+
+  /// Rótulo do campo de marca do veículo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Marca (Ex: Hyundai, Chevrolet)'**
+  String get vehicleBrandLabel;
+
+  /// Rótulo do campo de modelo do veículo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Modelo (Ex: HB20)'**
+  String get vehicleModelLabel;
+
+  /// Rótulo do campo de cor do veículo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cor'**
+  String get vehicleColorLabel;
+
+  /// Rótulo do campo de capacidade do veículo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Capacidade de Passageiros'**
+  String get vehicleCapacityLabel;
+
+  /// Botão de submissão do formulário de veículos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Salvar Veículo'**
+  String get saveVehicleAction;
+
+  /// Mensagem de sucesso ao cadastrar veículo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Veículo cadastrado com sucesso!'**
+  String get vehicleRegisteredSuccess;
+
+  /// Mensagem de erro ao falhar o cadastro do veículo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao cadastrar veículo. Verifique os dados e tente novamente.'**
+  String get vehicleRegisteredError;
+
+  /// Mensagem de erro genérica para campos obrigatórios vazios.
+  ///
+  /// In pt, this message translates to:
+  /// **'Campo obrigatório'**
+  String get requiredField;
+
+  /// Mensagem de erro para valores numéricos incorretos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Insira um valor válido'**
+  String get invalidValue;
 }
 
 class _AppLocalizationsDelegate

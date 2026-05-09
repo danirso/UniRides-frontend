@@ -99,5 +99,65 @@
   "semanticMainContent": "Conteúdo principal",
   "@semanticMainContent": {
     "description": "Descrição para leitores de tela indicando a área de conteúdo ativo exibido no momento."
+  },
+  "noVehicleTitle": "Veículo Necessário",
+  "@noVehicleTitle": {
+    "description": "Título do diálogo quando o motorista tenta oferecer carona sem veículos."
+  },
+  "noVehicleMessage": "Para oferecer caronas, você precisa cadastrar pelo menos um veículo.",
+  "@noVehicleMessage": {
+    "description": "Mensagem explicativa do diálogo de veículo necessário."
+  },
+  "registerVehicleAction": "Cadastrar Agora",
+  "@registerVehicleAction": {
+    "description": "Botão para redirecionar ao cadastro de veículo."
+  },
+  "cancel": "Cancelar",
+  "@cancel": {
+    "description": "Texto padrão para botões de cancelar."
+  },
+  "registerVehicleTitle": "Cadastrar Veículo",
+  "@registerVehicleTitle": {
+    "description": "Título do modal de cadastro de veículos."
+  },
+  "vehiclePlateLabel": "Placa",
+  "@vehiclePlateLabel": {
+    "description": "Rótulo do campo de placa do veículo."
+  },
+  "vehicleBrandLabel": "Marca (Ex: Hyundai, Chevrolet)",
+  "@vehicleBrandLabel": {
+    "description": "Rótulo do campo de marca do veículo."
+  },
+  "vehicleModelLabel": "Modelo (Ex: HB20)",
+  "@vehicleModelLabel": {
+    "description": "Rótulo do campo de modelo do veículo."
+  },
+  "vehicleColorLabel": "Cor",
+  "@vehicleColorLabel": {
+    "description": "Rótulo do campo de cor do veículo."
+  },
+  "vehicleCapacityLabel": "Capacidade de Passageiros",
+  "@vehicleCapacityLabel": {
+    "description": "Rótulo do campo de capacidade do veículo."
+  },
+  "saveVehicleAction": "Salvar Veículo",
+  "@saveVehicleAction": {
+    "description": "Botão de submissão do formulário de veículos."
+  },
+  "vehicleRegisteredSuccess": "Veículo cadastrado com sucesso!",
+  "@vehicleRegisteredSuccess": {
+    "description": "Mensagem de sucesso ao cadastrar veículo."
+  },
+  "vehicleRegisteredError": "Erro ao cadastrar veículo. Verifique os dados e tente novamente.",
+  "@vehicleRegisteredError": {
+    "description": "Mensagem de erro ao falhar o cadastro do veículo."
+  },
+  "requiredField": "Campo obrigatório",
+  "@requiredField": {
+    "description": "Mensagem de erro genérica para campos obrigatórios vazios."
+  },
+  "invalidValue": "Insira um valor válido",
+  "@invalidValue": {
+    "description": "Mensagem de erro para valores numéricos incorretos."
   }
 }
