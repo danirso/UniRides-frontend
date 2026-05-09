@@ -209,7 +209,7 @@ abstract class AppLocalizations {
   /// Rótulo da aba de busca de caronas na barra de navegação principal.
   ///
   /// In pt, this message translates to:
-  /// **'Procurar Caronas'**
+  /// **'Buscar'**
   String get navSearchLabel;
 
   /// Rótulo da aba de histórico e gerenciamento de caronas.
@@ -221,7 +221,7 @@ abstract class AppLocalizations {
   /// Rótulo da aba destinada ao motorista para criação de ofertas de carona.
   ///
   /// In pt, this message translates to:
-  /// **'Oferecer Caronas'**
+  /// **'Oferecer'**
   String get navOfferLabel;
 
   /// Rótulo da aba de perfil do usuário e configurações.

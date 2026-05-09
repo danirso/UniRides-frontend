@@ -72,7 +72,7 @@
   "@errorGeneric":{
     "description": "Generic Error message"
   },
-  "navSearchLabel": "Search Rides",
+  "navSearchLabel": "Search",
   "@navSearchLabel": {
     "description": "Label for the ride search tab in the main navigation bar."
   },
@@ -80,7 +80,7 @@
   "@navRidesLabel": {
     "description": "Label for the tab showing ride history and management."
   },
-  "navOfferLabel": "Offer Rides",
+  "navOfferLabel": "Offer",
   "@navOfferLabel": {
     "description": "Label for the driver's tab to create ride offers."
   },

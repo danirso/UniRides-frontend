@@ -72,7 +72,7 @@
   "@errorGeneric":{
     "description": "Erro generico"
   },
-  "navSearchLabel": "Procurar Caronas",
+  "navSearchLabel": "Buscar",
   "@navSearchLabel": {
     "description": "Rótulo da aba de busca de caronas na barra de navegação principal."
   },
@@ -80,7 +80,7 @@
   "@navRidesLabel": {
     "description": "Rótulo da aba de histórico e gerenciamento de caronas."
   },
-  "navOfferLabel": "Oferecer Caronas",
+  "navOfferLabel": "Oferecer",
   "@navOfferLabel": {
     "description": "Rótulo da aba destinada ao motorista para criação de ofertas de carona."
   },

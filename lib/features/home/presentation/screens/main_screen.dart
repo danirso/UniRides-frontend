@@ -138,6 +138,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
           bottomNavigationBar: NavigationBar(
             selectedIndex: safeIndex,
             onDestinationSelected: (index) => _onItemTapped(index, canDrive),
+            labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
             destinations: destinations,
           ),
         );

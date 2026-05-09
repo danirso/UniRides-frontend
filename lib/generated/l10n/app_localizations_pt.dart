@@ -67,13 +67,13 @@ class AppLocalizationsPt extends AppLocalizations {
   String get errorGeneric => 'Ocorreu um erro inesperado.';
 
   @override
-  String get navSearchLabel => 'Procurar Caronas';
+  String get navSearchLabel => 'Buscar';
 
   @override
   String get navRidesLabel => 'Minhas Caronas';
 
   @override
-  String get navOfferLabel => 'Oferecer Caronas';
+  String get navOfferLabel => 'Oferecer';
 
   @override
   String get navProfileLabel => 'Perfil';

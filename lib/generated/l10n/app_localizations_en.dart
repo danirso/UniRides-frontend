@@ -66,13 +66,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errorGeneric => 'An unexpected error occurred.';
 
   @override
-  String get navSearchLabel => 'Search Rides';
+  String get navSearchLabel => 'Search';
 
   @override
   String get navRidesLabel => 'My Rides';
 
   @override
-  String get navOfferLabel => 'Offer Rides';
+  String get navOfferLabel => 'Offer';
 
   @override
   String get navProfileLabel => 'Profile';
