@@ -60,4 +60,15 @@ class AuthController extends Notifier<AsyncValue<void>> {
       return false;
     }
   }
+
+Future<void> logout() async {
+  state = const AsyncValue.loading();
+  try {
+    await _storage.delete(key: 'access_token');
+    
+    state = const AsyncValue.data(null);
+  } catch (e, st) {
+    state = AsyncValue.error(e, st);
+  }
+}
 }
