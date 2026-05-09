@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../providers/locale_provider.dart';
+import '../../../../core/providers/locale_provider.dart';
 
 class LanguageSwitcher extends ConsumerWidget {
   const LanguageSwitcher({super.key});

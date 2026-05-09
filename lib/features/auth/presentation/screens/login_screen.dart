@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'auth_controller.dart';
-import '../../rides/presentation/home_screen.dart';
+import '../controllers/auth_controller.dart';
+import '../../../rides/presentation/home_screen.dart';
 import 'register_screen.dart';
 import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
-import '../../../../core/utils/language_switcher.dart';
+import '../widgets/language_switcher.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -76,7 +76,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'UNIRIDES',
+                    'UniRides',
                     textAlign: TextAlign.center,
                     style: theme.textTheme.headlineLarge?.copyWith(
                       color: theme.colorScheme.primary,

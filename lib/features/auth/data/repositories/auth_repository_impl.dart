@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
-import '../../../core/network/dio_client.dart';
+import '../../domain/repositories/i_auth_repository.dart';
+import 'package:tcc_caronas_frontend/core/network/dio_client.dart';
 
-class AuthRepository {
+class AuthRepositoryImpl implements IAuthRepository {
   final DioClient _client;
 
-  AuthRepository(this._client);
+  AuthRepositoryImpl(this._client);
 
+  @override
   Future<String> login(String email, String password) async {
     try {
       final response = await _client.instance.post(
@@ -15,14 +17,19 @@ class AuthRepository {
           'password': password,
         }),
       );
-      
       return response.data['access_token'];
     } on DioException catch (e) {
       throw Exception(e.response?.data['detail'] ?? 'Falha na autenticação');
     }
   }
 
-  Future<void> register(String name, String email, String password, bool canDrive) async {
+  @override
+  Future<void> register({
+    required String name,
+    required String email,
+    required String password,
+    required bool canDrive,
+  }) async {
     try {
       await _client.instance.post(
         '/auth/register',

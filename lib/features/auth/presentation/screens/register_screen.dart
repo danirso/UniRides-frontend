@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'auth_controller.dart';
+import '../controllers/auth_controller.dart';
 import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
-import '../../../../core/utils/language_switcher.dart';
+import '../widgets/language_switcher.dart';
 
 class RegisterScreen extends ConsumerStatefulWidget {
   const RegisterScreen({super.key});

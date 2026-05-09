@@ -1,22 +1,19 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import '../../../core/network/dio_client.dart';
-import '../data/auth_repository.dart';
+import '../../../../core/network/dio_client.dart';
+import 'package:tcc_caronas_frontend/features/auth/domain/repositories/i_auth_repository.dart';
+import 'package:tcc_caronas_frontend/features/auth/data/repositories/auth_repository_impl.dart';
 
-// Provedores de injeção de dependência
 final dioClientProvider = Provider((ref) => DioClient());
 
-final authRepositoryProvider = Provider((ref) {
-  return AuthRepository(ref.watch(dioClientProvider));
+final authRepositoryProvider = Provider<IAuthRepository>((ref) {
+  return AuthRepositoryImpl(ref.watch(dioClientProvider));
 });
 
-// Provedor do controlador
 final authControllerProvider = NotifierProvider<AuthController, AsyncValue<void>>(AuthController.new);
 
-
 class AuthController extends Notifier<AsyncValue<void>> {
-  late AuthRepository _repository;
+  late IAuthRepository _repository; // Usa a Interface
   final _storage = const FlutterSecureStorage();
 
   @override
@@ -29,10 +26,7 @@ class AuthController extends Notifier<AsyncValue<void>> {
     state = const AsyncValue.loading();
     try {
       final token = await _repository.login(email, password);
-      
       await _storage.write(key: 'access_token', value: token);
-      debugPrint('Token salvo com sucesso no dispositivo.');
-      
       state = const AsyncValue.data(null);
       return true;
     } catch (e, st) {
@@ -44,7 +38,12 @@ class AuthController extends Notifier<AsyncValue<void>> {
   Future<bool> register(String name, String email, String password, bool canDrive) async {
     state = const AsyncValue.loading();
     try {
-      await _repository.register(name, email, password, canDrive);
+      await _repository.register(
+        name: name,
+        email: email,
+        password: password,
+        canDrive: canDrive,
+      );
       state = const AsyncValue.data(null);
       return true;
     } catch (e, st) {
