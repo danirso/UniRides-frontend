@@ -56,4 +56,40 @@ class VehicleController extends Notifier<AsyncValue<List<VehicleEntity>>> {
       return false;
     }
   }
+
+  Future<bool> deleteVehicle(String vehicleId) async {
+  try {
+    await _repository.deleteVehicle(vehicleId);
+    await fetchVehicles();
+    return true;
+  } catch (e, st) {
+    state = AsyncValue.error(e, st);
+    return false;
+  }
+}
+
+Future<bool> updateVehicle({
+  required String vehicleId,
+  String? brand,
+  String? model,
+  String? color,
+  String? plate,
+  int? capacity,
+}) async {
+  try {
+    await _repository.updateVehicle(
+      vehicleId: vehicleId,
+      brand: brand,
+      model: model,
+      color: color,
+      plate: plate,
+      capacity: capacity,
+    );
+    await fetchVehicles();
+    return true;
+  } catch (e, st) {
+    state = AsyncValue.error(e, st);
+    return false;
+  }
+}
 }

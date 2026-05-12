@@ -337,6 +337,78 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Insira um valor válido'**
   String get invalidValue;
+
+  /// Título da tela de listagem de veículos.
+  ///
+  /// In pt, this message translates to:
+  /// **'Meus Veículos'**
+  String get myVehiclesTitle;
+
+  /// Tooltip/label do botão de editar veículo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Editar veículo'**
+  String get editVehicleAction;
+
+  /// Tooltip/label do botão de excluir veículo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Excluir veículo'**
+  String get deleteVehicleAction;
+
+  /// Capacidade de passageiros do veículo.
+  ///
+  /// In pt, this message translates to:
+  /// **'{count} passageiros'**
+  String vehiclePassengersLabel(int count);
+
+  /// Título do dialog de confirmação de exclusão.
+  ///
+  /// In pt, this message translates to:
+  /// **'Excluir veículo?'**
+  String get deleteVehicleConfirmTitle;
+
+  /// Mensagem do dialog de confirmação de exclusão.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tem certeza que deseja excluir o veículo {plate}? Esta ação não pode ser desfeita.'**
+  String deleteVehicleConfirmMessage(String plate);
+
+  /// Botão de confirmação genérico.
+  ///
+  /// In pt, this message translates to:
+  /// **'Confirmar'**
+  String get confirmAction;
+
+  /// Mensagem de sucesso ao excluir veículo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Veículo excluído com sucesso!'**
+  String get vehicleDeletedSuccess;
+
+  /// Mensagem de erro ao excluir veículo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao excluir veículo. Tente novamente.'**
+  String get vehicleDeletedError;
+
+  /// Mensagem de sucesso ao atualizar veículo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Veículo atualizado com sucesso!'**
+  String get vehicleUpdatedSuccess;
+
+  /// Mensagem de erro ao atualizar veículo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao atualizar veículo. Verifique os dados e tente novamente.'**
+  String get vehicleUpdatedError;
+
+  /// Mensagem quando o motorista não tem veículos cadastrados.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nenhum veículo cadastrado.'**
+  String get noVehiclesRegistered;
 }
 
 class _AppLocalizationsDelegate

@@ -133,4 +133,45 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get invalidValue => 'Insira um valor válido';
+
+  @override
+  String get myVehiclesTitle => 'Meus Veículos';
+
+  @override
+  String get editVehicleAction => 'Editar veículo';
+
+  @override
+  String get deleteVehicleAction => 'Excluir veículo';
+
+  @override
+  String vehiclePassengersLabel(int count) {
+    return '$count passageiros';
+  }
+
+  @override
+  String get deleteVehicleConfirmTitle => 'Excluir veículo?';
+
+  @override
+  String deleteVehicleConfirmMessage(String plate) {
+    return 'Tem certeza que deseja excluir o veículo $plate? Esta ação não pode ser desfeita.';
+  }
+
+  @override
+  String get confirmAction => 'Confirmar';
+
+  @override
+  String get vehicleDeletedSuccess => 'Veículo excluído com sucesso!';
+
+  @override
+  String get vehicleDeletedError => 'Erro ao excluir veículo. Tente novamente.';
+
+  @override
+  String get vehicleUpdatedSuccess => 'Veículo atualizado com sucesso!';
+
+  @override
+  String get vehicleUpdatedError =>
+      'Erro ao atualizar veículo. Verifique os dados e tente novamente.';
+
+  @override
+  String get noVehiclesRegistered => 'Nenhum veículo cadastrado.';
 }

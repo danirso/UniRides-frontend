@@ -9,4 +9,13 @@ abstract class IVehicleRepository {
     required String color,
     required int capacity,
   });
+  Future<void> deleteVehicle(String vehicleId);
+  Future<void> updateVehicle({
+    required String vehicleId,
+    String? brand,
+    String? model,
+    String? color,
+    String? plate,
+    int? capacity,
+  });
 }

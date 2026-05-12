@@ -132,4 +132,45 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get invalidValue => 'Enter a valid value';
+
+  @override
+  String get myVehiclesTitle => 'My Vehicles';
+
+  @override
+  String get editVehicleAction => 'Edit vehicle';
+
+  @override
+  String get deleteVehicleAction => 'Delete vehicle';
+
+  @override
+  String vehiclePassengersLabel(int count) {
+    return '$count passengers';
+  }
+
+  @override
+  String get deleteVehicleConfirmTitle => 'Delete vehicle?';
+
+  @override
+  String deleteVehicleConfirmMessage(String plate) {
+    return 'Are you sure you want to delete vehicle $plate? This action cannot be undone.';
+  }
+
+  @override
+  String get confirmAction => 'Confirm';
+
+  @override
+  String get vehicleDeletedSuccess => 'Vehicle deleted successfully!';
+
+  @override
+  String get vehicleDeletedError => 'Error deleting vehicle. Please try again.';
+
+  @override
+  String get vehicleUpdatedSuccess => 'Vehicle updated successfully!';
+
+  @override
+  String get vehicleUpdatedError =>
+      'Error updating vehicle. Please check the data and try again.';
+
+  @override
+  String get noVehiclesRegistered => 'No vehicles registered.';
 }

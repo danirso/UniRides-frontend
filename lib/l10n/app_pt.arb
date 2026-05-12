@@ -55,21 +55,21 @@
   "registerButton": "Cadastrar",
   "@registerButton": {
     "description": "Texto do botão de submissão do formulário de cadastro"
-  }, 
+  },
   "errorEmailNotVerified": "Sua conta ainda não foi ativada. Verifique seu e-mail.",
-  "@errorEmailNotVerified":{
+  "@errorEmailNotVerified": {
     "description": "Mensagem de erro quando o email do usuario não foi verificado"
   },
   "errorEmailAlreadyRegistered": "Este e-mail já está cadastrado.",
-  "@errorEmailAlreadyRegistered":{
+  "@errorEmailAlreadyRegistered": {
     "description": "Mensagem de erro quando se tenta cadastrar um email ja cadastrado"
   },
   "errorServer": "Erro de conexão com o servidor. Tente novamente mais tarde.",
-  "@errorServer":{
+  "@errorServer": {
     "description": "Erro de server (http 500)"
   },
   "errorGeneric": "Ocorreu um erro inesperado.",
-  "@errorGeneric":{
+  "@errorGeneric": {
     "description": "Erro generico"
   },
   "navSearchLabel": "Buscar",
@@ -159,5 +159,63 @@
   "invalidValue": "Insira um valor válido",
   "@invalidValue": {
     "description": "Mensagem de erro para valores numéricos incorretos."
+  },
+  "myVehiclesTitle": "Meus Veículos",
+  "@myVehiclesTitle": {
+    "description": "Título da tela de listagem de veículos."
+  },
+  "editVehicleAction": "Editar veículo",
+  "@editVehicleAction": {
+    "description": "Tooltip/label do botão de editar veículo."
+  },
+  "deleteVehicleAction": "Excluir veículo",
+  "@deleteVehicleAction": {
+    "description": "Tooltip/label do botão de excluir veículo."
+  },
+  "vehiclePassengersLabel": "{count} passageiros",
+  "@vehiclePassengersLabel": {
+    "description": "Capacidade de passageiros do veículo.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "deleteVehicleConfirmTitle": "Excluir veículo?",
+  "@deleteVehicleConfirmTitle": {
+    "description": "Título do dialog de confirmação de exclusão."
+  },
+  "deleteVehicleConfirmMessage": "Tem certeza que deseja excluir o veículo {plate}? Esta ação não pode ser desfeita.",
+  "@deleteVehicleConfirmMessage": {
+    "description": "Mensagem do dialog de confirmação de exclusão.",
+    "placeholders": {
+      "plate": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmAction": "Confirmar",
+  "@confirmAction": {
+    "description": "Botão de confirmação genérico."
+  },
+  "vehicleDeletedSuccess": "Veículo excluído com sucesso!",
+  "@vehicleDeletedSuccess": {
+    "description": "Mensagem de sucesso ao excluir veículo."
+  },
+  "vehicleDeletedError": "Erro ao excluir veículo. Tente novamente.",
+  "@vehicleDeletedError": {
+    "description": "Mensagem de erro ao excluir veículo."
+  },
+  "vehicleUpdatedSuccess": "Veículo atualizado com sucesso!",
+  "@vehicleUpdatedSuccess": {
+    "description": "Mensagem de sucesso ao atualizar veículo."
+  },
+  "vehicleUpdatedError": "Erro ao atualizar veículo. Verifique os dados e tente novamente.",
+  "@vehicleUpdatedError": {
+    "description": "Mensagem de erro ao atualizar veículo."
+  },
+  "noVehiclesRegistered": "Nenhum veículo cadastrado.",
+  "@noVehiclesRegistered": {
+    "description": "Mensagem quando o motorista não tem veículos cadastrados."
   }
 }

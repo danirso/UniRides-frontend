@@ -57,19 +57,19 @@
     "description": "Text for the registration form submission button"
   },
   "errorEmailNotVerified": "Account not activated. Please check your email.",
-  "@errorEmailNotVerified":{
+  "@errorEmailNotVerified": {
     "description": "Error message displayed when an unverified email tries to login"
   },
   "errorEmailAlreadyRegistered": "This email is already registered.",
-  "@errorEmailAlreadyRegistered":{
+  "@errorEmailAlreadyRegistered": {
     "description": "Error message displayed when user tries to register with an email that is in use"
   },
   "errorServer": "Server connection error. Please try again later.",
-  "@errorServer":{
+  "@errorServer": {
     "description": "Internal server error(http 500)"
   },
   "errorGeneric": "An unexpected error occurred.",
-  "@errorGeneric":{
+  "@errorGeneric": {
     "description": "Generic Error message"
   },
   "navSearchLabel": "Search",
@@ -159,5 +159,31 @@
   "invalidValue": "Enter a valid value",
   "@invalidValue": {
     "description": "Error message for incorrect numeric values."
-  }
+  },
+  "myVehiclesTitle": "My Vehicles",
+  "editVehicleAction": "Edit vehicle",
+  "deleteVehicleAction": "Delete vehicle",
+  "vehiclePassengersLabel": "{count} passengers",
+  "@vehiclePassengersLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "deleteVehicleConfirmTitle": "Delete vehicle?",
+  "deleteVehicleConfirmMessage": "Are you sure you want to delete vehicle {plate}? This action cannot be undone.",
+  "@deleteVehicleConfirmMessage": {
+    "placeholders": {
+      "plate": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmAction": "Confirm",
+  "vehicleDeletedSuccess": "Vehicle deleted successfully!",
+  "vehicleDeletedError": "Error deleting vehicle. Please try again.",
+  "vehicleUpdatedSuccess": "Vehicle updated successfully!",
+  "vehicleUpdatedError": "Error updating vehicle. Please check the data and try again.",
+  "noVehiclesRegistered": "No vehicles registered."
 }

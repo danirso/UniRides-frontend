@@ -3,13 +3,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../auth/presentation/controllers/user_controller.dart';
 import '../../../auth/presentation/controllers/auth_controller.dart';
 import '../../../auth/presentation/screens/login_screen.dart';
-import '../../../vehicles/presentation/widgets/vehicle_registration_modal.dart';
+import '../../../vehicles/presentation/screens/vehicle_list_screen.dart';
+import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final user = ref.watch(userControllerProvider).value;
 
     return Scaffold(
@@ -37,16 +39,13 @@ class ProfileScreen extends ConsumerWidget {
             ),
           ),
           ListTile(
+            key: const Key('my_vehicles_tile'),
             leading: const Icon(Icons.directions_car),
-            title: const Text('Meus Veículos'),
-            trailing: const Icon(Icons.add),
-            onTap: () {
-              showModalBottomSheet(
-                context: context,
-                isScrollControlled: true,
-                builder: (context) => const VehicleRegistrationModal()
-                );
-            },
+            title: Text(l10n.myVehiclesTitle),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const VehicleListScreen()),
+            ),
           ),
           ListTile(
             leading: const Icon(Icons.delete_forever, color: Colors.red),

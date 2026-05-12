@@ -45,4 +45,38 @@ class VehicleRepositoryImpl implements IVehicleRepository {
       throw Exception('Erro ao cadastrar veículo');
     }
   }
+
+  @override
+Future<void> deleteVehicle(String vehicleId) async {
+  try {
+    await _client.instance.delete('/vehicles/$vehicleId');
+  } on DioException catch (e) {
+    debugPrint('Erro ao deletar veículo: ${e.response?.data}');
+    throw Exception('Erro ao deletar veículo');
+  }
+}
+
+@override
+Future<void> updateVehicle({
+  required String vehicleId,
+  String? brand,
+  String? model,
+  String? color,
+  String? plate,
+  int? capacity,
+}) async {
+  final data = {
+  'brand': brand,
+  'model': model,
+  'color': color,
+  'plate': plate,
+  'capacity': capacity,
+  }..removeWhere((key, value) => value == null);
+  try {
+    await _client.instance.patch('/vehicles/$vehicleId', data: data);
+  } on DioException catch (e) {
+    debugPrint('Erro ao atualizar veículo: ${e.response?.data}');
+    throw Exception('Erro ao atualizar veículo');
+  }
+}
 }
