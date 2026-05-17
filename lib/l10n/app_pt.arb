@@ -217,5 +217,70 @@
   "noVehiclesRegistered": "Nenhum veículo cadastrado.",
   "@noVehiclesRegistered": {
     "description": "Mensagem quando o motorista não tem veículos cadastrados."
+  },
+  "offerRideTitle": "Oferecer Carona",
+  "@offerRideTitle": {
+    "description": "Título da tela de oferta de carona."
+  },
+  "originLabel": "Origem",
+  "@originLabel": {
+    "description": "Label do campo de origem."
+  },
+  "destinationLabel": "Destino",
+  "@destinationLabel": {
+    "description": "Label do campo de destino."
+  },
+  "departureDateLabel": "Data e Hora de Partida",
+  "@departureDateLabel": {
+    "description": "Label do campo de data/hora."
+  },
+  "availableSeatsLabel": "Vagas disponíveis",
+  "@availableSeatsLabel": {
+    "description": "Label do campo de vagas."
+  },
+  "maxDetourLabel": "Desvio máximo aceito",
+  "@maxDetourLabel": {
+    "description": "Label do slider de desvio."
+  },
+  "maxDetourValue": "{km} km",
+  "@maxDetourValue": {
+    "description": "Valor do slider de desvio.",
+    "placeholders": {
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "selectVehicleLabel": "Veículo",
+  "@selectVehicleLabel": {
+    "description": "Label do dropdown de veículo."
+  },
+  "offerRideAction": "Publicar Carona",
+  "@offerRideAction": {
+    "description": "Botão de submissão da oferta de carona."
+  },
+  "rideCreatedSuccess": "Carona publicada com sucesso!",
+  "@rideCreatedSuccess": {
+    "description": "Mensagem de sucesso ao criar carona."
+  },
+  "rideCreatedError": "Erro ao publicar carona. Verifique os dados e tente novamente.",
+  "@rideCreatedError": {
+    "description": "Mensagem de erro ao criar carona."
+  },
+  "selectOriginFirst": "Selecione a origem antes de continuar.",
+  "@selectOriginFirst": {
+    "description": "Validação de origem não selecionada."
+  },
+  "selectDestinationFirst": "Selecione o destino antes de continuar.",
+  "@selectDestinationFirst": {
+    "description": "Validação de destino não selecionado."
+  },
+  "selectVehicleFirst": "Selecione um veículo antes de continuar.",
+  "@selectVehicleFirst": {
+    "description": "Validação de veículo não selecionado."
+  },
+  "selectDepartureFirst": "Selecione a data e hora de partida.",
+  "@selectDepartureFirst": {
+    "description": "Validação de data/hora não selecionada."
   }
 }

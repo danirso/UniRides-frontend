@@ -173,4 +173,53 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noVehiclesRegistered => 'No vehicles registered.';
+
+  @override
+  String get offerRideTitle => 'Offer a Ride';
+
+  @override
+  String get originLabel => 'Origin';
+
+  @override
+  String get destinationLabel => 'Destination';
+
+  @override
+  String get departureDateLabel => 'Departure Date and Time';
+
+  @override
+  String get availableSeatsLabel => 'Available seats';
+
+  @override
+  String get maxDetourLabel => 'Maximum accepted detour';
+
+  @override
+  String maxDetourValue(int km) {
+    return '$km km';
+  }
+
+  @override
+  String get selectVehicleLabel => 'Vehicle';
+
+  @override
+  String get offerRideAction => 'Publish Ride';
+
+  @override
+  String get rideCreatedSuccess => 'Ride published successfully!';
+
+  @override
+  String get rideCreatedError =>
+      'Error publishing ride. Please check the data and try again.';
+
+  @override
+  String get selectOriginFirst => 'Please select an origin before continuing.';
+
+  @override
+  String get selectDestinationFirst =>
+      'Please select a destination before continuing.';
+
+  @override
+  String get selectVehicleFirst => 'Please select a vehicle before continuing.';
+
+  @override
+  String get selectDepartureFirst => 'Please select a departure date and time.';
 }

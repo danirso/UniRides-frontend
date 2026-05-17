@@ -174,4 +174,53 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get noVehiclesRegistered => 'Nenhum veículo cadastrado.';
+
+  @override
+  String get offerRideTitle => 'Oferecer Carona';
+
+  @override
+  String get originLabel => 'Origem';
+
+  @override
+  String get destinationLabel => 'Destino';
+
+  @override
+  String get departureDateLabel => 'Data e Hora de Partida';
+
+  @override
+  String get availableSeatsLabel => 'Vagas disponíveis';
+
+  @override
+  String get maxDetourLabel => 'Desvio máximo aceito';
+
+  @override
+  String maxDetourValue(int km) {
+    return '$km km';
+  }
+
+  @override
+  String get selectVehicleLabel => 'Veículo';
+
+  @override
+  String get offerRideAction => 'Publicar Carona';
+
+  @override
+  String get rideCreatedSuccess => 'Carona publicada com sucesso!';
+
+  @override
+  String get rideCreatedError =>
+      'Erro ao publicar carona. Verifique os dados e tente novamente.';
+
+  @override
+  String get selectOriginFirst => 'Selecione a origem antes de continuar.';
+
+  @override
+  String get selectDestinationFirst =>
+      'Selecione o destino antes de continuar.';
+
+  @override
+  String get selectVehicleFirst => 'Selecione um veículo antes de continuar.';
+
+  @override
+  String get selectDepartureFirst => 'Selecione a data e hora de partida.';
 }

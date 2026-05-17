@@ -42,6 +42,9 @@ dependencies:
   intl: ^0.20.2
   flutter_localizations:
     sdk: flutter
+  flutter_dotenv: ^6.0.1
+  http: ^1.6.0
+  google_places_sdk_plus: ^1.1.0
 
 dev_dependencies:
   flutter_test:

@@ -185,5 +185,27 @@
   "vehicleDeletedError": "Error deleting vehicle. Please try again.",
   "vehicleUpdatedSuccess": "Vehicle updated successfully!",
   "vehicleUpdatedError": "Error updating vehicle. Please check the data and try again.",
-  "noVehiclesRegistered": "No vehicles registered."
+  "noVehiclesRegistered": "No vehicles registered.",
+  "offerRideTitle": "Offer a Ride",
+  "originLabel": "Origin",
+  "destinationLabel": "Destination",
+  "departureDateLabel": "Departure Date and Time",
+  "availableSeatsLabel": "Available seats",
+  "maxDetourLabel": "Maximum accepted detour",
+  "maxDetourValue": "{km} km",
+  "@maxDetourValue": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "selectVehicleLabel": "Vehicle",
+  "offerRideAction": "Publish Ride",
+  "rideCreatedSuccess": "Ride published successfully!",
+  "rideCreatedError": "Error publishing ride. Please check the data and try again.",
+  "selectOriginFirst": "Please select an origin before continuing.",
+  "selectDestinationFirst": "Please select a destination before continuing.",
+  "selectVehicleFirst": "Please select a vehicle before continuing.",
+  "selectDepartureFirst": "Please select a departure date and time."
 }

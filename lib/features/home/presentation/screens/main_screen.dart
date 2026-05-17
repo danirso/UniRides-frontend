@@ -5,6 +5,7 @@ import '../../../auth/presentation/controllers/user_controller.dart';
 import '../../../vehicles/presentation/controllers/vehicle_controller.dart';
 import '../../../profile/presentation/screens/profile_screen.dart';
 import '../../../vehicles/presentation/widgets/vehicle_registration_modal.dart';
+import '../../../rides/presentation/screens/offer_ride_screen.dart';
 
 class MainScreen extends ConsumerStatefulWidget {
   const MainScreen({super.key});
@@ -85,7 +86,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         final List<Widget> screens = [
           const Center(child: Text('TBI: Explorar Caronas')),
           const Center(child: Text('TBI: Minhas Viagens')),
-          if (canDrive) const Center(child: Text('TBI: Oferecer Carona')),
+          if (canDrive) const OfferRideScreen(),
           const ProfileScreen(),
         ];
 

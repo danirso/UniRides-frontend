@@ -409,6 +409,96 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Nenhum veículo cadastrado.'**
   String get noVehiclesRegistered;
+
+  /// Título da tela de oferta de carona.
+  ///
+  /// In pt, this message translates to:
+  /// **'Oferecer Carona'**
+  String get offerRideTitle;
+
+  /// Label do campo de origem.
+  ///
+  /// In pt, this message translates to:
+  /// **'Origem'**
+  String get originLabel;
+
+  /// Label do campo de destino.
+  ///
+  /// In pt, this message translates to:
+  /// **'Destino'**
+  String get destinationLabel;
+
+  /// Label do campo de data/hora.
+  ///
+  /// In pt, this message translates to:
+  /// **'Data e Hora de Partida'**
+  String get departureDateLabel;
+
+  /// Label do campo de vagas.
+  ///
+  /// In pt, this message translates to:
+  /// **'Vagas disponíveis'**
+  String get availableSeatsLabel;
+
+  /// Label do slider de desvio.
+  ///
+  /// In pt, this message translates to:
+  /// **'Desvio máximo aceito'**
+  String get maxDetourLabel;
+
+  /// Valor do slider de desvio.
+  ///
+  /// In pt, this message translates to:
+  /// **'{km} km'**
+  String maxDetourValue(int km);
+
+  /// Label do dropdown de veículo.
+  ///
+  /// In pt, this message translates to:
+  /// **'Veículo'**
+  String get selectVehicleLabel;
+
+  /// Botão de submissão da oferta de carona.
+  ///
+  /// In pt, this message translates to:
+  /// **'Publicar Carona'**
+  String get offerRideAction;
+
+  /// Mensagem de sucesso ao criar carona.
+  ///
+  /// In pt, this message translates to:
+  /// **'Carona publicada com sucesso!'**
+  String get rideCreatedSuccess;
+
+  /// Mensagem de erro ao criar carona.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao publicar carona. Verifique os dados e tente novamente.'**
+  String get rideCreatedError;
+
+  /// Validação de origem não selecionada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Selecione a origem antes de continuar.'**
+  String get selectOriginFirst;
+
+  /// Validação de destino não selecionado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Selecione o destino antes de continuar.'**
+  String get selectDestinationFirst;
+
+  /// Validação de veículo não selecionado.
+  ///
+  /// In pt, this message translates to:
+  /// **'Selecione um veículo antes de continuar.'**
+  String get selectVehicleFirst;
+
+  /// Validação de data/hora não selecionada.
+  ///
+  /// In pt, this message translates to:
+  /// **'Selecione a data e hora de partida.'**
+  String get selectDepartureFirst;
 }
 
 class _AppLocalizationsDelegate
