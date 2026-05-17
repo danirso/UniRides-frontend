@@ -223,4 +223,133 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get selectDepartureFirst => 'Selecione a data e hora de partida.';
+
+  @override
+  String get myRidesTitle => 'Minhas Viagens';
+
+  @override
+  String get ridesAsDriverTab => 'Caronas que ofereço';
+
+  @override
+  String get ridesAsPassengerTab => 'Minhas solicitações';
+
+  @override
+  String get rideStatusScheduled => 'Agendada';
+
+  @override
+  String get rideStatusInProgress => 'Em andamento';
+
+  @override
+  String get rideStatusCompleted => 'Concluída';
+
+  @override
+  String get rideStatusCanceled => 'Cancelada';
+
+  @override
+  String get rideStatusPending => 'Pendente';
+
+  @override
+  String get rideStatusAccepted => 'Aceita';
+
+  @override
+  String get rideStatusRejected => 'Rejeitada';
+
+  @override
+  String get startRideAction => 'Iniciar carona';
+
+  @override
+  String get completeRideAction => 'Finalizar carona';
+
+  @override
+  String get cancelRideAction => 'Cancelar carona';
+
+  @override
+  String get editRideAction => 'Editar carona';
+
+  @override
+  String get viewRequestsAction => 'Ver solicitações';
+
+  @override
+  String get rideRequestsTitle => 'Solicitações da carona';
+
+  @override
+  String get acceptRequestAction => 'Aceitar';
+
+  @override
+  String get rejectRequestAction => 'Rejeitar';
+
+  @override
+  String get cancelRequestAction => 'Cancelar solicitação';
+
+  @override
+  String get noRidesAsDriver => 'Você não ofereceu nenhuma carona ainda.';
+
+  @override
+  String get noRidesAsPassenger => 'Você não fez nenhuma solicitação ainda.';
+
+  @override
+  String get noRequests => 'Nenhuma solicitação para esta carona.';
+
+  @override
+  String get rideUpdatedSuccess => 'Carona atualizada com sucesso!';
+
+  @override
+  String get rideUpdatedError => 'Erro ao atualizar carona. Tente novamente.';
+
+  @override
+  String get rideStartedSuccess => 'Carona iniciada!';
+
+  @override
+  String get rideStartedError => 'Erro ao iniciar carona.';
+
+  @override
+  String get rideCompletedSuccess => 'Carona finalizada!';
+
+  @override
+  String get rideCompletedError => 'Erro ao finalizar carona.';
+
+  @override
+  String get rideCanceledSuccess => 'Carona cancelada.';
+
+  @override
+  String get rideCanceledError => 'Erro ao cancelar carona.';
+
+  @override
+  String get requestAcceptedSuccess => 'Passageiro aceito!';
+
+  @override
+  String get requestAcceptedError => 'Erro ao aceitar solicitação.';
+
+  @override
+  String get requestRejectedSuccess => 'Solicitação rejeitada.';
+
+  @override
+  String get requestRejectedError => 'Erro ao rejeitar solicitação.';
+
+  @override
+  String get requestCanceledSuccess => 'Solicitação cancelada.';
+
+  @override
+  String get requestCanceledError => 'Erro ao cancelar solicitação.';
+
+  @override
+  String get confirmCancelRideTitle => 'Cancelar carona?';
+
+  @override
+  String get confirmCancelRideMessage =>
+      'Tem certeza que deseja cancelar esta carona? Esta ação não pode ser desfeita.';
+
+  @override
+  String get confirmCompleteRideTitle => 'Finalizar carona?';
+
+  @override
+  String get confirmCompleteRideMessage =>
+      'Confirma que a carona foi concluída?';
+
+  @override
+  String get confirmCancelRequestTitle => 'Cancelar solicitação?';
+
+  @override
+  String get confirmCancelRequestMessage =>
+      'Tem certeza que deseja cancelar sua solicitação para esta carona?';
 }

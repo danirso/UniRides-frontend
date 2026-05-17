@@ -499,6 +499,258 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Selecione a data e hora de partida.'**
   String get selectDepartureFirst;
+
+  /// No description provided for @myRidesTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Minhas Viagens'**
+  String get myRidesTitle;
+
+  /// No description provided for @ridesAsDriverTab.
+  ///
+  /// In pt, this message translates to:
+  /// **'Caronas que ofereço'**
+  String get ridesAsDriverTab;
+
+  /// No description provided for @ridesAsPassengerTab.
+  ///
+  /// In pt, this message translates to:
+  /// **'Minhas solicitações'**
+  String get ridesAsPassengerTab;
+
+  /// No description provided for @rideStatusScheduled.
+  ///
+  /// In pt, this message translates to:
+  /// **'Agendada'**
+  String get rideStatusScheduled;
+
+  /// No description provided for @rideStatusInProgress.
+  ///
+  /// In pt, this message translates to:
+  /// **'Em andamento'**
+  String get rideStatusInProgress;
+
+  /// No description provided for @rideStatusCompleted.
+  ///
+  /// In pt, this message translates to:
+  /// **'Concluída'**
+  String get rideStatusCompleted;
+
+  /// No description provided for @rideStatusCanceled.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cancelada'**
+  String get rideStatusCanceled;
+
+  /// No description provided for @rideStatusPending.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pendente'**
+  String get rideStatusPending;
+
+  /// No description provided for @rideStatusAccepted.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aceita'**
+  String get rideStatusAccepted;
+
+  /// No description provided for @rideStatusRejected.
+  ///
+  /// In pt, this message translates to:
+  /// **'Rejeitada'**
+  String get rideStatusRejected;
+
+  /// No description provided for @startRideAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Iniciar carona'**
+  String get startRideAction;
+
+  /// No description provided for @completeRideAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Finalizar carona'**
+  String get completeRideAction;
+
+  /// No description provided for @cancelRideAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cancelar carona'**
+  String get cancelRideAction;
+
+  /// No description provided for @editRideAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Editar carona'**
+  String get editRideAction;
+
+  /// No description provided for @viewRequestsAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ver solicitações'**
+  String get viewRequestsAction;
+
+  /// No description provided for @rideRequestsTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Solicitações da carona'**
+  String get rideRequestsTitle;
+
+  /// No description provided for @acceptRequestAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Aceitar'**
+  String get acceptRequestAction;
+
+  /// No description provided for @rejectRequestAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Rejeitar'**
+  String get rejectRequestAction;
+
+  /// No description provided for @cancelRequestAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cancelar solicitação'**
+  String get cancelRequestAction;
+
+  /// No description provided for @noRidesAsDriver.
+  ///
+  /// In pt, this message translates to:
+  /// **'Você não ofereceu nenhuma carona ainda.'**
+  String get noRidesAsDriver;
+
+  /// No description provided for @noRidesAsPassenger.
+  ///
+  /// In pt, this message translates to:
+  /// **'Você não fez nenhuma solicitação ainda.'**
+  String get noRidesAsPassenger;
+
+  /// No description provided for @noRequests.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nenhuma solicitação para esta carona.'**
+  String get noRequests;
+
+  /// No description provided for @rideUpdatedSuccess.
+  ///
+  /// In pt, this message translates to:
+  /// **'Carona atualizada com sucesso!'**
+  String get rideUpdatedSuccess;
+
+  /// No description provided for @rideUpdatedError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao atualizar carona. Tente novamente.'**
+  String get rideUpdatedError;
+
+  /// No description provided for @rideStartedSuccess.
+  ///
+  /// In pt, this message translates to:
+  /// **'Carona iniciada!'**
+  String get rideStartedSuccess;
+
+  /// No description provided for @rideStartedError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao iniciar carona.'**
+  String get rideStartedError;
+
+  /// No description provided for @rideCompletedSuccess.
+  ///
+  /// In pt, this message translates to:
+  /// **'Carona finalizada!'**
+  String get rideCompletedSuccess;
+
+  /// No description provided for @rideCompletedError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao finalizar carona.'**
+  String get rideCompletedError;
+
+  /// No description provided for @rideCanceledSuccess.
+  ///
+  /// In pt, this message translates to:
+  /// **'Carona cancelada.'**
+  String get rideCanceledSuccess;
+
+  /// No description provided for @rideCanceledError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao cancelar carona.'**
+  String get rideCanceledError;
+
+  /// No description provided for @requestAcceptedSuccess.
+  ///
+  /// In pt, this message translates to:
+  /// **'Passageiro aceito!'**
+  String get requestAcceptedSuccess;
+
+  /// No description provided for @requestAcceptedError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao aceitar solicitação.'**
+  String get requestAcceptedError;
+
+  /// No description provided for @requestRejectedSuccess.
+  ///
+  /// In pt, this message translates to:
+  /// **'Solicitação rejeitada.'**
+  String get requestRejectedSuccess;
+
+  /// No description provided for @requestRejectedError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao rejeitar solicitação.'**
+  String get requestRejectedError;
+
+  /// No description provided for @requestCanceledSuccess.
+  ///
+  /// In pt, this message translates to:
+  /// **'Solicitação cancelada.'**
+  String get requestCanceledSuccess;
+
+  /// No description provided for @requestCanceledError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao cancelar solicitação.'**
+  String get requestCanceledError;
+
+  /// No description provided for @confirmCancelRideTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cancelar carona?'**
+  String get confirmCancelRideTitle;
+
+  /// No description provided for @confirmCancelRideMessage.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tem certeza que deseja cancelar esta carona? Esta ação não pode ser desfeita.'**
+  String get confirmCancelRideMessage;
+
+  /// No description provided for @confirmCompleteRideTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Finalizar carona?'**
+  String get confirmCompleteRideTitle;
+
+  /// No description provided for @confirmCompleteRideMessage.
+  ///
+  /// In pt, this message translates to:
+  /// **'Confirma que a carona foi concluída?'**
+  String get confirmCompleteRideMessage;
+
+  /// No description provided for @confirmCancelRequestTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Cancelar solicitação?'**
+  String get confirmCancelRequestTitle;
+
+  /// No description provided for @confirmCancelRequestMessage.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tem certeza que deseja cancelar sua solicitação para esta carona?'**
+  String get confirmCancelRequestMessage;
 }
 
 class _AppLocalizationsDelegate

@@ -222,4 +222,133 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get selectDepartureFirst => 'Please select a departure date and time.';
+
+  @override
+  String get myRidesTitle => 'My Trips';
+
+  @override
+  String get ridesAsDriverTab => 'Rides I offer';
+
+  @override
+  String get ridesAsPassengerTab => 'My requests';
+
+  @override
+  String get rideStatusScheduled => 'Scheduled';
+
+  @override
+  String get rideStatusInProgress => 'In progress';
+
+  @override
+  String get rideStatusCompleted => 'Completed';
+
+  @override
+  String get rideStatusCanceled => 'Canceled';
+
+  @override
+  String get rideStatusPending => 'Pending';
+
+  @override
+  String get rideStatusAccepted => 'Accepted';
+
+  @override
+  String get rideStatusRejected => 'Rejected';
+
+  @override
+  String get startRideAction => 'Start ride';
+
+  @override
+  String get completeRideAction => 'Complete ride';
+
+  @override
+  String get cancelRideAction => 'Cancel ride';
+
+  @override
+  String get editRideAction => 'Edit ride';
+
+  @override
+  String get viewRequestsAction => 'View requests';
+
+  @override
+  String get rideRequestsTitle => 'Ride requests';
+
+  @override
+  String get acceptRequestAction => 'Accept';
+
+  @override
+  String get rejectRequestAction => 'Reject';
+
+  @override
+  String get cancelRequestAction => 'Cancel request';
+
+  @override
+  String get noRidesAsDriver => 'You haven\'t offered any rides yet.';
+
+  @override
+  String get noRidesAsPassenger => 'You haven\'t made any requests yet.';
+
+  @override
+  String get noRequests => 'No requests for this ride.';
+
+  @override
+  String get rideUpdatedSuccess => 'Ride updated successfully!';
+
+  @override
+  String get rideUpdatedError => 'Error updating ride. Please try again.';
+
+  @override
+  String get rideStartedSuccess => 'Ride started!';
+
+  @override
+  String get rideStartedError => 'Error starting ride.';
+
+  @override
+  String get rideCompletedSuccess => 'Ride completed!';
+
+  @override
+  String get rideCompletedError => 'Error completing ride.';
+
+  @override
+  String get rideCanceledSuccess => 'Ride canceled.';
+
+  @override
+  String get rideCanceledError => 'Error canceling ride.';
+
+  @override
+  String get requestAcceptedSuccess => 'Passenger accepted!';
+
+  @override
+  String get requestAcceptedError => 'Error accepting request.';
+
+  @override
+  String get requestRejectedSuccess => 'Request rejected.';
+
+  @override
+  String get requestRejectedError => 'Error rejecting request.';
+
+  @override
+  String get requestCanceledSuccess => 'Request canceled.';
+
+  @override
+  String get requestCanceledError => 'Error canceling request.';
+
+  @override
+  String get confirmCancelRideTitle => 'Cancel ride?';
+
+  @override
+  String get confirmCancelRideMessage =>
+      'Are you sure you want to cancel this ride? This action cannot be undone.';
+
+  @override
+  String get confirmCompleteRideTitle => 'Complete ride?';
+
+  @override
+  String get confirmCompleteRideMessage =>
+      'Confirm that the ride has been completed?';
+
+  @override
+  String get confirmCancelRequestTitle => 'Cancel request?';
+
+  @override
+  String get confirmCancelRequestMessage =>
+      'Are you sure you want to cancel your request for this ride?';
 }

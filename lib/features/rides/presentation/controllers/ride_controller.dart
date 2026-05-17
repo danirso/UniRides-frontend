@@ -1,33 +1,45 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../vehicles/presentation/controllers/vehicle_controller.dart';
 import '../../data/repositories/ride_repository_impl.dart';
 import '../../domain/entities/ride_entity.dart';
+import '../../domain/entities/ride_request_entity.dart';
 import '../../domain/repositories/i_ride_repository.dart';
-import '../../../vehicles/presentation/controllers/vehicle_controller.dart';
 
 final rideRepositoryProvider = Provider<IRideRepository>((ref) {
   return RideRepositoryImpl(ref.watch(dioClientProvider));
 });
 
 final rideControllerProvider =
-    NotifierProvider<RideController, AsyncValue<List<RideEntity>>>(
-        RideController.new);
+    NotifierProvider<RideController, List<RideEntity>>(RideController.new);
 
-class RideController extends Notifier<AsyncValue<List<RideEntity>>> {
+final myRequestsControllerProvider =
+    NotifierProvider<MyRequestsController, List<RideRequestWithRideEntity>>(
+        MyRequestsController.new);
+
+final rideRequestsControllerProvider = NotifierProvider.family<
+    RideRequestsController,
+    List<RideRequestWithPassengerEntity>,
+    String>(RideRequestsController.new);
+
+// ---------------------------------------------------------------------------
+// RideController — caronas do motorista
+// ---------------------------------------------------------------------------
+
+class RideController extends Notifier<List<RideEntity>> {
   late IRideRepository _repository;
 
   @override
-  AsyncValue<List<RideEntity>> build() {
+  List<RideEntity> build() {
     _repository = ref.watch(rideRepositoryProvider);
-    return const AsyncValue.loading();
+    return [];
   }
 
   Future<void> fetchMyRides() async {
-    state = const AsyncValue.loading();
     try {
       final rides = await _repository.getMyRides();
-      state = AsyncValue.data(rides);
-    } catch (e, st) {
-      state = AsyncValue.error(e, st);
+      state = rides;
+    } catch (e) {
+      state = [];
     }
   }
 
@@ -58,9 +70,141 @@ class RideController extends Notifier<AsyncValue<List<RideEntity>>> {
       );
       await fetchMyRides();
       return ride;
-    } catch (e, st) {
-      state = AsyncValue.error(e, st);
+    } catch (e) {
       return null;
+    }
+  }
+
+  Future<bool> updateRide({
+    required String rideId,
+    String? vehicleId,
+    int? availableSeats,
+    int? maxDetourMeters,
+    DateTime? departureTime,
+  }) async {
+    try {
+      await _repository.updateRide(
+        rideId: rideId,
+        vehicleId: vehicleId,
+        availableSeats: availableSeats,
+        maxDetourMeters: maxDetourMeters,
+        departureTime: departureTime,
+      );
+      await fetchMyRides();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> startRide(String rideId) async {
+    try {
+      await _repository.startRide(rideId);
+      await fetchMyRides();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> completeRide(String rideId) async {
+    try {
+      await _repository.completeRide(rideId);
+      await fetchMyRides();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> cancelRide(String rideId) async {
+    try {
+      await _repository.cancelRide(rideId);
+      await fetchMyRides();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// RideRequestsController — solicitações de uma carona específica (motorista)
+// ---------------------------------------------------------------------------
+
+class RideRequestsController
+    extends Notifier<List<RideRequestWithPassengerEntity>> {
+  late IRideRepository _repository;
+  late final String _rideId;
+
+  RideRequestsController(this._rideId);
+
+  @override
+  List<RideRequestWithPassengerEntity> build() {
+    _repository = ref.watch(rideRepositoryProvider);
+    return [];
+  }
+
+  Future<void> fetchRequests() async {
+    try {
+      final requests = await _repository.getRideRequests(_rideId);
+      state = requests;
+    } catch (e) {
+      state = [];
+    }
+  }
+
+  Future<bool> acceptRequest(String requestId) async {
+    try {
+      await _repository.acceptRequest(_rideId, requestId);
+      await fetchRequests();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> rejectRequest(String requestId) async {
+    try {
+      await _repository.rejectRequest(_rideId, requestId);
+      await fetchRequests();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// MyRequestsController — solicitações do passageiro
+// ---------------------------------------------------------------------------
+
+class MyRequestsController
+    extends Notifier<List<RideRequestWithRideEntity>> {
+  late IRideRepository _repository;
+
+  @override
+  List<RideRequestWithRideEntity> build() {
+    _repository = ref.watch(rideRepositoryProvider);
+    return [];
+  }
+
+  Future<void> fetchMyRequests() async {
+    try {
+      final requests = await _repository.getMyRequests();
+      state = requests;
+    } catch (e) {
+      state = [];
+    }
+  }
+
+  Future<bool> cancelRequest(String rideId, String requestId) async {
+    try {
+      await _repository.cancelRequest(rideId, requestId);
+      await fetchMyRequests();
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 }

@@ -1,4 +1,5 @@
 import '../entities/ride_entity.dart';
+import '../entities/ride_request_entity.dart';
 
 abstract class IRideRepository {
   Future<RideEntity> createRide({
@@ -15,4 +16,23 @@ abstract class IRideRepository {
   });
 
   Future<List<RideEntity>> getMyRides();
+
+  Future<RideEntity> updateRide({
+    required String rideId,
+    String? vehicleId,
+    int? availableSeats,
+    int? maxDetourMeters,
+    DateTime? departureTime,
+  });
+
+  Future<RideEntity> startRide(String rideId);
+  Future<RideEntity> completeRide(String rideId);
+  Future<RideEntity> cancelRide(String rideId);
+
+  Future<List<RideRequestWithPassengerEntity>> getRideRequests(String rideId);
+  Future<RideRequestWithPassengerEntity> acceptRequest(String rideId, String requestId);
+  Future<RideRequestWithPassengerEntity> rejectRequest(String rideId, String requestId);
+
+  Future<List<RideRequestWithRideEntity>> getMyRequests();
+  Future<void> cancelRequest(String rideId, String requestId);
 }

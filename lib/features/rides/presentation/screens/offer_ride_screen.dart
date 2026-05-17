@@ -199,7 +199,7 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
                   child: DropdownButtonFormField<VehicleEntity>(
                     key: const Key('vehicle_dropdown'),
                     decoration: InputDecoration(labelText: l10n.selectVehicleLabel),
-                    value: _selectedVehicle,
+                    initialValue: _selectedVehicle,
                     items: vehicles.map((v) {
                       return DropdownMenuItem(
                         value: v,
