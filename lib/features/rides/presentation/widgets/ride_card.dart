@@ -174,11 +174,11 @@ class RideCard extends StatelessWidget {
                   const Icon(Icons.schedule, size: 18, color: AppTheme.primaryTeal),
                   const SizedBox(width: 8),
                   Text(
-                    '${ride.departureTime.toLocal().day.toString().padLeft(2, '0')}/'
-                    '${ride.departureTime.toLocal().month.toString().padLeft(2, '0')}/'
+                    '${ride.departureTime.day.toString().padLeft(2, '0')}/'
+                    '${ride.departureTime.month.toString().padLeft(2, '0')}/'
                     '${ride.departureTime.year} '
-                    '${ride.departureTime.toLocal().hour.toString().padLeft(2, '0')}:'
-                    '${ride.departureTime.toLocal().minute.toString().padLeft(2, '0')}',
+                    '${ride.departureTime.hour.toString().padLeft(2, '0')}:'
+                    '${ride.departureTime.minute.toString().padLeft(2, '0')}',
                     style: const TextStyle(fontSize: 14),
                   ),
                 ],

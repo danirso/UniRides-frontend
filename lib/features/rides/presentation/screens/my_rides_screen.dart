@@ -219,11 +219,11 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '${request.ride.departureTime.toLocal().day.toString().padLeft(2, '0')}/'
-                      '${request.ride.departureTime.toLocal().month.toString().padLeft(2, '0')}/'
+                      '${request.ride.departureTime.day.toString().padLeft(2, '0')}/'
+                      '${request.ride.departureTime.month.toString().padLeft(2, '0')}/'
                       '${request.ride.departureTime.year} '
-                      '${request.ride.departureTime.toLocal().hour.toString().padLeft(2, '0')}:'
-                      '${request.ride.departureTime.toLocal().minute.toString().padLeft(2, '0')}',
+                      '${request.ride.departureTime.hour.toString().padLeft(2, '0')}:'
+                      '${request.ride.departureTime.minute.toString().padLeft(2, '0')}',
                       style: const TextStyle(fontSize: 13, color: Colors.grey),
                     ),
                     Container(

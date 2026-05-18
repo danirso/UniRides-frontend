@@ -36,7 +36,7 @@ class RideRepositoryImpl implements IRideRepository {
           'destination_lng': destinationLng,
           'origin_address': originAddress,
           'destination_address': destinationAddress,
-          'departure_time': departureTime.toUtc().toIso8601String(),
+          'departure_time': departureTime.toIso8601String(),
           'available_seats': availableSeats,
           'max_detour_meters': maxDetourMeters,
         },
@@ -73,7 +73,7 @@ class RideRepositoryImpl implements IRideRepository {
         'vehicle_id': vehicleId,
         'available_seats': availableSeats,
         'max_detour_meters': maxDetourMeters,
-        'departure_time': departureTime?.toUtc().toIso8601String(),
+        'departure_time': departureTime?.toIso8601String(),
       }..removeWhere((key, value) => value == null);
 
       final response = await _client.instance.patch('/rides/$rideId', data: data);
