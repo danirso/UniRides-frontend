@@ -352,4 +352,11 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get confirmCancelRequestMessage =>
       'Tem certeza que deseja cancelar sua solicitação para esta carona?';
+
+  @override
+  String get confirmStartRideTitle => 'Iniciar carona?';
+
+  @override
+  String get confirmStartRideMessage =>
+      'Deseja mesmo iniciar esta carona agora?';
 }

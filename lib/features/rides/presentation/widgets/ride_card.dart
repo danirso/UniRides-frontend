@@ -174,11 +174,11 @@ class RideCard extends StatelessWidget {
                   const Icon(Icons.schedule, size: 18, color: AppTheme.primaryTeal),
                   const SizedBox(width: 8),
                   Text(
-                    '${ride.departureTime.day.toString().padLeft(2, '0')}/'
-                    '${ride.departureTime.month.toString().padLeft(2, '0')}/'
+                    '${ride.departureTime.toLocal().day.toString().padLeft(2, '0')}/'
+                    '${ride.departureTime.toLocal().month.toString().padLeft(2, '0')}/'
                     '${ride.departureTime.year} '
-                    '${ride.departureTime.hour.toString().padLeft(2, '0')}:'
-                    '${ride.departureTime.minute.toString().padLeft(2, '0')}',
+                    '${ride.departureTime.toLocal().hour.toString().padLeft(2, '0')}:'
+                    '${ride.departureTime.toLocal().minute.toString().padLeft(2, '0')}',
                     style: const TextStyle(fontSize: 14),
                   ),
                 ],
@@ -198,27 +198,55 @@ class RideCard extends StatelessWidget {
                 ],
               ),
             ),
-            if (isScheduled || isInProgress) ...[
+            if (isScheduled) ...[
+              const SizedBox(height: 12),
+              Row(
+                children: [
+                  Expanded(
+                    child: Semantics(
+                      button: true,
+                      label: l10n.viewRequestsAction,
+                      child: OutlinedButton.icon(
+                        key: Key('view_requests_${ride.id}'),
+                        onPressed: onViewRequests,
+                        icon: const Icon(Icons.people),
+                        label: Text(l10n.viewRequestsAction),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Semantics(
+                      button: true,
+                      label: l10n.startRideAction,
+                      child: OutlinedButton.icon(
+                        key: Key('start_ride_${ride.id}'),
+                        onPressed: onStart,
+                        icon: const Icon(Icons.play_arrow),
+                        label: Text(l10n.startRideAction),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+            if (isInProgress) ...[
               const SizedBox(height: 12),
               Semantics(
                 button: true,
-                label: isScheduled ? l10n.startRideAction : l10n.viewRequestsAction,
+                label: l10n.viewRequestsAction,
                 child: SizedBox(
                   width: double.infinity,
                   child: OutlinedButton.icon(
-                    key: Key(isScheduled
-                        ? 'start_ride_${ride.id}'
-                        : 'view_requests_${ride.id}'),
-                    onPressed: isScheduled ? onStart : onViewRequests,
-                    icon: Icon(isScheduled ? Icons.play_arrow : Icons.people),
-                    label: Text(isScheduled
-                        ? l10n.startRideAction
-                        : l10n.viewRequestsAction),
+                    key: Key('view_requests_${ride.id}'),
+                    onPressed: onViewRequests,
+                    icon: const Icon(Icons.people),
+                    label: Text(l10n.viewRequestsAction),
                   ),
                 ),
               ),
             ],
-          ],
+          ],  
         ),
       ),
     );

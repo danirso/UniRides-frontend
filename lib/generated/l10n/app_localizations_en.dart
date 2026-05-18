@@ -351,4 +351,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get confirmCancelRequestMessage =>
       'Are you sure you want to cancel your request for this ride?';
+
+  @override
+  String get confirmStartRideTitle => 'Start ride?';
+
+  @override
+  String get confirmStartRideMessage =>
+      'Are you sure you want to start this ride now?';
 }

@@ -751,6 +751,18 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Tem certeza que deseja cancelar sua solicitação para esta carona?'**
   String get confirmCancelRequestMessage;
+
+  /// No description provided for @confirmStartRideTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Iniciar carona?'**
+  String get confirmStartRideTitle;
+
+  /// No description provided for @confirmStartRideMessage.
+  ///
+  /// In pt, this message translates to:
+  /// **'Deseja mesmo iniciar esta carona agora?'**
+  String get confirmStartRideMessage;
 }
 
 class _AppLocalizationsDelegate

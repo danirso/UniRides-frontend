@@ -324,5 +324,7 @@
   "confirmCompleteRideTitle": "Finalizar carona?",
   "confirmCompleteRideMessage": "Confirma que a carona foi concluída?",
   "confirmCancelRequestTitle": "Cancelar solicitação?",
-  "confirmCancelRequestMessage": "Tem certeza que deseja cancelar sua solicitação para esta carona?"
+  "confirmCancelRequestMessage": "Tem certeza que deseja cancelar sua solicitação para esta carona?",
+  "confirmStartRideTitle": "Iniciar carona?",
+  "confirmStartRideMessage": "Deseja mesmo iniciar esta carona agora?"
 }

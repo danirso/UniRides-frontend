@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_places_sdk_plus/google_places_sdk_plus.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -16,12 +15,25 @@ class PlaceResult {
   });
 }
 
+class _SimplePrediction {
+  final String placeId;
+  final String primaryText;
+  final String secondaryText;
+  final String fullText;
+
+  const _SimplePrediction({
+    required this.placeId,
+    required this.primaryText,
+    required this.secondaryText,
+    required this.fullText,
+  });
+}
+
 class AddressSearchField extends StatefulWidget {
   final String label;
   final String widgetKey;
   final TextEditingController controller;
   final void Function(PlaceResult) onPlaceSelected;
-  final FlutterGooglePlacesSdk placesClient;
 
   const AddressSearchField({
     super.key,
@@ -29,7 +41,6 @@ class AddressSearchField extends StatefulWidget {
     required this.widgetKey,
     required this.controller,
     required this.onPlaceSelected,
-    required this.placesClient,
   });
 
   @override
@@ -37,7 +48,7 @@ class AddressSearchField extends StatefulWidget {
 }
 
 class _AddressSearchFieldState extends State<AddressSearchField> {
-  List<AutocompletePrediction> _predictions = [];
+  List<_SimplePrediction> _predictions = [];
   bool _isLoading = false;
   bool _placeSelected = false;
   Timer? _debounce;
@@ -58,58 +69,79 @@ class _AddressSearchFieldState extends State<AddressSearchField> {
       return;
     }
 
-    _debounce?.cancel;
+    _debounce?.cancel();
     _debounce = Timer(const Duration(milliseconds: 500), () async {
       setState(() => _isLoading = true);
-    try {
-      final result = await widget.placesClient.findAutocompletePredictions(
-        value,
-        countries: ['BR'],
-        //placeTypesFilter: [PlaceTypeFilter.ADDRESS],
-      );
-      setState(() => _predictions = result.predictions);
-    } catch (_) {
-      setState(() => _predictions = []);
-    } finally {
-      setState(() => _isLoading = false);
-    }
-    
+      try {
+        const apiKey = String.fromEnvironment('GOOGLE_MAPS_KEY');
+        final uri = Uri.parse(
+          'https://maps.googleapis.com/maps/api/place/autocomplete/json'
+          '?input=${Uri.encodeComponent(value)}'
+          '&key=$apiKey'
+          '&language=pt-BR'
+          '&components=country:br',
+        );
+        final response = await http.get(uri);
+        final data = jsonDecode(response.body);
+
+        if (data['status'] == 'OK') {
+          final predictions = (data['predictions'] as List)
+              .map((p) => _SimplePrediction(
+                    placeId: p['place_id'],
+                    primaryText:
+                        p['structured_formatting']['main_text'] ?? '',
+                    secondaryText:
+                        p['structured_formatting']['secondary_text'] ?? '',
+                    fullText: p['description'] ?? '',
+                  ))
+              .toList();
+          setState(() => _predictions = predictions);
+        } else {
+          setState(() => _predictions = []);
+        }
+      } catch (e) {
+        debugPrint('Erro autocomplete: $e');
+        setState(() => _predictions = []);
+      } finally {
+        setState(() => _isLoading = false);
+      }
     });
   }
 
-  Future<void> _onPredictionSelected(AutocompletePrediction prediction) async {
-  setState(() {
-    _isLoading = true;
-    _predictions = [];
-  });
+  Future<void> _onPredictionSelected(_SimplePrediction prediction) async {
+    setState(() {
+      _isLoading = true;
+      _predictions = [];
+    });
 
-  try {
-    const apiKey = String.fromEnvironment('GOOGLE_MAPS_KEY');
-    final uri = Uri.parse(
-      'https://maps.googleapis.com/maps/api/geocode/json'
-      '?place_id=${prediction.placeId}'
-      '&key=$apiKey'
-      '&language=pt-BR',
-    );
-    final response = await http.get(uri);
-    final data = jsonDecode(response.body);
+    try {
+      const apiKey = String.fromEnvironment('GOOGLE_MAPS_KEY');
+      final uri = Uri.parse(
+        'https://maps.googleapis.com/maps/api/geocode/json'
+        '?place_id=${prediction.placeId}'
+        '&key=$apiKey'
+        '&language=pt-BR',
+      );
+      final response = await http.get(uri);
+      final data = jsonDecode(response.body);
 
-    if (data['status'] == 'OK') {
-      final result = data['results'][0];
-      final lat = result['geometry']['location']['lat'] as double;
-      final lng = result['geometry']['location']['lng'] as double;
-      final address = result['formatted_address'] as String;
+      if (data['status'] == 'OK') {
+        final result = data['results'][0];
+        final lat = result['geometry']['location']['lat'] as double;
+        final lng = result['geometry']['location']['lng'] as double;
+        final address = result['formatted_address'] as String;
 
-      widget.controller.text = address;
-      setState(() => _placeSelected = true);
-      widget.onPlaceSelected(PlaceResult(address: address, lat: lat, lng: lng));
+        widget.controller.text = address;
+        setState(() => _placeSelected = true);
+        widget.onPlaceSelected(
+            PlaceResult(address: address, lat: lat, lng: lng));
+      }
+    } catch (e) {
+      debugPrint('Erro geocoding: $e');
+    } finally {
+      setState(() => _isLoading = false);
     }
-  } catch (_) {
-
-  } finally {
-    setState(() => _isLoading = false);
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +180,7 @@ class _AddressSearchFieldState extends State<AddressSearchField> {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: _predictions.length,
-              separatorBuilder: (_, _) => const Divider(height: 1),
+              separatorBuilder: (_, __) => const Divider(height: 1),
               itemBuilder: (context, index) {
                 final prediction = _predictions[index];
                 return Semantics(
@@ -158,11 +190,12 @@ class _AddressSearchFieldState extends State<AddressSearchField> {
                     key: Key('${widget.widgetKey}_prediction_$index'),
                     leading: const Icon(Icons.location_on_outlined),
                     title: Text(
-                      prediction.primaryText ?? '',
-                      style: const TextStyle(fontWeight: FontWeight.w500),
+                      prediction.primaryText,
+                      style:
+                          const TextStyle(fontWeight: FontWeight.w500),
                     ),
                     subtitle: Text(
-                      prediction.secondaryText ?? '',
+                      prediction.secondaryText,
                       style: const TextStyle(fontSize: 12),
                     ),
                     onTap: () => _onPredictionSelected(prediction),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_places_sdk_plus/google_places_sdk_plus.dart';
 import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
 import '../../../vehicles/presentation/controllers/vehicle_controller.dart';
 import '../../../vehicles/domain/entities/vehicle_entity.dart';
@@ -15,7 +14,6 @@ class OfferRideScreen extends ConsumerStatefulWidget {
 }
 
 class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
-  late final FlutterGooglePlacesSdk _placesClient;
   late final TextEditingController _originController;
   late final TextEditingController _destinationController;
 
@@ -30,8 +28,6 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
   @override
   void initState() {
     super.initState();
-    const apiKey = String.fromEnvironment('GOOGLE_MAPS_KEY');
-    _placesClient = FlutterGooglePlacesSdk(apiKey, locale: const Locale('pt', 'BR'));
     _originController = TextEditingController();
     _destinationController = TextEditingController();
     Future.microtask(() =>
@@ -122,7 +118,7 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
     );
   }
 
-  void _resetForm(){
+  void _resetForm() {
     _originController.clear();
     _destinationController.clear();
     setState(() {
@@ -134,8 +130,6 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
       _maxDetourKm = 1;
     });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +152,6 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
               label: l10n.originLabel,
               controller: _originController,
               widgetKey: 'origin',
-              placesClient: _placesClient,
               onPlaceSelected: (place) => setState(() => _origin = place),
             ),
             const SizedBox(height: 16),
@@ -166,7 +159,6 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
               label: l10n.destinationLabel,
               controller: _destinationController,
               widgetKey: 'destination',
-              placesClient: _placesClient,
               onPlaceSelected: (place) => setState(() => _destination = place),
             ),
             const SizedBox(height: 16),
@@ -181,10 +173,10 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
                   _departureTime == null
                       ? l10n.departureDateLabel
                       : '${_departureTime!.day.toString().padLeft(2, '0')}/'
-                        '${_departureTime!.month.toString().padLeft(2, '0')}/'
-                        '${_departureTime!.year} '
-                        '${_departureTime!.hour.toString().padLeft(2, '0')}:'
-                        '${_departureTime!.minute.toString().padLeft(2, '0')}',
+                          '${_departureTime!.month.toString().padLeft(2, '0')}/'
+                          '${_departureTime!.year} '
+                          '${_departureTime!.hour.toString().padLeft(2, '0')}:'
+                          '${_departureTime!.minute.toString().padLeft(2, '0')}',
                 ),
               ),
             ),
@@ -198,7 +190,8 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
                   label: l10n.selectVehicleLabel,
                   child: DropdownButtonFormField<VehicleEntity>(
                     key: const Key('vehicle_dropdown'),
-                    decoration: InputDecoration(labelText: l10n.selectVehicleLabel),
+                    decoration: InputDecoration(
+                        labelText: l10n.selectVehicleLabel),
                     initialValue: _selectedVehicle,
                     items: vehicles.map((v) {
                       return DropdownMenuItem(
@@ -232,7 +225,8 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
                   ),
                   Text(
                     '$_availableSeats',
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   IconButton(
                     key: const Key('seats_increment_button'),
@@ -247,11 +241,13 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
             ),
             const SizedBox(height: 8),
             Semantics(
-              label: '${l10n.maxDetourLabel}: ${l10n.maxDetourValue(_maxDetourKm)}',
+              label:
+                  '${l10n.maxDetourLabel}: ${l10n.maxDetourValue(_maxDetourKm)}',
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('${l10n.maxDetourLabel}: ${l10n.maxDetourValue(_maxDetourKm)}'),
+                  Text(
+                      '${l10n.maxDetourLabel}: ${l10n.maxDetourValue(_maxDetourKm)}'),
                   Slider(
                     key: const Key('max_detour_slider'),
                     value: _maxDetourKm.toDouble(),
@@ -259,7 +255,8 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
                     max: 10,
                     divisions: 10,
                     label: l10n.maxDetourValue(_maxDetourKm),
-                    onChanged: (v) => setState(() => _maxDetourKm = v.toInt()),
+                    onChanged: (v) =>
+                        setState(() => _maxDetourKm = v.toInt()),
                   ),
                 ],
               ),

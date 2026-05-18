@@ -249,5 +249,7 @@
   "confirmCompleteRideTitle": "Complete ride?",
   "confirmCompleteRideMessage": "Confirm that the ride has been completed?",
   "confirmCancelRequestTitle": "Cancel request?",
-  "confirmCancelRequestMessage": "Are you sure you want to cancel your request for this ride?"
+  "confirmCancelRequestMessage": "Are you sure you want to cancel your request for this ride?",
+  "confirmStartRideTitle": "Start ride?",
+  "confirmStartRideMessage": "Are you sure you want to start this ride now?"
 }
