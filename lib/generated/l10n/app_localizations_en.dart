@@ -254,7 +254,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rideStatusRejected => 'Rejected';
 
   @override
-  String get startRideAction => 'Start ride';
+  String get startRideAction => 'Start';
 
   @override
   String get completeRideAction => 'Complete ride';
@@ -266,7 +266,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get editRideAction => 'Edit ride';
 
   @override
-  String get viewRequestsAction => 'View requests';
+  String get viewRequestsAction => 'Requests';
 
   @override
   String get rideRequestsTitle => 'Ride requests';
@@ -358,4 +358,11 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get confirmStartRideMessage =>
       'Are you sure you want to start this ride now?';
+
+  @override
+  String get maxDetourInfoLabel => 'Detour radius information';
+
+  @override
+  String get maxDetourInfoMessage =>
+      'Maximum distance you accept to deviate from your route to pick up or drop off a passenger. The higher the value, the more compatible rides will appear for passengers.';
 }

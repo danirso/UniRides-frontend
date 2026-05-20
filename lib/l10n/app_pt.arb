@@ -293,11 +293,11 @@
   "rideStatusPending": "Pendente",
   "rideStatusAccepted": "Aceita",
   "rideStatusRejected": "Rejeitada",
-  "startRideAction": "Iniciar carona",
+  "startRideAction": "Iniciar",
   "completeRideAction": "Finalizar carona",
   "cancelRideAction": "Cancelar carona",
   "editRideAction": "Editar carona",
-  "viewRequestsAction": "Ver solicitações",
+  "viewRequestsAction": "Solicitações",
   "rideRequestsTitle": "Solicitações da carona",
   "acceptRequestAction": "Aceitar",
   "rejectRequestAction": "Rejeitar",
@@ -326,5 +326,7 @@
   "confirmCancelRequestTitle": "Cancelar solicitação?",
   "confirmCancelRequestMessage": "Tem certeza que deseja cancelar sua solicitação para esta carona?",
   "confirmStartRideTitle": "Iniciar carona?",
-  "confirmStartRideMessage": "Deseja mesmo iniciar esta carona agora?"
+  "confirmStartRideMessage": "Deseja mesmo iniciar esta carona agora?",
+  "maxDetourInfoLabel": "Informação sobre raio de desvio",
+  "maxDetourInfoMessage": "Distância máxima que você aceita desviar do seu trajeto para buscar ou deixar um passageiro. Quanto maior o valor, mais caronas compatíveis aparecerão para os passageiros."
 }

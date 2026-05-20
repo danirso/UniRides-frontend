@@ -255,7 +255,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get rideStatusRejected => 'Rejeitada';
 
   @override
-  String get startRideAction => 'Iniciar carona';
+  String get startRideAction => 'Iniciar';
 
   @override
   String get completeRideAction => 'Finalizar carona';
@@ -267,7 +267,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get editRideAction => 'Editar carona';
 
   @override
-  String get viewRequestsAction => 'Ver solicitações';
+  String get viewRequestsAction => 'Solicitações';
 
   @override
   String get rideRequestsTitle => 'Solicitações da carona';
@@ -359,4 +359,11 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get confirmStartRideMessage =>
       'Deseja mesmo iniciar esta carona agora?';
+
+  @override
+  String get maxDetourInfoLabel => 'Informação sobre raio de desvio';
+
+  @override
+  String get maxDetourInfoMessage =>
+      'Distância máxima que você aceita desviar do seu trajeto para buscar ou deixar um passageiro. Quanto maior o valor, mais caronas compatíveis aparecerão para os passageiros.';
 }

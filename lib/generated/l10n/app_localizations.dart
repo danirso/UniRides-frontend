@@ -563,7 +563,7 @@ abstract class AppLocalizations {
   /// No description provided for @startRideAction.
   ///
   /// In pt, this message translates to:
-  /// **'Iniciar carona'**
+  /// **'Iniciar'**
   String get startRideAction;
 
   /// No description provided for @completeRideAction.
@@ -587,7 +587,7 @@ abstract class AppLocalizations {
   /// No description provided for @viewRequestsAction.
   ///
   /// In pt, this message translates to:
-  /// **'Ver solicitações'**
+  /// **'Solicitações'**
   String get viewRequestsAction;
 
   /// No description provided for @rideRequestsTitle.
@@ -763,6 +763,18 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Deseja mesmo iniciar esta carona agora?'**
   String get confirmStartRideMessage;
+
+  /// No description provided for @maxDetourInfoLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Informação sobre raio de desvio'**
+  String get maxDetourInfoLabel;
+
+  /// No description provided for @maxDetourInfoMessage.
+  ///
+  /// In pt, this message translates to:
+  /// **'Distância máxima que você aceita desviar do seu trajeto para buscar ou deixar um passageiro. Quanto maior o valor, mais caronas compatíveis aparecerão para os passageiros.'**
+  String get maxDetourInfoMessage;
 }
 
 class _AppLocalizationsDelegate

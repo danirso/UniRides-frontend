@@ -206,11 +206,10 @@ class RideCard extends StatelessWidget {
                     child: Semantics(
                       button: true,
                       label: l10n.viewRequestsAction,
-                      child: OutlinedButton.icon(
+                      child: OutlinedButton(
                         key: Key('view_requests_${ride.id}'),
                         onPressed: onViewRequests,
-                        icon: const Icon(Icons.people),
-                        label: Text(l10n.viewRequestsAction),
+                        child: Text(l10n.viewRequestsAction, maxLines: 1, overflow: TextOverflow.ellipsis),
                       ),
                     ),
                   ),
@@ -219,11 +218,10 @@ class RideCard extends StatelessWidget {
                     child: Semantics(
                       button: true,
                       label: l10n.startRideAction,
-                      child: OutlinedButton.icon(
+                      child: OutlinedButton(
                         key: Key('start_ride_${ride.id}'),
                         onPressed: onStart,
-                        icon: const Icon(Icons.play_arrow),
-                        label: Text(l10n.startRideAction),
+                        child: Text(l10n.startRideAction, maxLines: 1, overflow: TextOverflow.ellipsis),
                       ),
                     ),
                   ),

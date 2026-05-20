@@ -241,13 +241,38 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
             ),
             const SizedBox(height: 8),
             Semantics(
-              label:
-                  '${l10n.maxDetourLabel}: ${l10n.maxDetourValue(_maxDetourKm)}',
+              label: '${l10n.maxDetourLabel}: ${l10n.maxDetourValue(_maxDetourKm)}',
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                      '${l10n.maxDetourLabel}: ${l10n.maxDetourValue(_maxDetourKm)}'),
+                  Row(
+                    children: [
+                      Text('${l10n.maxDetourLabel}: ${l10n.maxDetourValue(_maxDetourKm)}'),
+                      const SizedBox(width: 4),
+                      Semantics(
+                        button: true,
+                        label: l10n.maxDetourInfoLabel,
+                        child: GestureDetector(
+                          key: const Key('max_detour_info_button'),
+                          onTap: () => showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text(l10n.maxDetourLabel),
+                              content: Text(l10n.maxDetourInfoMessage),
+                              actions: [
+                                TextButton(
+                                  key: const Key('max_detour_info_close_button'),
+                                  onPressed: () => Navigator.of(context).pop(),
+                                  child: Text(l10n.confirmAction),
+                                ),
+                              ],
+                            ),
+                          ),
+                          child: const Icon(Icons.help_outline, size: 18, color: Colors.grey),
+                        ),
+                      ),
+                    ],
+                  ),
                   Slider(
                     key: const Key('max_detour_slider'),
                     value: _maxDetourKm.toDouble(),
@@ -255,8 +280,7 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
                     max: 10,
                     divisions: 10,
                     label: l10n.maxDetourValue(_maxDetourKm),
-                    onChanged: (v) =>
-                        setState(() => _maxDetourKm = v.toInt()),
+                    onChanged: (v) => setState(() => _maxDetourKm = v.toInt()),
                   ),
                 ],
               ),
