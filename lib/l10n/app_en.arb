@@ -57,19 +57,201 @@
     "description": "Text for the registration form submission button"
   },
   "errorEmailNotVerified": "Account not activated. Please check your email.",
-  "@errorEmailNotVerified":{
+  "@errorEmailNotVerified": {
     "description": "Error message displayed when an unverified email tries to login"
   },
   "errorEmailAlreadyRegistered": "This email is already registered.",
-  "@errorEmailAlreadyRegistered":{
+  "@errorEmailAlreadyRegistered": {
     "description": "Error message displayed when user tries to register with an email that is in use"
   },
   "errorServer": "Server connection error. Please try again later.",
-  "@errorServer":{
+  "@errorServer": {
     "description": "Internal server error(http 500)"
   },
   "errorGeneric": "An unexpected error occurred.",
-  "@errorGeneric":{
+  "@errorGeneric": {
     "description": "Generic Error message"
-  }
+  },
+  "navSearchLabel": "Search",
+  "@navSearchLabel": {
+    "description": "Label for the ride search tab in the main navigation bar."
+  },
+  "navRidesLabel": "My Rides",
+  "@navRidesLabel": {
+    "description": "Label for the tab showing ride history and management."
+  },
+  "navOfferLabel": "Offer",
+  "@navOfferLabel": {
+    "description": "Label for the driver's tab to create ride offers."
+  },
+  "navProfileLabel": "Profile",
+  "@navProfileLabel": {
+    "description": "Label for the user profile and settings tab."
+  },
+  "errorProfileLoad": "Error loading profile",
+  "@errorProfileLoad": {
+    "description": "Error message displayed when the logged-in user data request fails."
+  },
+  "semanticLoadingProfile": "Loading user profile",
+  "@semanticLoadingProfile": {
+    "description": "Descriptive text read by screen readers during the main screen loading state."
+  },
+  "semanticMainContent": "Main content",
+  "@semanticMainContent": {
+    "description": "Screen reader description indicating the currently active content area."
+  },
+  "noVehicleTitle": "Vehicle Required",
+  "@noVehicleTitle": {
+    "description": "Dialog title when driver tries to offer a ride without vehicles."
+  },
+  "noVehicleMessage": "To offer rides, you must register at least one vehicle.",
+  "@noVehicleMessage": {
+    "description": "Explanatory message for the required vehicle dialog."
+  },
+  "registerVehicleAction": "Register Now",
+  "@registerVehicleAction": {
+    "description": "Button to redirect to vehicle registration."
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Standard text for cancel buttons."
+  },
+  "registerVehicleTitle": "Register Vehicle",
+  "@registerVehicleTitle": {
+    "description": "Title for the vehicle registration modal."
+  },
+  "vehiclePlateLabel": "License Plate",
+  "@vehiclePlateLabel": {
+    "description": "Label for the vehicle plate field."
+  },
+  "vehicleBrandLabel": "Brand (e.g., Hyundai, Chevrolet)",
+  "@vehicleBrandLabel": {
+    "description": "Label for the vehicle brand field."
+  },
+  "vehicleModelLabel": "Model (e.g., HB20)",
+  "@vehicleModelLabel": {
+    "description": "Label for the vehicle model field."
+  },
+  "vehicleColorLabel": "Color",
+  "@vehicleColorLabel": {
+    "description": "Label for the vehicle color field."
+  },
+  "vehicleCapacityLabel": "Passenger Capacity",
+  "@vehicleCapacityLabel": {
+    "description": "Label for the vehicle capacity field."
+  },
+  "saveVehicleAction": "Save Vehicle",
+  "@saveVehicleAction": {
+    "description": "Submit button for the vehicle form."
+  },
+  "vehicleRegisteredSuccess": "Vehicle registered successfully!",
+  "@vehicleRegisteredSuccess": {
+    "description": "Success message when registering a vehicle."
+  },
+  "vehicleRegisteredError": "Error registering vehicle. Check your data and try again.",
+  "@vehicleRegisteredError": {
+    "description": "Error message when vehicle registration fails."
+  },
+  "requiredField": "Required field",
+  "@requiredField": {
+    "description": "Generic error message for empty required fields."
+  },
+  "invalidValue": "Enter a valid value",
+  "@invalidValue": {
+    "description": "Error message for incorrect numeric values."
+  },
+  "myVehiclesTitle": "My Vehicles",
+  "editVehicleAction": "Edit vehicle",
+  "deleteVehicleAction": "Delete vehicle",
+  "vehiclePassengersLabel": "{count} passengers",
+  "@vehiclePassengersLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "deleteVehicleConfirmTitle": "Delete vehicle?",
+  "deleteVehicleConfirmMessage": "Are you sure you want to delete vehicle {plate}? This action cannot be undone.",
+  "@deleteVehicleConfirmMessage": {
+    "placeholders": {
+      "plate": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmAction": "Confirm",
+  "vehicleDeletedSuccess": "Vehicle deleted successfully!",
+  "vehicleDeletedError": "Error deleting vehicle. Please try again.",
+  "vehicleUpdatedSuccess": "Vehicle updated successfully!",
+  "vehicleUpdatedError": "Error updating vehicle. Please check the data and try again.",
+  "noVehiclesRegistered": "No vehicles registered.",
+  "offerRideTitle": "Offer a Ride",
+  "originLabel": "Origin",
+  "destinationLabel": "Destination",
+  "departureDateLabel": "Departure Date and Time",
+  "availableSeatsLabel": "Available seats",
+  "maxDetourLabel": "Maximum accepted detour",
+  "maxDetourValue": "{km} km",
+  "@maxDetourValue": {
+    "placeholders": {
+      "km": {
+        "type": "int"
+      }
+    }
+  },
+  "selectVehicleLabel": "Vehicle",
+  "offerRideAction": "Publish Ride",
+  "rideCreatedSuccess": "Ride published successfully!",
+  "rideCreatedError": "Error publishing ride. Please check the data and try again.",
+  "selectOriginFirst": "Please select an origin before continuing.",
+  "selectDestinationFirst": "Please select a destination before continuing.",
+  "selectVehicleFirst": "Please select a vehicle before continuing.",
+  "selectDepartureFirst": "Please select a departure date and time.",
+  "myRidesTitle": "My Trips",
+  "ridesAsDriverTab": "Rides I offer",
+  "ridesAsPassengerTab": "My requests",
+  "rideStatusScheduled": "Scheduled",
+  "rideStatusInProgress": "In progress",
+  "rideStatusCompleted": "Completed",
+  "rideStatusCanceled": "Canceled",
+  "rideStatusPending": "Pending",
+  "rideStatusAccepted": "Accepted",
+  "rideStatusRejected": "Rejected",
+  "startRideAction": "Start",
+  "completeRideAction": "Complete ride",
+  "cancelRideAction": "Cancel ride",
+  "editRideAction": "Edit ride",
+  "viewRequestsAction": "Requests",
+  "rideRequestsTitle": "Ride requests",
+  "acceptRequestAction": "Accept",
+  "rejectRequestAction": "Reject",
+  "cancelRequestAction": "Cancel request",
+  "noRidesAsDriver": "You haven't offered any rides yet.",
+  "noRidesAsPassenger": "You haven't made any requests yet.",
+  "noRequests": "No requests for this ride.",
+  "rideUpdatedSuccess": "Ride updated successfully!",
+  "rideUpdatedError": "Error updating ride. Please try again.",
+  "rideStartedSuccess": "Ride started!",
+  "rideStartedError": "Error starting ride.",
+  "rideCompletedSuccess": "Ride completed!",
+  "rideCompletedError": "Error completing ride.",
+  "rideCanceledSuccess": "Ride canceled.",
+  "rideCanceledError": "Error canceling ride.",
+  "requestAcceptedSuccess": "Passenger accepted!",
+  "requestAcceptedError": "Error accepting request.",
+  "requestRejectedSuccess": "Request rejected.",
+  "requestRejectedError": "Error rejecting request.",
+  "requestCanceledSuccess": "Request canceled.",
+  "requestCanceledError": "Error canceling request.",
+  "confirmCancelRideTitle": "Cancel ride?",
+  "confirmCancelRideMessage": "Are you sure you want to cancel this ride? This action cannot be undone.",
+  "confirmCompleteRideTitle": "Complete ride?",
+  "confirmCompleteRideMessage": "Confirm that the ride has been completed?",
+  "confirmCancelRequestTitle": "Cancel request?",
+  "confirmCancelRequestMessage": "Are you sure you want to cancel your request for this ride?",
+  "confirmStartRideTitle": "Start ride?",
+  "confirmStartRideMessage": "Are you sure you want to start this ride now?",
+  "maxDetourInfoLabel": "Detour radius information",
+  "maxDetourInfoMessage": "Maximum distance you accept to deviate from your route to pick up or drop off a passenger. The higher the value, the more compatible rides will appear for passengers."
 }
