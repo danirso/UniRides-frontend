@@ -344,5 +344,18 @@
   "rideRequestedError": "Erro ao solicitar vaga. Tente novamente.",
   "searchingRides": "Buscando caronas...",
   "rideDetailsTitle": "Detalhes da Carona",
-  "viewDetailsAction": "Ver detalhes"
+  "viewDetailsAction": "Ver detalhes",
+  "editProfileTitle": "Editar Perfil",
+  "editProfileAction": "Editar Perfil",
+  "deleteProfileTitle": "Excluir Perfil",
+  "deleteProfileConfirmMessage": "Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.",
+  "profileUpdatedSuccess": "Perfil atualizado com sucesso!",
+  "profileUpdatedError": "Erro ao atualizar perfil. Tente novamente.",
+  "profileDeletedError": "Erro ao excluir perfil. Tente novamente.",
+  "newPasswordLabel": "Nova senha (opcional)",
+  "canDriveLabel": "Sou motorista",
+  "languageLabel": "Idioma",
+  "myProfileTitle": "Meu Perfil",
+  "logoutTitle": "Sair",
+  "saveProfileAction": "Salvar Perfil"
 }

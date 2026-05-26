@@ -47,7 +47,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     );
   }
 
-  void _onItemTapped(int index, bool canDrive) async {
+  void _onItemTapped(int index) async {
+    final canDrive = ref.read(userControllerProvider).value?.canDrive ?? false;
     if (index == 2 && canDrive) {
       await ref.read(vehicleControllerProvider.notifier).fetchVehicles();
       if (!mounted) return;
@@ -87,7 +88,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
 
         final List<Widget> screens = [
           const SearchRidesScreen(),
-          const MyRidesScreen(),
+          MyRidesScreen(key: ValueKey(canDrive)),
           if (canDrive) const OfferRideScreen(),
           const ProfileScreen(),
         ];
@@ -140,7 +141,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
           ),
           bottomNavigationBar: NavigationBar(
             selectedIndex: safeIndex,
-            onDestinationSelected: (index) => _onItemTapped(index, canDrive),
+            onDestinationSelected: (index) => _onItemTapped(index),
             labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
             destinations: destinations,
           ),

@@ -859,6 +859,84 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Ver detalhes'**
   String get viewDetailsAction;
+
+  /// No description provided for @editProfileTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Editar Perfil'**
+  String get editProfileTitle;
+
+  /// No description provided for @editProfileAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Editar Perfil'**
+  String get editProfileAction;
+
+  /// No description provided for @deleteProfileTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Excluir Perfil'**
+  String get deleteProfileTitle;
+
+  /// No description provided for @deleteProfileConfirmMessage.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.'**
+  String get deleteProfileConfirmMessage;
+
+  /// No description provided for @profileUpdatedSuccess.
+  ///
+  /// In pt, this message translates to:
+  /// **'Perfil atualizado com sucesso!'**
+  String get profileUpdatedSuccess;
+
+  /// No description provided for @profileUpdatedError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao atualizar perfil. Tente novamente.'**
+  String get profileUpdatedError;
+
+  /// No description provided for @profileDeletedError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao excluir perfil. Tente novamente.'**
+  String get profileDeletedError;
+
+  /// No description provided for @newPasswordLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nova senha (opcional)'**
+  String get newPasswordLabel;
+
+  /// No description provided for @canDriveLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sou motorista'**
+  String get canDriveLabel;
+
+  /// No description provided for @languageLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Idioma'**
+  String get languageLabel;
+
+  /// No description provided for @myProfileTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Meu Perfil'**
+  String get myProfileTitle;
+
+  /// No description provided for @logoutTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sair'**
+  String get logoutTitle;
+
+  /// No description provided for @saveProfileAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Salvar Perfil'**
+  String get saveProfileAction;
 }
 
 class _AppLocalizationsDelegate

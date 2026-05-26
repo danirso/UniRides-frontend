@@ -17,15 +17,13 @@ class MyRidesScreen extends ConsumerStatefulWidget {
 class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  bool _canDrive = false;
 
   @override
   void initState() {
     super.initState();
-    final user = ref.read(userControllerProvider).value;
-    _canDrive = user?.canDrive ?? false;
+    final canDrive = ref.read(userControllerProvider).value?.canDrive ?? false;
     _tabController = TabController(
-      length: _canDrive ? 2 : 1,
+      length: canDrive ? 2 : 1,
       vsync: this,
     );
     Future.microtask(() {
@@ -77,7 +75,7 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
       content: Text(success ? successMessage : errorMessage),
     ));
   }
-
+  
   Widget _buildDriverTab(BuildContext context, AppLocalizations l10n) {
     final rides = ref.watch(rideControllerProvider);
 
@@ -325,6 +323,7 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final canDrive = ref.watch(userControllerProvider).value?.canDrive ?? false;
 
     return Scaffold(
       appBar: AppBar(
@@ -335,7 +334,7 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
         bottom: TabBar(
           controller: _tabController,
           tabs: [
-            if (_canDrive)
+            if (canDrive)
               Tab(
                 key: const Key('driver_tab'),
                 text: l10n.ridesAsDriverTab,
@@ -350,7 +349,7 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
       body: TabBarView(
         controller: _tabController,
         children: [
-          if (_canDrive) _buildDriverTab(context, l10n),
+          if (canDrive) _buildDriverTab(context, l10n),
           _buildPassengerTab(context, l10n),
         ],
       ),

@@ -269,5 +269,18 @@
   "rideRequestedError": "Error requesting seat. Please try again.",
   "searchingRides": "Searching rides...",
   "rideDetailsTitle": "Ride Details",
-  "viewDetailsAction": "View details"
+  "viewDetailsAction": "View details",
+  "editProfileTitle": "Edit Profile",
+  "editProfileAction": "Edit Profile",
+  "deleteProfileTitle": "Delete Profile",
+  "deleteProfileConfirmMessage": "Are you sure you want to delete your account? This action cannot be undone.",
+  "profileUpdatedSuccess": "Profile updated successfully!",
+  "profileUpdatedError": "Error updating profile. Please try again.",
+  "profileDeletedError": "Error deleting profile. Please try again.",
+  "newPasswordLabel": "New password (optional)",
+  "canDriveLabel": "I am a driver",
+  "languageLabel": "Language",
+  "myProfileTitle": "My Profile",
+  "logoutTitle": "logout",
+  "saveProfileAction": "Save Profile"
 }

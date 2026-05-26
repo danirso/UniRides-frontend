@@ -30,6 +30,36 @@ class UserController extends Notifier<AsyncValue<UserEntity?>> {
     }
   }
 
+  Future<bool> updateMe({
+  String? name,
+  String? email,
+  String? password,
+  bool? canDrive,
+  }) async {
+    try {
+      final user = await _repository.updateMe(
+        name: name,
+        email: email,
+        password: password,
+        canDrive: canDrive,
+      );
+      state = AsyncValue.data(user);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> deleteMe() async {
+    try {
+      await _repository.deleteMe();
+      state = const AsyncValue.data(null);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   void clear() {
     state = const AsyncValue.data(null);
   }

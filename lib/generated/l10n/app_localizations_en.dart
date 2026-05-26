@@ -411,4 +411,44 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get viewDetailsAction => 'View details';
+
+  @override
+  String get editProfileTitle => 'Edit Profile';
+
+  @override
+  String get editProfileAction => 'Edit Profile';
+
+  @override
+  String get deleteProfileTitle => 'Delete Profile';
+
+  @override
+  String get deleteProfileConfirmMessage =>
+      'Are you sure you want to delete your account? This action cannot be undone.';
+
+  @override
+  String get profileUpdatedSuccess => 'Profile updated successfully!';
+
+  @override
+  String get profileUpdatedError => 'Error updating profile. Please try again.';
+
+  @override
+  String get profileDeletedError => 'Error deleting profile. Please try again.';
+
+  @override
+  String get newPasswordLabel => 'New password (optional)';
+
+  @override
+  String get canDriveLabel => 'I am a driver';
+
+  @override
+  String get languageLabel => 'Language';
+
+  @override
+  String get myProfileTitle => 'My Profile';
+
+  @override
+  String get logoutTitle => 'logout';
+
+  @override
+  String get saveProfileAction => 'Save Profile';
 }
