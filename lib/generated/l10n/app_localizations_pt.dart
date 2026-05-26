@@ -406,4 +406,10 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get searchingRides => 'Buscando caronas...';
+
+  @override
+  String get rideDetailsTitle => 'Detalhes da Carona';
+
+  @override
+  String get viewDetailsAction => 'Ver detalhes';
 }

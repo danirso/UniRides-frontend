@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../vehicles/presentation/controllers/vehicle_controller.dart';
 import '../../data/repositories/ride_repository_impl.dart';
 import '../../domain/entities/ride_entity.dart';
 import '../../domain/entities/ride_request_entity.dart';
 import '../../domain/repositories/i_ride_repository.dart';
+import 'package:tcc_caronas_frontend/core/network/dio_provider.dart';
 
 final rideRepositoryProvider = Provider<IRideRepository>((ref) {
   return RideRepositoryImpl(ref.watch(dioClientProvider));

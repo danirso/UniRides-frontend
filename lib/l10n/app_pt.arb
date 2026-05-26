@@ -342,5 +342,7 @@
   "requestSeatAction": "Solicitar vaga",
   "rideRequestedSuccess": "Solicitação enviada com sucesso!",
   "rideRequestedError": "Erro ao solicitar vaga. Tente novamente.",
-  "searchingRides": "Buscando caronas..."
+  "searchingRides": "Buscando caronas...",
+  "rideDetailsTitle": "Detalhes da Carona",
+  "viewDetailsAction": "Ver detalhes"
 }

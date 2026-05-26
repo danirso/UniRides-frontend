@@ -847,6 +847,18 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Buscando caronas...'**
   String get searchingRides;
+
+  /// No description provided for @rideDetailsTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Detalhes da Carona'**
+  String get rideDetailsTitle;
+
+  /// No description provided for @viewDetailsAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ver detalhes'**
+  String get viewDetailsAction;
 }
 
 class _AppLocalizationsDelegate

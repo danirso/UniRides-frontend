@@ -267,5 +267,7 @@
   "requestSeatAction": "Request seat",
   "rideRequestedSuccess": "Request sent successfully!",
   "rideRequestedError": "Error requesting seat. Please try again.",
-  "searchingRides": "Searching rides..."
+  "searchingRides": "Searching rides...",
+  "rideDetailsTitle": "Ride Details",
+  "viewDetailsAction": "View details"
 }

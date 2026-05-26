@@ -1,10 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/network/dio_client.dart';
 import '../../data/repositories/user_repository_impl.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/repositories/i_user_repository.dart';
-
-final dioClientProvider = Provider((ref) => DioClient());
+import 'package:tcc_caronas_frontend/core/network/dio_provider.dart';
 
 final userRepositoryProvider = Provider<IUserRepository>((ref) {
   return UserRepositoryImpl(ref.watch(dioClientProvider));

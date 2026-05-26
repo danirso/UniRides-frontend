@@ -1,10 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/network/dio_client.dart';
 import '../../data/repositories/vehicle_repository_impl.dart';
 import '../../domain/entities/vehicle_entity.dart';
 import '../../domain/repositories/i_vehicle_repository.dart';
+import 'package:tcc_caronas_frontend/core/network/dio_provider.dart';
 
-final dioClientProvider = Provider((ref) => DioClient());
 
 final vehicleRepositoryProvider = Provider<IVehicleRepository>((ref) {
   return VehicleRepositoryImpl(ref.watch(dioClientProvider));

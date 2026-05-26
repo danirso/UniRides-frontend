@@ -405,4 +405,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get searchingRides => 'Searching rides...';
+
+  @override
+  String get rideDetailsTitle => 'Ride Details';
+
+  @override
+  String get viewDetailsAction => 'View details';
 }

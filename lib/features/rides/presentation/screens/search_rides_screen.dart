@@ -5,7 +5,7 @@ import '../controllers/ride_controller.dart';
 import '../widgets/address_search_field.dart';
 import '../widgets/ride_search_card.dart';
 import '../../data/repositories/ride_repository_impl.dart';
-import '../../../vehicles/presentation/controllers/vehicle_controller.dart';
+import 'package:tcc_caronas_frontend/core/network/dio_provider.dart';
 
 class SearchRidesScreen extends ConsumerStatefulWidget {
   const SearchRidesScreen({super.key});

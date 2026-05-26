@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
 import '../../domain/entities/ride_entity.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../screens/ride_detail_passenger.dart';
 
 class RideSearchCard extends StatelessWidget {
   final RideEntity ride;
@@ -155,17 +156,39 @@ class RideSearchCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 12),
-            Semantics(
-              button: true,
-              label: l10n.requestSeatAction,
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  key: Key('request_seat_${ride.id}'),
-                  onPressed: onRequestSeat,
-                  child: Text(l10n.requestSeatAction),
+            Row(
+              children: [
+                Expanded(
+                  child: Semantics(
+                    button: true,
+                    label: l10n.viewDetailsAction,
+                    child: OutlinedButton(
+                      key: Key('view_details_${ride.id}'),
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => RideDetailPassengerScreen(
+                            ride: ride,
+                            onRequestSeat: onRequestSeat,
+                          ),
+                        ),
+                      ),
+                      child: Text(l10n.viewDetailsAction),
+                    ),
+                  ),
                 ),
-              ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Semantics(
+                    button: true,
+                    label: l10n.requestSeatAction,
+                    child: ElevatedButton(
+                      key: Key('request_seat_${ride.id}'),
+                      onPressed: onRequestSeat,
+                      child: Text(l10n.requestSeatAction),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
