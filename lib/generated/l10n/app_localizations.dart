@@ -775,6 +775,78 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Distância máxima que você aceita desviar do seu trajeto para buscar ou deixar um passageiro. Quanto maior o valor, mais caronas compatíveis aparecerão para os passageiros.'**
   String get maxDetourInfoMessage;
+
+  /// No description provided for @searchRidesTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Explorar Caronas'**
+  String get searchRidesTitle;
+
+  /// No description provided for @searchRidesAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Buscar'**
+  String get searchRidesAction;
+
+  /// No description provided for @noRidesFound.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nenhuma carona encontrada para este trajeto.'**
+  String get noRidesFound;
+
+  /// No description provided for @driverLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Motorista'**
+  String get driverLabel;
+
+  /// No description provided for @estimatedTimeLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tempo estimado'**
+  String get estimatedTimeLabel;
+
+  /// No description provided for @distanceLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Distância'**
+  String get distanceLabel;
+
+  /// No description provided for @minutesLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'{mins} min'**
+  String minutesLabel(int mins);
+
+  /// No description provided for @kilometersLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'{km} km'**
+  String kilometersLabel(String km);
+
+  /// No description provided for @requestSeatAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Solicitar vaga'**
+  String get requestSeatAction;
+
+  /// No description provided for @rideRequestedSuccess.
+  ///
+  /// In pt, this message translates to:
+  /// **'Solicitação enviada com sucesso!'**
+  String get rideRequestedSuccess;
+
+  /// No description provided for @rideRequestedError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao solicitar vaga. Tente novamente.'**
+  String get rideRequestedError;
+
+  /// No description provided for @searchingRides.
+  ///
+  /// In pt, this message translates to:
+  /// **'Buscando caronas...'**
+  String get searchingRides;
 }
 
 class _AppLocalizationsDelegate

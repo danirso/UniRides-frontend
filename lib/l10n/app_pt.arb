@@ -328,5 +328,19 @@
   "confirmStartRideTitle": "Iniciar carona?",
   "confirmStartRideMessage": "Deseja mesmo iniciar esta carona agora?",
   "maxDetourInfoLabel": "Informação sobre raio de desvio",
-  "maxDetourInfoMessage": "Distância máxima que você aceita desviar do seu trajeto para buscar ou deixar um passageiro. Quanto maior o valor, mais caronas compatíveis aparecerão para os passageiros."
+  "maxDetourInfoMessage": "Distância máxima que você aceita desviar do seu trajeto para buscar ou deixar um passageiro. Quanto maior o valor, mais caronas compatíveis aparecerão para os passageiros.",
+  "searchRidesTitle": "Explorar Caronas",
+  "searchRidesAction": "Buscar",
+  "noRidesFound": "Nenhuma carona encontrada para este trajeto.",
+  "driverLabel": "Motorista",
+  "estimatedTimeLabel": "Tempo estimado",
+  "distanceLabel": "Distância",
+  "minutesLabel": "{mins} min",
+  "@minutesLabel": { "placeholders": { "mins": { "type": "int" } } },
+  "kilometersLabel": "{km} km",
+  "@kilometersLabel": { "placeholders": { "km": { "type": "String" } } },
+  "requestSeatAction": "Solicitar vaga",
+  "rideRequestedSuccess": "Solicitação enviada com sucesso!",
+  "rideRequestedError": "Erro ao solicitar vaga. Tente novamente.",
+  "searchingRides": "Buscando caronas..."
 }

@@ -40,6 +40,8 @@ class RideRequestEntity {
 
 class RideRequestWithPassengerEntity extends RideRequestEntity {
   final PassengerSnippetEntity passenger;
+  final String? originAddress;
+  final String? destinationAddress;
 
   const RideRequestWithPassengerEntity({
     required super.id,
@@ -48,6 +50,8 @@ class RideRequestWithPassengerEntity extends RideRequestEntity {
     required super.status,
     required super.createdAt,
     required this.passenger,
+    required this.originAddress,
+    required this.destinationAddress,
   });
 }
 

@@ -366,4 +366,44 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get maxDetourInfoMessage =>
       'Distância máxima que você aceita desviar do seu trajeto para buscar ou deixar um passageiro. Quanto maior o valor, mais caronas compatíveis aparecerão para os passageiros.';
+
+  @override
+  String get searchRidesTitle => 'Explorar Caronas';
+
+  @override
+  String get searchRidesAction => 'Buscar';
+
+  @override
+  String get noRidesFound => 'Nenhuma carona encontrada para este trajeto.';
+
+  @override
+  String get driverLabel => 'Motorista';
+
+  @override
+  String get estimatedTimeLabel => 'Tempo estimado';
+
+  @override
+  String get distanceLabel => 'Distância';
+
+  @override
+  String minutesLabel(int mins) {
+    return '$mins min';
+  }
+
+  @override
+  String kilometersLabel(String km) {
+    return '$km km';
+  }
+
+  @override
+  String get requestSeatAction => 'Solicitar vaga';
+
+  @override
+  String get rideRequestedSuccess => 'Solicitação enviada com sucesso!';
+
+  @override
+  String get rideRequestedError => 'Erro ao solicitar vaga. Tente novamente.';
+
+  @override
+  String get searchingRides => 'Buscando caronas...';
 }

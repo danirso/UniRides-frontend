@@ -21,6 +21,10 @@ final rideRequestsControllerProvider = NotifierProvider.family<
     List<RideRequestWithPassengerEntity>,
     String>(RideRequestsController.new);
 
+final rideSearchControllerProvider = 
+    NotifierProvider<RideSearchController, List<RideEntity>> (
+        RideSearchController.new);
+
 // ---------------------------------------------------------------------------
 // RideController — caronas do motorista
 // ---------------------------------------------------------------------------
@@ -207,4 +211,37 @@ class MyRequestsController
       return false;
     }
   }
+}
+
+class RideSearchController extends Notifier<List<RideEntity>> {
+    late IRideRepository _repository;
+
+    @override
+    List<RideEntity> build() {
+      _repository = ref.watch(rideRepositoryProvider);
+      return [];
+    }
+
+    Future<bool> searchRides({
+      required double originLat,
+      required double originLng,
+      required double destinationLat,
+      required double destinationLng,
+    }) async {
+      try {
+        final rides = await _repository.searchRides(
+          originLat: originLat,
+          originLng: originLng,
+          destinationLat: destinationLat,
+          destinationLng: destinationLng,
+        );
+        state = rides;
+        return true;
+      } catch (e) {
+        state = [];
+        return false;
+      }
+    }
+
+    void clearResults() => state = [];
 }

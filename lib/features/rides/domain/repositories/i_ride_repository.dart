@@ -30,9 +30,26 @@ abstract class IRideRepository {
   Future<RideEntity> cancelRide(String rideId);
 
   Future<List<RideRequestWithPassengerEntity>> getRideRequests(String rideId);
-  Future<RideRequestWithPassengerEntity> acceptRequest(String rideId, String requestId);
-  Future<RideRequestWithPassengerEntity> rejectRequest(String rideId, String requestId);
+  Future<void> acceptRequest(String rideId, String requestId);
+  Future<void> rejectRequest(String rideId, String requestId);
 
   Future<List<RideRequestWithRideEntity>> getMyRequests();
   Future<void> cancelRequest(String rideId, String requestId);
+
+  Future <List<RideEntity>> searchRides({
+    required double originLat,
+    required double originLng,
+    required double destinationLat,
+    required double destinationLng
+  });
+
+  Future<void> requestSeat({
+    required String rideId,
+    required double originLat,
+    required double originLng,
+    required double destinationLat,
+    required double destinationLng,
+    required String originAddress,
+    required String destinationAddress,
+  });
 }

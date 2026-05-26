@@ -17,13 +17,13 @@ class RideRequestCard extends StatelessWidget {
 
   String _localizedStatus(AppLocalizations l10n, String status) {
     switch (status) {
-      case 'pending':
+      case 'PENDING':
         return l10n.rideStatusPending;
-      case 'accepted':
+      case 'ACCEPTED':
         return l10n.rideStatusAccepted;
-      case 'rejected':
+      case 'REJECTED':
         return l10n.rideStatusRejected;
-      case 'canceled':
+      case 'CANCELED':
         return l10n.rideStatusCanceled;
       default:
         return status;
@@ -32,12 +32,12 @@ class RideRequestCard extends StatelessWidget {
 
   Color _statusColor(String status) {
     switch (status) {
-      case 'pending':
+      case 'PENDING':
         return AppTheme.sandYellow;
-      case 'accepted':
+      case 'ACCEPTED':
         return Colors.green;
-      case 'rejected':
-      case 'canceled':
+      case 'REJECTED':
+      case 'CANCELED':
         return Colors.redAccent;
       default:
         return Colors.grey;
@@ -47,7 +47,7 @@ class RideRequestCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final isPending = request.status == 'pending';
+    final isPending = request.status == 'PENDING';
     final statusColor = _statusColor(request.status);
 
     return Card(
@@ -97,8 +97,46 @@ class RideRequestCard extends StatelessWidget {
                     ),
                   ),
                 ),
-              ],
+              ], 
             ),
+            if (request.originAddress != null) ...[
+              const SizedBox(height: 8),
+              Semantics(
+                label: request.originAddress!,
+                child: Row(
+                  children: [
+                    const Icon(Icons.trip_origin, size: 16, color: Color(0xFF679E96)),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        request.originAddress!,
+                        style: const TextStyle(fontSize: 13),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            if (request.destinationAddress != null) ...[
+              const SizedBox(height: 4),
+              Semantics(
+                label: request.destinationAddress!,
+                child: Row(
+                  children: [
+                    const Icon(Icons.place_outlined, size: 16, color: Colors.redAccent),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        request.destinationAddress!,
+                        style: const TextStyle(fontSize: 13),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
             if (isPending) ...[
               const SizedBox(height: 12),
               Row(

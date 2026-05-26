@@ -7,7 +7,7 @@ class DioClient {
 
   DioClient() : _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://unirides-backend-amfccyfebaapcggu.brazilsouth-01.azurewebsites.net',
+      baseUrl: String.fromEnvironment('API_URL', defaultValue:'http://127.0.0.1:8000'),
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 10),
       headers: {

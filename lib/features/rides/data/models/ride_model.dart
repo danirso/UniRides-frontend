@@ -4,6 +4,7 @@ class RideModel extends RideEntity {
   const RideModel({
     required super.id,
     required super.driverId,
+    required super.driverName,
     required super.vehicleId,
     required super.departureTime,
     required super.status,
@@ -22,6 +23,7 @@ class RideModel extends RideEntity {
     return RideModel(
       id: json['id'].toString(),
       driverId: json['driver_id'].toString(),
+      driverName: json['driver']['name'] ?? '',
       vehicleId: json['vehicle_id'].toString(),
       departureTime: DateTime.parse(json['departure_time']),
       status: json['status'],

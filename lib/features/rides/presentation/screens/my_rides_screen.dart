@@ -92,8 +92,12 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
         ),
       );
     }
-
-    return ListView.builder(
+ 
+    return RefreshIndicator(
+      onRefresh: () => ref
+      .read(myRequestsControllerProvider.notifier)
+      .fetchMyRequests(), 
+      child: ListView.builder(
       padding: const EdgeInsets.symmetric(vertical: 8),
       itemCount: rides.length,
       itemBuilder: (context, index) {
@@ -139,9 +143,10 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
                 .cancelRide(ride.id),
             successMessage: l10n.rideCanceledSuccess,
             errorMessage: l10n.rideCanceledError,
-          ),
-        );
-      },
+            ),
+          );
+        },
+      )
     );
   }
 
@@ -160,13 +165,17 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
       );
     }
 
-    return ListView.builder(
+    return RefreshIndicator(
+      onRefresh: () => ref
+        .read(myRequestsControllerProvider.notifier)
+        .fetchMyRequests(),
+       child: ListView.builder(
       padding: const EdgeInsets.symmetric(vertical: 8),
       itemCount: requests.length,
       itemBuilder: (context, index) {
         final request = requests[index];
-        final isPending = request.status == 'pending';
-        final isAccepted = request.status == 'accepted';
+        final isPending = request.status == 'PENDING';
+        final isAccepted = request.status == 'ACCEPTED';
 
         return Card(
           key: Key('my_request_card_${request.id}'),
@@ -271,27 +280,28 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
                           side: const BorderSide(color: Colors.redAccent),
                         ),
                         child: Text(l10n.cancelRequestAction),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ],
-              ],
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      )
     );
   }
 
   String _localizedRequestStatus(AppLocalizations l10n, String status) {
     switch (status) {
-      case 'pending':
+      case 'PENDING':
         return l10n.rideStatusPending;
-      case 'accepted':
+      case 'ACCEPTED':
         return l10n.rideStatusAccepted;
-      case 'rejected':
+      case 'REJECTED':
         return l10n.rideStatusRejected;
-      case 'canceled':
+      case 'CANCELED':
         return l10n.rideStatusCanceled;
       default:
         return status;
@@ -300,12 +310,12 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
 
   Color _requestStatusColor(String status) {
     switch (status) {
-      case 'pending':
+      case 'PENDING':
         return const Color(0xFFE3C598);
-      case 'accepted':
+      case 'ACCEPTED':
         return Colors.green;
-      case 'rejected':
-      case 'canceled':
+      case 'REJECTED':
+      case 'CANCELED':
         return Colors.redAccent;
       default:
         return Colors.grey;

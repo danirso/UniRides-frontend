@@ -130,10 +130,9 @@ class RideRepositoryImpl implements IRideRepository {
   }
 
   @override
-  Future<RideRequestWithPassengerEntity> acceptRequest(String rideId, String requestId) async {
+  Future<void> acceptRequest(String rideId, String requestId) async {
     try {
-      final response = await _client.instance.post('/rides/$rideId/requests/$requestId/accept');
-      return RideRequestWithPassengerModel.fromJson(response.data);
+      await _client.instance.post('/rides/$rideId/requests/$requestId/accept');
     } on DioException catch (e) {
       debugPrint('Erro ao aceitar solicitação: ${e.response?.data}');
       throw Exception('Erro ao aceitar solicitação');
@@ -141,10 +140,9 @@ class RideRepositoryImpl implements IRideRepository {
   }
 
   @override
-  Future<RideRequestWithPassengerEntity> rejectRequest(String rideId, String requestId) async {
+  Future<void> rejectRequest(String rideId, String requestId) async {
     try {
-      final response = await _client.instance.post('/rides/$rideId/requests/$requestId/reject');
-      return RideRequestWithPassengerModel.fromJson(response.data);
+      await _client.instance.post('/rides/$rideId/requests/$requestId/reject');
     } on DioException catch (e) {
       debugPrint('Erro ao rejeitar solicitação: ${e.response?.data}');
       throw Exception('Erro ao rejeitar solicitação');
@@ -170,6 +168,59 @@ class RideRepositoryImpl implements IRideRepository {
     } on DioException catch (e) {
       debugPrint('Erro ao cancelar solicitação: ${e.response?.data}');
       throw Exception('Erro ao cancelar solicitação');
+    }
+  }
+
+  @override
+  Future<List<RideEntity>> searchRides({
+    required double originLat,
+    required double originLng,
+    required double destinationLat,
+    required double destinationLng,
+  }) async {
+    try {
+      final response = await _client.instance.post(
+        '/rides/search',
+        data: {
+          'origin_lat': originLat,
+          'origin_lng': originLng,
+          'destination_lat': destinationLat,
+          'destination_lng': destinationLng,
+        },
+      );
+      final List data = response.data;
+      return data.map((json) => RideModel.fromJson(json)).toList();
+    } on DioException catch (e) {
+      debugPrint('Erro ao buscar caronas: ${e.response?.data}');
+      throw Exception('Erro ao buscar caronas');
+    }
+  }
+
+  @override
+  Future<void> requestSeat({
+    required String rideId,
+    required double originLat,
+    required double originLng,
+    required double destinationLat,
+    required double destinationLng,
+    required String originAddress,
+    required String destinationAddress,
+  }) async {
+    try {
+      await _client.instance.post(
+        '/rides/$rideId/requests',
+        data: {
+          'origin_lat': originLat,
+          'origin_lng': originLng,
+          'destination_lat': destinationLat,
+          'destination_lng': destinationLng,
+          'origin_address': originAddress,
+          'destination_address': destinationAddress
+        },
+      );
+    } on DioException catch (e) {
+      debugPrint('Erro ao solicitar vaga: ${e.response?.data}');
+      throw Exception('Erro ao solicitar vaga');
     }
   }
 }

@@ -1,6 +1,7 @@
 class RideEntity {
   final String id;
   final String driverId;
+  final String driverName;
   final String vehicleId;
   final DateTime departureTime;
   final String status;
@@ -17,6 +18,7 @@ class RideEntity {
   const RideEntity({
     required this.id,
     required this.driverId,
+    required this.driverName,
     required this.vehicleId,
     required this.departureTime,
     required this.status,

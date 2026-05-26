@@ -365,4 +365,44 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get maxDetourInfoMessage =>
       'Maximum distance you accept to deviate from your route to pick up or drop off a passenger. The higher the value, the more compatible rides will appear for passengers.';
+
+  @override
+  String get searchRidesTitle => 'Explore Rides';
+
+  @override
+  String get searchRidesAction => 'Search';
+
+  @override
+  String get noRidesFound => 'No rides found for this route.';
+
+  @override
+  String get driverLabel => 'Driver';
+
+  @override
+  String get estimatedTimeLabel => 'Estimated time';
+
+  @override
+  String get distanceLabel => 'Distance';
+
+  @override
+  String minutesLabel(int mins) {
+    return '$mins min';
+  }
+
+  @override
+  String kilometersLabel(String km) {
+    return '$km km';
+  }
+
+  @override
+  String get requestSeatAction => 'Request seat';
+
+  @override
+  String get rideRequestedSuccess => 'Request sent successfully!';
+
+  @override
+  String get rideRequestedError => 'Error requesting seat. Please try again.';
+
+  @override
+  String get searchingRides => 'Searching rides...';
 }
