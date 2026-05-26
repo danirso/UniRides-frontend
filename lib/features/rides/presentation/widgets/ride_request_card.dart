@@ -161,7 +161,7 @@ class RideRequestCard extends StatelessWidget {
                     child: Semantics(
                       button: true,
                       label: l10n.acceptRequestAction,
-                      child: ElevatedButton(
+                      child: OutlinedButton(
                         key: Key('accept_request_${request.id}'),
                         onPressed: onAccept,
                         child: Text(l10n.acceptRequestAction),

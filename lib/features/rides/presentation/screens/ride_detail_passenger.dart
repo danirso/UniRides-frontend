@@ -66,8 +66,8 @@ class RideDetailPassengerScreen extends StatelessWidget {
                       width: 40,
                       height: 40,
                       child: const Icon(
-                        Icons.place_outlined,
-                        color: AppTheme.primaryTeal,
+                        Icons.place,
+                        color: Colors.black,
                         size: 30,
                       ),
                     ),
@@ -78,7 +78,7 @@ class RideDetailPassengerScreen extends StatelessWidget {
                       child: const Icon(
                         Icons.place,
                         color: Colors.redAccent,
-                        size: 36,
+                        size: 30,
                       ),
                     ),
                   ],
@@ -113,8 +113,8 @@ class RideDetailPassengerScreen extends StatelessWidget {
                     label: '${l10n.originLabel}: ${ride.originAddress}',
                     child: Row(
                       children: [
-                        const Icon(Icons.trip_origin,
-                            size: 18, color: AppTheme.primaryTeal),
+                        const Icon(Icons.place,
+                            size: 18, color: Colors.black),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
@@ -130,7 +130,7 @@ class RideDetailPassengerScreen extends StatelessWidget {
                     label: '${l10n.destinationLabel}: ${ride.destinationAddress}',
                     child: Row(
                       children: [
-                        const Icon(Icons.place_outlined,
+                        const Icon(Icons.place,
                             size: 18, color: Colors.redAccent),
                         const SizedBox(width: 8),
                         Expanded(

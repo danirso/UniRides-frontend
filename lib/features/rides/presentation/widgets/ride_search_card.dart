@@ -172,7 +172,10 @@ class RideSearchCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      child: Text(l10n.viewDetailsAction),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor:AppTheme.sandYellow,
+                    ),
+                    child: Text(l10n.viewDetailsAction),
                     ),
                   ),
                 ),
@@ -181,7 +184,7 @@ class RideSearchCard extends StatelessWidget {
                   child: Semantics(
                     button: true,
                     label: l10n.requestSeatAction,
-                    child: ElevatedButton(
+                    child: OutlinedButton(
                       key: Key('request_seat_${ride.id}'),
                       onPressed: onRequestSeat,
                       child: Text(l10n.requestSeatAction),
