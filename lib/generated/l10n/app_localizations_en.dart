@@ -365,4 +365,90 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get maxDetourInfoMessage =>
       'Maximum distance you accept to deviate from your route to pick up or drop off a passenger. The higher the value, the more compatible rides will appear for passengers.';
+
+  @override
+  String get searchRidesTitle => 'Explore Rides';
+
+  @override
+  String get searchRidesAction => 'Search';
+
+  @override
+  String get noRidesFound => 'No rides found for this route.';
+
+  @override
+  String get driverLabel => 'Driver';
+
+  @override
+  String get estimatedTimeLabel => 'Estimated time';
+
+  @override
+  String get distanceLabel => 'Distance';
+
+  @override
+  String minutesLabel(int mins) {
+    return '$mins min';
+  }
+
+  @override
+  String kilometersLabel(String km) {
+    return '$km km';
+  }
+
+  @override
+  String get requestSeatAction => 'Request seat';
+
+  @override
+  String get rideRequestedSuccess => 'Request sent successfully!';
+
+  @override
+  String get rideRequestedError => 'Error requesting seat. Please try again.';
+
+  @override
+  String get searchingRides => 'Searching rides...';
+
+  @override
+  String get rideDetailsTitle => 'Ride Details';
+
+  @override
+  String get viewDetailsAction => 'View details';
+
+  @override
+  String get editProfileTitle => 'Edit Profile';
+
+  @override
+  String get editProfileAction => 'Edit Profile';
+
+  @override
+  String get deleteProfileTitle => 'Delete Profile';
+
+  @override
+  String get deleteProfileConfirmMessage =>
+      'Are you sure you want to delete your account? This action cannot be undone.';
+
+  @override
+  String get profileUpdatedSuccess => 'Profile updated successfully!';
+
+  @override
+  String get profileUpdatedError => 'Error updating profile. Please try again.';
+
+  @override
+  String get profileDeletedError => 'Error deleting profile. Please try again.';
+
+  @override
+  String get newPasswordLabel => 'New password (optional)';
+
+  @override
+  String get canDriveLabel => 'I am a driver';
+
+  @override
+  String get languageLabel => 'Language';
+
+  @override
+  String get myProfileTitle => 'My Profile';
+
+  @override
+  String get logoutTitle => 'logout';
+
+  @override
+  String get saveProfileAction => 'Save Profile';
 }

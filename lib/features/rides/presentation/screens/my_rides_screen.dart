@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tcc_caronas_frontend/core/theme/app_theme.dart';
 import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
 import '../../../auth/presentation/controllers/user_controller.dart';
 import '../controllers/ride_controller.dart';
@@ -17,15 +18,13 @@ class MyRidesScreen extends ConsumerStatefulWidget {
 class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  bool _canDrive = false;
 
   @override
   void initState() {
     super.initState();
-    final user = ref.read(userControllerProvider).value;
-    _canDrive = user?.canDrive ?? false;
+    final canDrive = ref.read(userControllerProvider).value?.canDrive ?? false;
     _tabController = TabController(
-      length: _canDrive ? 2 : 1,
+      length: canDrive ? 2 : 1,
       vsync: this,
     );
     Future.microtask(() {
@@ -77,7 +76,7 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
       content: Text(success ? successMessage : errorMessage),
     ));
   }
-
+  
   Widget _buildDriverTab(BuildContext context, AppLocalizations l10n) {
     final rides = ref.watch(rideControllerProvider);
 
@@ -92,8 +91,12 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
         ),
       );
     }
-
-    return ListView.builder(
+ 
+    return RefreshIndicator(
+      onRefresh: () => ref
+      .read(myRequestsControllerProvider.notifier)
+      .fetchMyRequests(), 
+      child: ListView.builder(
       padding: const EdgeInsets.symmetric(vertical: 8),
       itemCount: rides.length,
       itemBuilder: (context, index) {
@@ -139,9 +142,10 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
                 .cancelRide(ride.id),
             successMessage: l10n.rideCanceledSuccess,
             errorMessage: l10n.rideCanceledError,
-          ),
-        );
-      },
+            ),
+          );
+        },
+      )
     );
   }
 
@@ -160,13 +164,17 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
       );
     }
 
-    return ListView.builder(
+    return RefreshIndicator(
+      onRefresh: () => ref
+        .read(myRequestsControllerProvider.notifier)
+        .fetchMyRequests(),
+       child: ListView.builder(
       padding: const EdgeInsets.symmetric(vertical: 8),
       itemCount: requests.length,
       itemBuilder: (context, index) {
         final request = requests[index];
-        final isPending = request.status == 'pending';
-        final isAccepted = request.status == 'accepted';
+        final isPending = request.status == 'PENDING';
+        final isAccepted = request.status == 'ACCEPTED';
 
         return Card(
           key: Key('my_request_card_${request.id}'),
@@ -183,8 +191,8 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
                   label: request.ride.originAddress,
                   child: Row(
                     children: [
-                      const Icon(Icons.trip_origin,
-                          size: 18, color: Color(0xFF679E96)),
+                      const Icon(Icons.radio_button_checked,
+                          size: 18, color: Colors.black),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
@@ -201,8 +209,8 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
                   label: request.ride.destinationAddress,
                   child: Row(
                     children: [
-                      const Icon(Icons.place_outlined,
-                          size: 18, color: Colors.redAccent),
+                      const Icon(Icons.place,
+                          size: 18, color: AppTheme.dangerRed),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
@@ -267,31 +275,32 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
                           errorMessage: l10n.requestCanceledError,
                         ),
                         style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.redAccent,
-                          side: const BorderSide(color: Colors.redAccent),
+                          foregroundColor: AppTheme.dangerRed,
+                          side: const BorderSide(color: AppTheme.dangerRed),
                         ),
                         child: Text(l10n.cancelRequestAction),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ],
-              ],
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      )
     );
   }
 
   String _localizedRequestStatus(AppLocalizations l10n, String status) {
     switch (status) {
-      case 'pending':
+      case 'PENDING':
         return l10n.rideStatusPending;
-      case 'accepted':
+      case 'ACCEPTED':
         return l10n.rideStatusAccepted;
-      case 'rejected':
+      case 'REJECTED':
         return l10n.rideStatusRejected;
-      case 'canceled':
+      case 'CANCELED':
         return l10n.rideStatusCanceled;
       default:
         return status;
@@ -300,13 +309,13 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
 
   Color _requestStatusColor(String status) {
     switch (status) {
-      case 'pending':
+      case 'PENDING':
         return const Color(0xFFE3C598);
-      case 'accepted':
+      case 'ACCEPTED':
         return Colors.green;
-      case 'rejected':
-      case 'canceled':
-        return Colors.redAccent;
+      case 'REJECTED':
+      case 'CANCELED':
+        return AppTheme.dangerRed;
       default:
         return Colors.grey;
     }
@@ -315,6 +324,7 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final canDrive = ref.watch(userControllerProvider).value?.canDrive ?? false;
 
     return Scaffold(
       appBar: AppBar(
@@ -325,7 +335,7 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
         bottom: TabBar(
           controller: _tabController,
           tabs: [
-            if (_canDrive)
+            if (canDrive)
               Tab(
                 key: const Key('driver_tab'),
                 text: l10n.ridesAsDriverTab,
@@ -340,7 +350,7 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
       body: TabBarView(
         controller: _tabController,
         children: [
-          if (_canDrive) _buildDriverTab(context, l10n),
+          if (canDrive) _buildDriverTab(context, l10n),
           _buildPassengerTab(context, l10n),
         ],
       ),

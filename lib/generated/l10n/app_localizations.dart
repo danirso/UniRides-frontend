@@ -775,6 +775,168 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Distância máxima que você aceita desviar do seu trajeto para buscar ou deixar um passageiro. Quanto maior o valor, mais caronas compatíveis aparecerão para os passageiros.'**
   String get maxDetourInfoMessage;
+
+  /// No description provided for @searchRidesTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Explorar Caronas'**
+  String get searchRidesTitle;
+
+  /// No description provided for @searchRidesAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Buscar'**
+  String get searchRidesAction;
+
+  /// No description provided for @noRidesFound.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nenhuma carona encontrada para este trajeto.'**
+  String get noRidesFound;
+
+  /// No description provided for @driverLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Motorista'**
+  String get driverLabel;
+
+  /// No description provided for @estimatedTimeLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tempo estimado'**
+  String get estimatedTimeLabel;
+
+  /// No description provided for @distanceLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Distância'**
+  String get distanceLabel;
+
+  /// No description provided for @minutesLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'{mins} min'**
+  String minutesLabel(int mins);
+
+  /// No description provided for @kilometersLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'{km} km'**
+  String kilometersLabel(String km);
+
+  /// No description provided for @requestSeatAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Solicitar vaga'**
+  String get requestSeatAction;
+
+  /// No description provided for @rideRequestedSuccess.
+  ///
+  /// In pt, this message translates to:
+  /// **'Solicitação enviada com sucesso!'**
+  String get rideRequestedSuccess;
+
+  /// No description provided for @rideRequestedError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao solicitar vaga. Tente novamente.'**
+  String get rideRequestedError;
+
+  /// No description provided for @searchingRides.
+  ///
+  /// In pt, this message translates to:
+  /// **'Buscando caronas...'**
+  String get searchingRides;
+
+  /// No description provided for @rideDetailsTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Detalhes da Carona'**
+  String get rideDetailsTitle;
+
+  /// No description provided for @viewDetailsAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ver detalhes'**
+  String get viewDetailsAction;
+
+  /// No description provided for @editProfileTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Editar Perfil'**
+  String get editProfileTitle;
+
+  /// No description provided for @editProfileAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Editar Perfil'**
+  String get editProfileAction;
+
+  /// No description provided for @deleteProfileTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Excluir Perfil'**
+  String get deleteProfileTitle;
+
+  /// No description provided for @deleteProfileConfirmMessage.
+  ///
+  /// In pt, this message translates to:
+  /// **'Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.'**
+  String get deleteProfileConfirmMessage;
+
+  /// No description provided for @profileUpdatedSuccess.
+  ///
+  /// In pt, this message translates to:
+  /// **'Perfil atualizado com sucesso!'**
+  String get profileUpdatedSuccess;
+
+  /// No description provided for @profileUpdatedError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao atualizar perfil. Tente novamente.'**
+  String get profileUpdatedError;
+
+  /// No description provided for @profileDeletedError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao excluir perfil. Tente novamente.'**
+  String get profileDeletedError;
+
+  /// No description provided for @newPasswordLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nova senha (opcional)'**
+  String get newPasswordLabel;
+
+  /// No description provided for @canDriveLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sou motorista'**
+  String get canDriveLabel;
+
+  /// No description provided for @languageLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Idioma'**
+  String get languageLabel;
+
+  /// No description provided for @myProfileTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Meu Perfil'**
+  String get myProfileTitle;
+
+  /// No description provided for @logoutTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Sair'**
+  String get logoutTitle;
+
+  /// No description provided for @saveProfileAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Salvar Perfil'**
+  String get saveProfileAction;
 }
 
 class _AppLocalizationsDelegate

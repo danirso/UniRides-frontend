@@ -69,7 +69,11 @@ class _RideDetailScreenState extends ConsumerState<RideDetailScreen> {
                 ),
               ),
             )
-          : ListView.builder(
+          : RefreshIndicator(
+            onRefresh: () => ref
+              .read(rideRequestsControllerProvider(widget.ride.id).notifier)
+              .fetchRequests(),
+             child: ListView.builder(
               padding: const EdgeInsets.symmetric(vertical: 8),
               itemCount: requests.length,
               itemBuilder: (context, index) {
@@ -82,6 +86,7 @@ class _RideDetailScreenState extends ConsumerState<RideDetailScreen> {
                 );
               },
             ),
+      )
     );
   }
 }

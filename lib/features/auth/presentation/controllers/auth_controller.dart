@@ -4,11 +4,9 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:tcc_caronas_frontend/features/auth/domain/errors/auth_failures.dart';
 import 'package:tcc_caronas_frontend/features/auth/presentation/controllers/user_controller.dart';
 import 'package:tcc_caronas_frontend/features/vehicles/presentation/controllers/vehicle_controller.dart';
-import '../../../../core/network/dio_client.dart';
 import 'package:tcc_caronas_frontend/features/auth/domain/repositories/i_auth_repository.dart';
 import 'package:tcc_caronas_frontend/features/auth/data/repositories/auth_repository_impl.dart';
-
-final dioClientProvider = Provider((ref) => DioClient());
+import 'package:tcc_caronas_frontend/core/network/dio_provider.dart';
 
 final authRepositoryProvider = Provider<IAuthRepository>((ref) {
   return AuthRepositoryImpl(ref.watch(dioClientProvider));

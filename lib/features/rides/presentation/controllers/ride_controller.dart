@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../vehicles/presentation/controllers/vehicle_controller.dart';
 import '../../data/repositories/ride_repository_impl.dart';
 import '../../domain/entities/ride_entity.dart';
 import '../../domain/entities/ride_request_entity.dart';
 import '../../domain/repositories/i_ride_repository.dart';
+import 'package:tcc_caronas_frontend/core/network/dio_provider.dart';
 
 final rideRepositoryProvider = Provider<IRideRepository>((ref) {
   return RideRepositoryImpl(ref.watch(dioClientProvider));
@@ -20,6 +20,10 @@ final rideRequestsControllerProvider = NotifierProvider.family<
     RideRequestsController,
     List<RideRequestWithPassengerEntity>,
     String>(RideRequestsController.new);
+
+final rideSearchControllerProvider = 
+    NotifierProvider<RideSearchController, List<RideEntity>> (
+        RideSearchController.new);
 
 // ---------------------------------------------------------------------------
 // RideController — caronas do motorista
@@ -207,4 +211,37 @@ class MyRequestsController
       return false;
     }
   }
+}
+
+class RideSearchController extends Notifier<List<RideEntity>> {
+    late IRideRepository _repository;
+
+    @override
+    List<RideEntity> build() {
+      _repository = ref.watch(rideRepositoryProvider);
+      return [];
+    }
+
+    Future<bool> searchRides({
+      required double originLat,
+      required double originLng,
+      required double destinationLat,
+      required double destinationLng,
+    }) async {
+      try {
+        final rides = await _repository.searchRides(
+          originLat: originLat,
+          originLng: originLng,
+          destinationLat: destinationLat,
+          destinationLng: destinationLng,
+        );
+        state = rides;
+        return true;
+      } catch (e) {
+        state = [];
+        return false;
+      }
+    }
+
+    void clearResults() => state = [];
 }

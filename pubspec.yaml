@@ -45,6 +45,10 @@ dependencies:
   flutter_dotenv: ^6.0.1
   http: ^1.6.0
   google_places_sdk_plus: ^1.1.0
+  flutter_map: ^8.3.0
+  latlong2: ^0.9.1
+  google_polyline_algorithm: ^3.1.0
+  google_fonts: ^8.1.0
 
 dev_dependencies:
   flutter_test:

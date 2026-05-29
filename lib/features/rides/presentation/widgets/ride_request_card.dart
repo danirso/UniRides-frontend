@@ -17,13 +17,13 @@ class RideRequestCard extends StatelessWidget {
 
   String _localizedStatus(AppLocalizations l10n, String status) {
     switch (status) {
-      case 'pending':
+      case 'PENDING':
         return l10n.rideStatusPending;
-      case 'accepted':
+      case 'ACCEPTED':
         return l10n.rideStatusAccepted;
-      case 'rejected':
+      case 'REJECTED':
         return l10n.rideStatusRejected;
-      case 'canceled':
+      case 'CANCELED':
         return l10n.rideStatusCanceled;
       default:
         return status;
@@ -32,13 +32,13 @@ class RideRequestCard extends StatelessWidget {
 
   Color _statusColor(String status) {
     switch (status) {
-      case 'pending':
+      case 'PENDING':
         return AppTheme.sandYellow;
-      case 'accepted':
+      case 'ACCEPTED':
         return Colors.green;
-      case 'rejected':
-      case 'canceled':
-        return Colors.redAccent;
+      case 'REJECTED':
+      case 'CANCELED':
+        return AppTheme.dangerRed;
       default:
         return Colors.grey;
     }
@@ -47,7 +47,7 @@ class RideRequestCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final isPending = request.status == 'pending';
+    final isPending = request.status == 'PENDING';
     final statusColor = _statusColor(request.status);
 
     return Card(
@@ -67,7 +67,7 @@ class RideRequestCard extends StatelessWidget {
                   label: request.passenger.name,
                   child: Row(
                     children: [
-                      const Icon(Icons.person_outline,
+                      const Icon(Icons.person,
                           size: 20, color: AppTheme.primaryTeal),
                       const SizedBox(width: 8),
                       Text(
@@ -97,8 +97,49 @@ class RideRequestCard extends StatelessWidget {
                     ),
                   ),
                 ),
-              ],
+              ], 
             ),
+            if (request.originAddress != null) ...[
+              const SizedBox(height: 8),
+              Semantics(
+                label: request.originAddress!,
+                child: Row(
+                  children: [
+                    const Icon(
+                        Icons.radio_button_checked,
+                        size: 16, 
+                        color: Colors.black),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        request.originAddress!,
+                        style: const TextStyle(fontSize: 13),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+            if (request.destinationAddress != null) ...[
+              const SizedBox(height: 4),
+              Semantics(
+                label: request.destinationAddress!,
+                child: Row(
+                  children: [
+                    const Icon(Icons.place, size: 16, color: AppTheme.dangerRed),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        request.destinationAddress!,
+                        style: const TextStyle(fontSize: 13),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
             if (isPending) ...[
               const SizedBox(height: 12),
               Row(
@@ -111,8 +152,8 @@ class RideRequestCard extends StatelessWidget {
                         key: Key('reject_request_${request.id}'),
                         onPressed: onReject,
                         style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.redAccent,
-                          side: const BorderSide(color: Colors.redAccent),
+                          foregroundColor: AppTheme.dangerRed,
+                          side: const BorderSide(color: AppTheme.dangerRed),
                         ),
                         child: Text(l10n.rejectRequestAction),
                       ),
@@ -123,7 +164,7 @@ class RideRequestCard extends StatelessWidget {
                     child: Semantics(
                       button: true,
                       label: l10n.acceptRequestAction,
-                      child: ElevatedButton(
+                      child: OutlinedButton(
                         key: Key('accept_request_${request.id}'),
                         onPressed: onAccept,
                         child: Text(l10n.acceptRequestAction),

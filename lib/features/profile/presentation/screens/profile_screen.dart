@@ -1,21 +1,69 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
 import '../../../auth/presentation/controllers/user_controller.dart';
 import '../../../auth/presentation/controllers/auth_controller.dart';
 import '../../../auth/presentation/screens/login_screen.dart';
 import '../../../vehicles/presentation/screens/vehicle_list_screen.dart';
-import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
+import '../widgets/profile_edit_modal.dart';
+import 'package:tcc_caronas_frontend/core/providers/locale_provider.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
+
+  Future<void> _confirmDelete(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context)!;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Semantics(
+          header: true,
+          child: Text(l10n.deleteProfileTitle),
+        ),
+        content: Text(l10n.deleteProfileConfirmMessage),
+        actions: [
+          TextButton(
+            key: const Key('cancel_delete_profile_button'),
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text(l10n.cancel),
+          ),
+          ElevatedButton(
+            key: const Key('confirm_delete_profile_button'),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text(l10n.confirmAction),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true || !context.mounted) return;
+
+    final success = await ref.read(userControllerProvider.notifier).deleteMe();
+
+    if (!context.mounted) return;
+
+    if (success) {
+      await ref.read(authControllerProvider.notifier).logout();
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
+        (route) => false,
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AppLocalizations.of(context)!.profileDeletedError)),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final user = ref.watch(userControllerProvider).value;
+    final currentLocale = ref.watch(localeStateProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Meu Perfil')),
+      appBar: AppBar(title: Text(l10n.myProfileTitle)),
       body: ListView(
         children: [
           ListTile(
@@ -25,16 +73,36 @@ class ProfileScreen extends ConsumerWidget {
           ),
           const Divider(),
           ListTile(
+            key: const Key('edit_profile_tile'),
+            leading: const Icon(Icons.edit_outlined),
+            title: Text(l10n.editProfileAction),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              if (user == null) return;
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (context) => ProfileEditModal(user: user),
+              );
+            },
+          ),
+          ListTile(
             leading: const Icon(Icons.language),
-            title: const Text('Idioma'),
+            title: Text(l10n.languageLabel),
             trailing: DropdownButton<String>(
-              value: 'pt', // TBI: Vincular a um LocaleProvider
+              key: const Key('language_dropdown'),
+              value: currentLocale.languageCode,
+              underline: const SizedBox.shrink(),
               items: const [
                 DropdownMenuItem(value: 'pt', child: Text('Português')),
                 DropdownMenuItem(value: 'en', child: Text('English')),
               ],
               onChanged: (String? newValue) {
-                // TBI: Atualizar estado do idioma do app
+                if (newValue == null) return;
+                final locale = newValue == 'pt'
+                    ? const Locale('pt', 'BR')
+                    : const Locale('en', 'US');
+                ref.read(localeStateProvider.notifier).setLocale(locale);
               },
             ),
           ),
@@ -47,16 +115,20 @@ class ProfileScreen extends ConsumerWidget {
               MaterialPageRoute(builder: (context) => const VehicleListScreen()),
             ),
           ),
+          const Divider(),
           ListTile(
-            leading: const Icon(Icons.delete_forever, color: Colors.red),
-            title: const Text('Excluir Perfil', style: TextStyle(color: Colors.red)),
-            onTap: () {
-              // TBI: Lógica de deleção
-            },
+            key: const Key('delete_profile_tile'),
+            leading: const Icon(Icons.delete_forever, color: Colors.redAccent),
+            title: Text(
+              l10n.deleteProfileTitle,
+              style: const TextStyle(color: Colors.redAccent),
+            ),
+            onTap: () => _confirmDelete(context, ref),
           ),
           ListTile(
+            key: const Key('logout_tile'),
             leading: const Icon(Icons.logout),
-            title: const Text('Sair'),
+            title: Text(l10n.logoutTitle),
             onTap: () async {
               await ref.read(authControllerProvider.notifier).logout();
               if (context.mounted) {

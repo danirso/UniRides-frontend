@@ -40,6 +40,8 @@ class RideRequestWithPassengerModel extends RideRequestWithPassengerEntity {
     required super.status,
     required super.createdAt,
     required super.passenger,
+    required super.originAddress,
+    required super.destinationAddress
   });
 
   factory RideRequestWithPassengerModel.fromJson(Map<String, dynamic> json) {
@@ -50,6 +52,8 @@ class RideRequestWithPassengerModel extends RideRequestWithPassengerEntity {
       status: json['status'],
       createdAt: DateTime.parse(json['created_at']),
       passenger: PassengerSnippetModel.fromJson(json['passenger']),
+      originAddress: json['origin_address'],
+      destinationAddress: json['destination_address'],
     );
   }
 }

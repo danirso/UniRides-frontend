@@ -7,6 +7,7 @@ import '../../../profile/presentation/screens/profile_screen.dart';
 import '../../../vehicles/presentation/widgets/vehicle_registration_modal.dart';
 import '../../../rides/presentation/screens/offer_ride_screen.dart';
 import '../../../rides/presentation/screens/my_rides_screen.dart';
+import '../../../rides/presentation/screens/search_rides_screen.dart';
 
 class MainScreen extends ConsumerStatefulWidget {
   const MainScreen({super.key});
@@ -46,7 +47,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     );
   }
 
-  void _onItemTapped(int index, bool canDrive) async {
+  void _onItemTapped(int index) async {
+    final canDrive = ref.read(userControllerProvider).value?.canDrive ?? false;
     if (index == 2 && canDrive) {
       await ref.read(vehicleControllerProvider.notifier).fetchVehicles();
       if (!mounted) return;
@@ -85,8 +87,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         final bool canDrive = user?.canDrive ?? false;
 
         final List<Widget> screens = [
-          const Center(child: Text('TBI: Explorar Caronas')),
-          const MyRidesScreen(),
+          const SearchRidesScreen(),
+          MyRidesScreen(key: ValueKey(canDrive)),
           if (canDrive) const OfferRideScreen(),
           const ProfileScreen(),
         ];
@@ -139,7 +141,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
           ),
           bottomNavigationBar: NavigationBar(
             selectedIndex: safeIndex,
-            onDestinationSelected: (index) => _onItemTapped(index, canDrive),
+            onDestinationSelected: (index) => _onItemTapped(index),
             labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
             destinations: destinations,
           ),

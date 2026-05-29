@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   // Cores extraídas da logo
@@ -6,9 +7,11 @@ class AppTheme {
   static const Color darkBackground = Color(0xFF10161C); // Azul escuro da base/sombras
   static const Color sandYellow = Color(0xFFE3C598); // Areia/Amarelo do céu
   static const Color lightMint = Color(0xFFC7E0D8); // Verde claro dos reflexos
+  static const Color dangerRed = Color(0xFFD32F2F);
 
   static ThemeData get lightTheme {
     return ThemeData(
+      textTheme: GoogleFonts.montserratTextTheme(),
       scaffoldBackgroundColor: const Color(0xFFF5F7F6),
       colorScheme: ColorScheme.fromSeed(
         seedColor: primaryTeal,
