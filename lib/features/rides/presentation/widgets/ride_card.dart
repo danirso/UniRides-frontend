@@ -45,7 +45,7 @@ class RideCard extends StatelessWidget {
       case 'concluida':
         return Colors.green;
       case 'cancelada':
-        return Colors.redAccent;
+        return AppTheme.dangerRed;
       default:
         return Colors.grey;
     }
@@ -98,7 +98,7 @@ class RideCard extends StatelessWidget {
                         label: l10n.editRideAction,
                         child: IconButton(
                           key: Key('edit_ride_${ride.id}'),
-                          icon: const Icon(Icons.edit_outlined),
+                          icon: const Icon(Icons.edit),
                           color: AppTheme.primaryTeal,
                           tooltip: l10n.editRideAction,
                           onPressed: onEdit,
@@ -109,8 +109,8 @@ class RideCard extends StatelessWidget {
                         label: l10n.cancelRideAction,
                         child: IconButton(
                           key: Key('cancel_ride_${ride.id}'),
-                          icon: const Icon(Icons.cancel_outlined),
-                          color: Colors.redAccent,
+                          icon: const Icon(Icons.cancel),
+                          color: AppTheme.dangerRed,
                           tooltip: l10n.cancelRideAction,
                           onPressed: onCancel,
                         ),
@@ -122,7 +122,7 @@ class RideCard extends StatelessWidget {
                         label: l10n.completeRideAction,
                         child: IconButton(
                           key: Key('complete_ride_${ride.id}'),
-                          icon: const Icon(Icons.check_circle_outline),
+                          icon: const Icon(Icons.check_circle),
                           color: Colors.green,
                           tooltip: l10n.completeRideAction,
                           onPressed: onComplete,
@@ -137,7 +137,7 @@ class RideCard extends StatelessWidget {
               label: '${l10n.originLabel}: ${ride.originAddress}',
               child: Row(
                 children: [
-                  const Icon(Icons.trip_origin, size: 18, color: AppTheme.primaryTeal),
+                  const Icon(Icons.radio_button_checked, size: 18, color: Colors.black),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -154,7 +154,7 @@ class RideCard extends StatelessWidget {
               label: '${l10n.destinationLabel}: ${ride.destinationAddress}',
               child: Row(
                 children: [
-                  const Icon(Icons.place_outlined, size: 18, color: Colors.redAccent),
+                  const Icon(Icons.place, size: 18, color: AppTheme.dangerRed),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -171,7 +171,7 @@ class RideCard extends StatelessWidget {
               label: '${l10n.departureDateLabel}: ${ride.departureTime}',
               child: Row(
                 children: [
-                  const Icon(Icons.schedule, size: 18, color: AppTheme.primaryTeal),
+                  const Icon(Icons.access_time_filled, size: 18, color: AppTheme.primaryTeal),
                   const SizedBox(width: 8),
                   Text(
                     '${ride.departureTime.day.toString().padLeft(2, '0')}/'
@@ -189,7 +189,7 @@ class RideCard extends StatelessWidget {
               label: '${l10n.availableSeatsLabel}: ${ride.availableSeats}',
               child: Row(
                 children: [
-                  const Icon(Icons.people_outline, size: 18, color: AppTheme.primaryTeal),
+                  const Icon(Icons.people, size: 18, color: AppTheme.primaryTeal),
                   const SizedBox(width: 8),
                   Text(
                     l10n.vehiclePassengersLabel(ride.availableSeats),

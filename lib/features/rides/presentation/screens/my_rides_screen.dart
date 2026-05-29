@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tcc_caronas_frontend/core/theme/app_theme.dart';
 import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
 import '../../../auth/presentation/controllers/user_controller.dart';
 import '../controllers/ride_controller.dart';
@@ -190,8 +191,8 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
                   label: request.ride.originAddress,
                   child: Row(
                     children: [
-                      const Icon(Icons.trip_origin,
-                          size: 18, color: Color(0xFF679E96)),
+                      const Icon(Icons.radio_button_checked,
+                          size: 18, color: Colors.black),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
@@ -208,8 +209,8 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
                   label: request.ride.destinationAddress,
                   child: Row(
                     children: [
-                      const Icon(Icons.place_outlined,
-                          size: 18, color: Colors.redAccent),
+                      const Icon(Icons.place,
+                          size: 18, color: AppTheme.dangerRed),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
@@ -274,8 +275,8 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
                           errorMessage: l10n.requestCanceledError,
                         ),
                         style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.redAccent,
-                          side: const BorderSide(color: Colors.redAccent),
+                          foregroundColor: AppTheme.dangerRed,
+                          side: const BorderSide(color: AppTheme.dangerRed),
                         ),
                         child: Text(l10n.cancelRequestAction),
                         ),
@@ -314,7 +315,7 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
         return Colors.green;
       case 'REJECTED':
       case 'CANCELED':
-        return Colors.redAccent;
+        return AppTheme.dangerRed;
       default:
         return Colors.grey;
     }

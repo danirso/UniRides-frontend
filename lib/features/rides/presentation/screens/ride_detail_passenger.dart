@@ -66,9 +66,9 @@ class RideDetailPassengerScreen extends StatelessWidget {
                       width: 40,
                       height: 40,
                       child: const Icon(
-                        Icons.place,
+                        Icons.radio_button_checked,
                         color: Colors.black,
-                        size: 30,
+                        size: 27,
                       ),
                     ),
                     Marker(
@@ -77,7 +77,7 @@ class RideDetailPassengerScreen extends StatelessWidget {
                       height: 40,
                       child: const Icon(
                         Icons.place,
-                        color: Colors.redAccent,
+                        color: AppTheme.dangerRed,
                         size: 30,
                       ),
                     ),
@@ -97,7 +97,7 @@ class RideDetailPassengerScreen extends StatelessWidget {
                     label: '${l10n.driverLabel}: ${ride.driverName}',
                     child: Row(
                       children: [
-                        const Icon(Icons.person_outline,
+                        const Icon(Icons.person,
                             size: 18, color: AppTheme.primaryTeal),
                         const SizedBox(width: 8),
                         Text(
@@ -113,7 +113,7 @@ class RideDetailPassengerScreen extends StatelessWidget {
                     label: '${l10n.originLabel}: ${ride.originAddress}',
                     child: Row(
                       children: [
-                        const Icon(Icons.place,
+                        const Icon(Icons.radio_button_checked,
                             size: 18, color: Colors.black),
                         const SizedBox(width: 8),
                         Expanded(
@@ -131,7 +131,7 @@ class RideDetailPassengerScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         const Icon(Icons.place,
-                            size: 18, color: Colors.redAccent),
+                            size: 18, color: AppTheme.dangerRed),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
@@ -145,7 +145,7 @@ class RideDetailPassengerScreen extends StatelessWidget {
                   const SizedBox(height: 6),
                   Row(
                     children: [
-                      const Icon(Icons.schedule,
+                      const Icon(Icons.access_time_filled,
                           size: 18, color: AppTheme.primaryTeal),
                       const SizedBox(width: 8),
                       Text(
@@ -161,13 +161,13 @@ class RideDetailPassengerScreen extends StatelessWidget {
                   const SizedBox(height: 6),
                   Row(
                     children: [
-                      const Icon(Icons.av_timer,
+                      const Icon(Icons.timer,
                           size: 16, color: AppTheme.primaryTeal),
                       const SizedBox(width: 8),
                       Text(l10n.minutesLabel(ride.estimatedDurationMins),
                           style: const TextStyle(fontSize: 13)),
                       const SizedBox(width: 16),
-                      const Icon(Icons.straighten,
+                      const Icon(Icons.route,
                           size: 16, color: AppTheme.primaryTeal),
                       const SizedBox(width: 8),
                       Text(
@@ -175,7 +175,7 @@ class RideDetailPassengerScreen extends StatelessWidget {
                               ride.distanceKm.toStringAsFixed(1)),
                           style: const TextStyle(fontSize: 13)),
                       const SizedBox(width: 16),
-                      const Icon(Icons.people_outline,
+                      const Icon(Icons.people,
                           size: 16, color: AppTheme.primaryTeal),
                       const SizedBox(width: 8),
                       Text(l10n.vehiclePassengersLabel(ride.availableSeats),

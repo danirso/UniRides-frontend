@@ -32,7 +32,7 @@ class RideSearchCard extends StatelessWidget {
               label: '${l10n.driverLabel}: ${ride.driverName}',
               child: Row(
                 children: [
-                  const Icon(Icons.person_outline,
+                  const Icon(Icons.person,
                       size: 18, color: AppTheme.primaryTeal),
                   const SizedBox(width: 8),
                   Text(
@@ -48,8 +48,8 @@ class RideSearchCard extends StatelessWidget {
               label: '${l10n.originLabel}: ${ride.originAddress}',
               child: Row(
                 children: [
-                  const Icon(Icons.trip_origin,
-                      size: 18, color: AppTheme.primaryTeal),
+                  const Icon(Icons.radio_button_checked,
+                      size: 18, color: Colors.black),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -66,8 +66,8 @@ class RideSearchCard extends StatelessWidget {
               label: '${l10n.destinationLabel}: ${ride.destinationAddress}',
               child: Row(
                 children: [
-                  const Icon(Icons.place_outlined,
-                      size: 18, color: Colors.redAccent),
+                  const Icon(Icons.place,
+                      size: 18, color: AppTheme.dangerRed),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -87,7 +87,7 @@ class RideSearchCard extends StatelessWidget {
                       '${l10n.departureDateLabel}: ${ride.departureTime.day.toString().padLeft(2, '0')}/${ride.departureTime.month.toString().padLeft(2, '0')}/${ride.departureTime.year}',
                   child: Row(
                     children: [
-                      const Icon(Icons.schedule,
+                      const Icon(Icons.access_time_filled,
                           size: 16, color: AppTheme.primaryTeal),
                       const SizedBox(width: 4),
                       Text(
@@ -106,7 +106,7 @@ class RideSearchCard extends StatelessWidget {
                   label: '${l10n.availableSeatsLabel}: ${ride.availableSeats}',
                   child: Row(
                     children: [
-                      const Icon(Icons.people_outline,
+                      const Icon(Icons.people,
                           size: 16, color: AppTheme.primaryTeal),
                       const SizedBox(width: 4),
                       Text(
@@ -126,7 +126,7 @@ class RideSearchCard extends StatelessWidget {
                       '${l10n.estimatedTimeLabel}: ${l10n.minutesLabel(ride.estimatedDurationMins)}',
                   child: Row(
                     children: [
-                      const Icon(Icons.av_timer,
+                      const Icon(Icons.timer,
                           size: 16, color: AppTheme.primaryTeal),
                       const SizedBox(width: 4),
                       Text(
@@ -142,7 +142,7 @@ class RideSearchCard extends StatelessWidget {
                       '${l10n.distanceLabel}: ${l10n.kilometersLabel(ride.distanceKm.toStringAsFixed(1))}',
                   child: Row(
                     children: [
-                      const Icon(Icons.straighten,
+                      const Icon(Icons.route,
                           size: 16, color: AppTheme.primaryTeal),
                       const SizedBox(width: 4),
                       Text(
