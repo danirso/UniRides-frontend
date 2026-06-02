@@ -69,7 +69,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navSearchLabel => 'Search';
 
   @override
-  String get navRidesLabel => 'My Rides';
+  String get navRidesLabel => 'Trips';
 
   @override
   String get navOfferLabel => 'Offer';

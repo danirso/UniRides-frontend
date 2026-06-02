@@ -215,7 +215,7 @@ abstract class AppLocalizations {
   /// Rótulo da aba de histórico e gerenciamento de caronas.
   ///
   /// In pt, this message translates to:
-  /// **'Minhas Caronas'**
+  /// **'Viagens'**
   String get navRidesLabel;
 
   /// Rótulo da aba destinada ao motorista para criação de ofertas de carona.

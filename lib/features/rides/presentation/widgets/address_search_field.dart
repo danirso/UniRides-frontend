@@ -176,9 +176,12 @@ class _AddressSearchFieldState extends State<AddressSearchField> {
           Card(
             margin: const EdgeInsets.only(top: 2),
             elevation: 4,
-            child: ListView.separated(
+            child: ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 200),
+            child:
+            ListView.separated(
               shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+              physics: const ClampingScrollPhysics(),
               itemCount: _predictions.length,
               separatorBuilder: (_, __) => const Divider(height: 1),
               itemBuilder: (context, index) {
@@ -203,6 +206,7 @@ class _AddressSearchFieldState extends State<AddressSearchField> {
                 );
               },
             ),
+          ),
           ),
       ],
     );

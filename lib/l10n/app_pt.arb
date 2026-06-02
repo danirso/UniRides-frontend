@@ -76,7 +76,7 @@
   "@navSearchLabel": {
     "description": "Rótulo da aba de busca de caronas na barra de navegação principal."
   },
-  "navRidesLabel": "Minhas Caronas",
+  "navRidesLabel": "Viagens",
   "@navRidesLabel": {
     "description": "Rótulo da aba de histórico e gerenciamento de caronas."
   },

@@ -70,7 +70,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get navSearchLabel => 'Buscar';
 
   @override
-  String get navRidesLabel => 'Minhas Caronas';
+  String get navRidesLabel => 'Viagens';
 
   @override
   String get navOfferLabel => 'Oferecer';
