@@ -218,7 +218,7 @@ class RideCard extends StatelessWidget {
                     child: Semantics(
                       button: true,
                       label: l10n.startRideAction,
-                      child: OutlinedButton(
+                      child: FilledButton(
                         key: Key('start_ride_${ride.id}'),
                         onPressed: onStart,
                         child: Text(l10n.startRideAction, maxLines: 1, overflow: TextOverflow.ellipsis),

@@ -83,9 +83,10 @@ class _SearchRidesScreenState extends ConsumerState<SearchRidesScreen> {
         destinationLat: _destination!.lat,
         destinationLng: _destination!.lng,
         originAddress: _origin!.address,
-        destinationAddress:  _destination!.address,
+        destinationAddress: _destination!.address,
       );
       if (!mounted) return;
+      ref.read(myRequestsControllerProvider.notifier).fetchMyRequests();
       _showSnack(l10n.rideRequestedSuccess);
     } catch (e) {
       if (!mounted) return;
@@ -111,81 +112,68 @@ class _SearchRidesScreenState extends ConsumerState<SearchRidesScreen> {
           child: Text(l10n.searchRidesTitle),
         ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              children: [
-                AddressSearchField(
-                  label: l10n.originLabel,
-                  widgetKey: 'search_origin',
-                  controller: _originController,
-                  onPlaceSelected: (place) =>
-                      setState(() => _origin = place),
-                ),
-                const SizedBox(height: 12),
-                AddressSearchField(
-                  label: l10n.destinationLabel,
-                  widgetKey: 'search_destination',
-                  controller: _destinationController,
-                  onPlaceSelected: (place) =>
-                      setState(() => _destination = place),
-                ),
-                const SizedBox(height: 12),
-                Semantics(
-                  button: true,
-                  label: l10n.searchRidesAction,
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      key: const Key('search_rides_button'),
-                      onPressed: _isLoading ? null : _search,
-                      child: _isLoading
-                          ? const SizedBox(
-                              height: 20,
-                              width: 20,
-                              child:
-                                  CircularProgressIndicator(strokeWidth: 2),
-                            )
-                          : Text(l10n.searchRidesAction),
-                    ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            AddressSearchField(
+              label: l10n.originLabel,
+              widgetKey: 'search_origin',
+              controller: _originController,
+              onPlaceSelected: (place) => setState(() => _origin = place),
+            ),
+            const SizedBox(height: 12),
+            AddressSearchField(
+              label: l10n.destinationLabel,
+              widgetKey: 'search_destination',
+              controller: _destinationController,
+              onPlaceSelected: (place) => setState(() => _destination = place),
+            ),
+            const SizedBox(height: 12),
+            Semantics(
+              button: true,
+              label: l10n.searchRidesAction,
+              child: ElevatedButton(
+                key: const Key('search_rides_button'),
+                onPressed: _isLoading ? null : _search,
+                child: _isLoading
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : Text(l10n.searchRidesAction),
+              ),
+            ),
+            const SizedBox(height: 16),
+            if (_isLoading)
+              Center(child: Text(l10n.searchingRides))
+            else if (_searched && rides.isEmpty)
+              Center(
+                child: Semantics(
+                  label: l10n.noRidesFound,
+                  child: Text(
+                    l10n.noRidesFound,
+                    style: const TextStyle(fontSize: 16, color: Colors.grey),
                   ),
                 ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: _isLoading
-                ? Center(child: Text(l10n.searchingRides))
-                : !_searched
-                    ? const SizedBox.shrink()
-                    : rides.isEmpty
-                        ? Center(
-                            child: Semantics(
-                              label: l10n.noRidesFound,
-                              child: Text(
-                                l10n.noRidesFound,
-                                style: const TextStyle(
-                                    fontSize: 16, color: Colors.grey),
-                              ),
-                            ),
-                          )
-                        : ListView.builder(
-                            padding:
-                                const EdgeInsets.symmetric(vertical: 8),
-                            itemCount: rides.length,
-                            itemBuilder: (context, index) {
-                              final ride = rides[index];
-                              return RideSearchCard(
-                                ride: ride,
-                                onRequestSeat: () =>
-                                    _requestSeat(ride.id),
-                              );
-                            },
-                          ),
-          ),
-        ],
+              )
+            else if (_searched)
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: rides.length,
+                itemBuilder: (context, index) {
+                  final ride = rides[index];
+                  return RideSearchCard(
+                    ride: ride,
+                    onRequestSeat: () => _requestSeat(ride.id),
+                  );
+                },
+              ),
+          ],
+        ),
       ),
     );
   }

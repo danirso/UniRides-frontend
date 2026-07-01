@@ -76,7 +76,7 @@
   "@navSearchLabel": {
     "description": "Label for the ride search tab in the main navigation bar."
   },
-  "navRidesLabel": "My Rides",
+  "navRidesLabel": "Trips",
   "@navRidesLabel": {
     "description": "Label for the tab showing ride history and management."
   },

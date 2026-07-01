@@ -151,7 +151,7 @@ class RideRequestCard extends StatelessWidget {
                       child: OutlinedButton(
                         key: Key('reject_request_${request.id}'),
                         onPressed: onReject,
-                        style: OutlinedButton.styleFrom(
+                        style: FilledButton.styleFrom(
                           foregroundColor: AppTheme.dangerRed,
                           side: const BorderSide(color: AppTheme.dangerRed),
                         ),
@@ -164,7 +164,7 @@ class RideRequestCard extends StatelessWidget {
                     child: Semantics(
                       button: true,
                       label: l10n.acceptRequestAction,
-                      child: OutlinedButton(
+                      child: FilledButton(
                         key: Key('accept_request_${request.id}'),
                         onPressed: onAccept,
                         child: Text(l10n.acceptRequestAction),

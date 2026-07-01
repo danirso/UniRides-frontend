@@ -122,8 +122,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         final email = value.trim().toLowerCase();
                         final isPuc = email.endsWith('@puccampinas.edu.br');
                         final isUnicamp = email.endsWith('@dac.unicamp.br');
+                        final isPucEmployee = email.endsWith('@puc-campinas.edu.br');
 
-                        if (!isPuc && !isUnicamp){
+                        if (!isPuc && !isUnicamp && !isPucEmployee){
                           return AppLocalizations.of(context)!.errorInvalidEmail;
                         }
                         return null;

@@ -310,7 +310,7 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
   Color _requestStatusColor(String status) {
     switch (status) {
       case 'PENDING':
-        return const Color(0xFFE3C598);
+        return Colors.amber;
       case 'ACCEPTED':
         return Colors.green;
       case 'REJECTED':
