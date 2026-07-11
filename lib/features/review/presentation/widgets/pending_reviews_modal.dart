@@ -74,14 +74,45 @@ class PendingReviewsModal extends ConsumerWidget {
                         ? 'Motorista'
                         : 'Passageiro';
                     return Card(
-                      child: ListTile(
-                        key: Key('pending_review_${target.userId}'),
-                        title: Text(target.name),
-                        subtitle: Text(roleLabel),
-                        trailing: ElevatedButton(
-                          key: Key('pending_review_button_${target.userId}'),
-                          onPressed: () => _openReviewForm(context, target),
-                          child: const Text('Avaliar'),
+                      key: Key('pending_review_${target.userId}'),
+                      margin: const EdgeInsets.symmetric(vertical: 6),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    target.name,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  Text(
+                                    roleLabel,
+                                    style: TextStyle(
+                                      color: Colors.grey.shade600,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Flexible(
+                              fit: FlexFit.loose,
+                              child: ElevatedButton(
+                                key: Key(
+                                    'pending_review_button_${target.userId}'),
+                                onPressed: () =>
+                                    _openReviewForm(context, target),
+                                child: const Text('Avaliar'),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     );

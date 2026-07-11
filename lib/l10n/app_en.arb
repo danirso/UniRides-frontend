@@ -291,5 +291,7 @@
       "avg": { "type": "String" },
       "count": { "type": "int" }
     }
-  }
+  },
+  "rateDriverAction": "Rate driver",
+  "@rateDriverAction": {}
 }

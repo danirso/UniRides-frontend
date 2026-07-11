@@ -10,12 +10,11 @@ class UserReviewsController
 
   @override
   AsyncValue<List<ReviewWithReviewerEntity>> build() {
-    _load();
+    _fetch();
     return const AsyncValue.loading();
   }
 
-  Future<void> _load({int limit = 5}) async {
-    state = const AsyncValue.loading();
+  Future<void> _fetch({int limit = 5}) async {
     try {
       final repository = ref.read(reviewRepositoryProvider);
       final reviews = await repository.getUserReviews(userId, limit: limit);
@@ -25,12 +24,13 @@ class UserReviewsController
     }
   }
 
-  Future<void> refresh() => _load();
+  Future<void> refresh() async {
+    state = const AsyncValue.loading();
+    await _fetch();
+  }
 }
 
-final userReviewsControllerProvider =
-    NotifierProvider.family<
-      UserReviewsController,
-      AsyncValue<List<ReviewWithReviewerEntity>>,
-      String
-    >(UserReviewsController.new);
+final userReviewsControllerProvider = NotifierProvider.family<
+    UserReviewsController,
+    AsyncValue<List<ReviewWithReviewerEntity>>,
+    String>(UserReviewsController.new);

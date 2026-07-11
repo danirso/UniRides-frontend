@@ -949,6 +949,12 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Avaliação média {avg} de 5, baseada em {count} avaliações'**
   String ratingSemanticLabel(String avg, int count);
+
+  /// No description provided for @rateDriverAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avaliar motorista'**
+  String get rateDriverAction;
 }
 
 class _AppLocalizationsDelegate

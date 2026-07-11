@@ -461,4 +461,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String ratingSemanticLabel(String avg, int count) {
     return 'Avaliação média $avg de 5, baseada em $count avaliações';
   }
+
+  @override
+  String get rateDriverAction => 'Avaliar motorista';
 }

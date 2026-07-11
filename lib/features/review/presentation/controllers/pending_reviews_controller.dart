@@ -10,12 +10,11 @@ class PendingReviewsController
 
   @override
   AsyncValue<List<PendingReviewTargetEntity>> build() {
-    _load();
+    _fetch();
     return const AsyncValue.loading();
   }
 
-  Future<void> _load() async {
-    state = const AsyncValue.loading();
+  Future<void> _fetch() async {
     try {
       final repository = ref.read(reviewRepositoryProvider);
       final targets = await repository.getPendingReviews(rideId);
@@ -25,7 +24,10 @@ class PendingReviewsController
     }
   }
 
-  Future<void> refresh() => _load();
+  Future<void> refresh() async {
+    state = const AsyncValue.loading();
+    await _fetch();
+  }
 
   Future<void> submitReview({
     required String revieweeId,
@@ -46,9 +48,7 @@ class PendingReviewsController
   }
 }
 
-final pendingReviewsControllerProvider =
-    NotifierProvider.family<
-      PendingReviewsController,
-      AsyncValue<List<PendingReviewTargetEntity>>,
-      String
-    >(PendingReviewsController.new);
+final pendingReviewsControllerProvider = NotifierProvider.family<
+    PendingReviewsController,
+    AsyncValue<List<PendingReviewTargetEntity>>,
+    String>(PendingReviewsController.new);
