@@ -357,5 +357,14 @@
   "languageLabel": "Idioma",
   "myProfileTitle": "Meu Perfil",
   "logoutTitle": "Sair",
-  "saveProfileAction": "Salvar Perfil"
+  "saveProfileAction": "Salvar Perfil",
+  "noRatingsYet": "Ainda sem avaliações",
+  "@noRatingsYet": {},
+  "ratingSemanticLabel": "Avaliação média {avg} de 5, baseada em {count} avaliações",
+  "@ratingSemanticLabel": {
+    "placeholders": {
+      "avg": { "type": "String" },
+      "count": { "type": "int" }
+    }
+  }
 }

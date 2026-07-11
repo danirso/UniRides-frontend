@@ -282,5 +282,14 @@
   "languageLabel": "Language",
   "myProfileTitle": "My Profile",
   "logoutTitle": "logout",
-  "saveProfileAction": "Save Profile"
+  "saveProfileAction": "Save Profile",
+  "noRatingsYet": "No ratings yet",
+  "@noRatingsYet": {},
+  "ratingSemanticLabel": "Average rating {avg} out of 5, based on {count} reviews",
+  "@ratingSemanticLabel": {
+    "placeholders": {
+      "avg": { "type": "String" },
+      "count": { "type": "int" }
+    }
+  }
 }

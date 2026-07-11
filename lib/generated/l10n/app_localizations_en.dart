@@ -451,4 +451,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get saveProfileAction => 'Save Profile';
+
+  @override
+  String get noRatingsYet => 'No ratings yet';
+
+  @override
+  String ratingSemanticLabel(String avg, int count) {
+    return 'Average rating $avg out of 5, based on $count reviews';
+  }
 }

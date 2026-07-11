@@ -937,6 +937,18 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Salvar Perfil'**
   String get saveProfileAction;
+
+  /// No description provided for @noRatingsYet.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda sem avaliações'**
+  String get noRatingsYet;
+
+  /// No description provided for @ratingSemanticLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avaliação média {avg} de 5, baseada em {count} avaliações'**
+  String ratingSemanticLabel(String avg, int count);
 }
 
 class _AppLocalizationsDelegate
