@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tcc_caronas_frontend/core/theme/app_theme.dart';
 import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
 import '../controllers/user_reviews_controller.dart';
 
@@ -38,7 +37,9 @@ class UserReviewsListWidget extends ConsumerWidget {
                   children: [
                     Semantics(
                       label: l10n.reviewByLabel(
-                          review.reviewerName, review.rating),
+                        review.reviewerName,
+                        review.rating,
+                      ),
                       child: Row(
                         children: [
                           Row(
@@ -48,15 +49,14 @@ class UserReviewsListWidget extends ConsumerWidget {
                                     ? Icons.star_rounded
                                     : Icons.star_border_rounded,
                                 size: 16,
-                                color: AppTheme.sandYellow,
+                                color: Colors.amber,
                               );
                             }),
                           ),
                           const SizedBox(width: 8),
                           Text(
                             review.reviewerName,
-                            style:
-                                const TextStyle(fontWeight: FontWeight.w600),
+                            style: const TextStyle(fontWeight: FontWeight.w600),
                           ),
                         ],
                       ),

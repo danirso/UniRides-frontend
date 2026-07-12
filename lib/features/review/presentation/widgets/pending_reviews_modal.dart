@@ -112,7 +112,8 @@ class PendingReviewsModal extends ConsumerWidget {
                               fit: FlexFit.loose,
                               child: ElevatedButton(
                                 key: Key(
-                                    'pending_review_button_${target.userId}'),
+                                  'pending_review_button_${target.userId}',
+                                ),
                                 onPressed: () =>
                                     _openReviewForm(context, target),
                                 child: Text(l10n.rateAction),

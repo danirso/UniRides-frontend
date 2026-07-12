@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tcc_caronas_frontend/core/theme/app_theme.dart';
 
 class StarRatingInput extends StatelessWidget {
   final int rating;
@@ -27,7 +26,7 @@ class StarRatingInput extends StatelessWidget {
             iconSize: 36,
             icon: Icon(
               filled ? Icons.star_rounded : Icons.star_border_rounded,
-              color: AppTheme.sandYellow,
+              color: Colors.amber,
             ),
             onPressed: () => onChanged(starValue),
           ),
