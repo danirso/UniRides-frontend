@@ -16,10 +16,7 @@ class ProfileScreen extends ConsumerWidget {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Semantics(
-          header: true,
-          child: Text(l10n.deleteProfileTitle),
-        ),
+        title: Semantics(header: true, child: Text(l10n.deleteProfileTitle)),
         content: Text(l10n.deleteProfileConfirmMessage),
         actions: [
           TextButton(
@@ -51,7 +48,9 @@ class ProfileScreen extends ConsumerWidget {
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context)!.profileDeletedError)),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.profileDeletedError),
+        ),
       );
     }
   }
@@ -112,7 +111,9 @@ class ProfileScreen extends ConsumerWidget {
             title: Text(l10n.myVehiclesTitle),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const VehicleListScreen()),
+              MaterialPageRoute(
+                builder: (context) => const VehicleListScreen(),
+              ),
             ),
           ),
           const Divider(),

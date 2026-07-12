@@ -44,12 +44,14 @@ class _ProfileEditModalState extends ConsumerState<ProfileEditModal> {
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
 
-    final success = await ref.read(userControllerProvider.notifier).updateMe(
-      name: name != widget.user.name ? name : null,
-      email: email != widget.user.email ? email : null,
-      password: password.isNotEmpty ? password : null,
-      canDrive: _canDrive != widget.user.canDrive ? _canDrive : null,
-    );
+    final success = await ref
+        .read(userControllerProvider.notifier)
+        .updateMe(
+          name: name != widget.user.name ? name : null,
+          email: email != widget.user.email ? email : null,
+          password: password.isNotEmpty ? password : null,
+          canDrive: _canDrive != widget.user.canDrive ? _canDrive : null,
+        );
 
     if (!mounted) return;
     setState(() => _isLoading = false);
@@ -85,7 +87,10 @@ class _ProfileEditModalState extends ConsumerState<ProfileEditModal> {
               header: true,
               child: Text(
                 l10n.editProfileTitle,
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
