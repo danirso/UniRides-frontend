@@ -2,6 +2,8 @@ class RideEntity {
   final String id;
   final String driverId;
   final String driverName;
+  final double driverRatingAvg;
+  final int driverRatingCount;
   final String vehicleId;
   final DateTime departureTime;
   final String status;
@@ -19,6 +21,8 @@ class RideEntity {
     required this.id,
     required this.driverId,
     required this.driverName,
+    this.driverRatingAvg = 0.0,
+    this.driverRatingCount = 0,
     required this.vehicleId,
     required this.departureTime,
     required this.status,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
 import '../../domain/entities/pending_review_target_entity.dart';
 import '../controllers/pending_reviews_controller.dart';
 import 'star_rating_input.dart';
+import '../../../../core/errors/review_exceptions.dart';
 
 class ReviewFormWidget extends ConsumerStatefulWidget {
   final String rideId;
@@ -30,9 +32,16 @@ class _ReviewFormWidgetState extends ConsumerState<ReviewFormWidget> {
     super.dispose();
   }
 
+  String _roleLabel(AppLocalizations l10n) {
+    return widget.target.role == ReviewTargetRole.driver
+        ? l10n.reviewRoleDriver
+        : l10n.reviewRolePassenger;
+  }
+
   Future<void> _submit() async {
+    final l10n = AppLocalizations.of(context)!;
     if (_rating == 0) {
-      setState(() => _errorMessage = 'Selecione uma nota de 1 a 5 estrelas.');
+      setState(() => _errorMessage = l10n.selectRatingError);
       return;
     }
     setState(() {
@@ -51,7 +60,12 @@ class _ReviewFormWidgetState extends ConsumerState<ReviewFormWidget> {
           );
       if (mounted) Navigator.of(context).pop();
     } catch (e) {
-      setState(() => _errorMessage = e.toString().replaceFirst('Exception: ', ''));
+      if (!mounted) return;
+      setState(() {
+        _errorMessage = e is DuplicateReviewException
+            ? l10n.duplicateReviewError
+            : l10n.submitReviewError;
+      });
     } finally {
       if (mounted) setState(() => _isSubmitting = false);
     }
@@ -59,8 +73,8 @@ class _ReviewFormWidgetState extends ConsumerState<ReviewFormWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final roleLabel =
-        widget.target.role == ReviewTargetRole.driver ? 'motorista' : 'passageiro';
+    final l10n = AppLocalizations.of(context)!;
+    final roleLabel = _roleLabel(l10n);
 
     return Padding(
       padding: EdgeInsets.only(
@@ -75,7 +89,7 @@ class _ReviewFormWidgetState extends ConsumerState<ReviewFormWidget> {
           Semantics(
             header: true,
             child: Text(
-              'Avaliar $roleLabel: ${widget.target.name}',
+              l10n.reviewFormTitle(roleLabel, widget.target.name),
               style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.center,
             ),
@@ -88,15 +102,15 @@ class _ReviewFormWidgetState extends ConsumerState<ReviewFormWidget> {
           const SizedBox(height: 16),
           Semantics(
             textField: true,
-            label: 'Comentário opcional sobre $roleLabel',
+            label: l10n.commentOptionalHint,
             child: TextField(
               key: const Key('review_comment_field'),
               controller: _commentController,
               maxLines: 3,
               maxLength: 500,
-              decoration: const InputDecoration(
-                hintText: 'Comentário (opcional)',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                hintText: l10n.commentOptionalHint,
+                border: const OutlineInputBorder(),
               ),
             ),
           ),
@@ -110,8 +124,9 @@ class _ReviewFormWidgetState extends ConsumerState<ReviewFormWidget> {
               Expanded(
                 child: TextButton(
                   key: const Key('review_skip_button'),
-                  onPressed: _isSubmitting ? null : () => Navigator.of(context).pop(),
-                  child: const Text('Pular'),
+                  onPressed:
+                      _isSubmitting ? null : () => Navigator.of(context).pop(),
+                  child: Text(l10n.skipAction),
                 ),
               ),
               const SizedBox(width: 8),
@@ -125,7 +140,7 @@ class _ReviewFormWidgetState extends ConsumerState<ReviewFormWidget> {
                           width: 18,
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
-                      : const Text('Enviar avaliação'),
+                      : Text(l10n.submitReviewAction),
                 ),
               ),
             ],

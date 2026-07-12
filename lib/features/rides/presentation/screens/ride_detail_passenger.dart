@@ -5,6 +5,7 @@ import 'package:google_polyline_algorithm/google_polyline_algorithm.dart';
 import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
 import '../../domain/entities/ride_entity.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../review/presentation/widgets/rating_badge.dart';
 
 class RideDetailPassengerScreen extends StatelessWidget {
   final RideEntity ride;
@@ -100,10 +101,19 @@ class RideDetailPassengerScreen extends StatelessWidget {
                         const Icon(Icons.person,
                             size: 18, color: AppTheme.primaryTeal),
                         const SizedBox(width: 8),
-                        Text(
-                          ride.driverName,
-                          style: const TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w600),
+                        Flexible(
+                          child: Text(
+                            ride.driverName,
+                            style: const TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w600),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        RatingBadge(
+                          ratingAvg: ride.driverRatingAvg,
+                          ratingCount: ride.driverRatingCount,
+                          userId: ride.driverId,
                         ),
                       ],
                     ),

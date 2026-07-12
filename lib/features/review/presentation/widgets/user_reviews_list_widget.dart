@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tcc_caronas_frontend/core/theme/app_theme.dart';
+import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
 import '../controllers/user_reviews_controller.dart';
 
 class UserReviewsListWidget extends ConsumerWidget {
@@ -10,6 +11,7 @@ class UserReviewsListWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final reviewsAsync = ref.watch(userReviewsControllerProvider(userId));
 
     return reviewsAsync.when(
@@ -17,13 +19,13 @@ class UserReviewsListWidget extends ConsumerWidget {
         padding: EdgeInsets.symmetric(vertical: 16),
         child: Center(child: CircularProgressIndicator()),
       ),
-      error: (error, _) => const Text(
-        'Erro ao carregar avaliações.',
-        style: TextStyle(color: Colors.red),
+      error: (error, _) => Text(
+        l10n.userReviewsLoadError,
+        style: const TextStyle(color: Colors.red),
       ),
       data: (reviews) {
         if (reviews.isEmpty) {
-          return const Text('Ainda não há avaliações.');
+          return Text(l10n.noUserReviewsYet);
         }
         return Column(
           children: reviews.map((review) {
@@ -35,8 +37,8 @@ class UserReviewsListWidget extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Semantics(
-                      label:
-                          '${review.reviewerName} avaliou com ${review.rating} de 5 estrelas',
+                      label: l10n.reviewByLabel(
+                          review.reviewerName, review.rating),
                       child: Row(
                         children: [
                           Row(
@@ -53,7 +55,8 @@ class UserReviewsListWidget extends ConsumerWidget {
                           const SizedBox(width: 8),
                           Text(
                             review.reviewerName,
-                            style: const TextStyle(fontWeight: FontWeight.w600),
+                            style:
+                                const TextStyle(fontWeight: FontWeight.w600),
                           ),
                         ],
                       ),

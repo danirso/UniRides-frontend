@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
 import '../controllers/pending_reviews_controller.dart';
 import '../../domain/entities/pending_review_target_entity.dart';
 import 'review_form_widget.dart';
@@ -31,8 +32,15 @@ class PendingReviewsModal extends ConsumerWidget {
     );
   }
 
+  String _roleLabel(AppLocalizations l10n, ReviewTargetRole role) {
+    return role == ReviewTargetRole.driver
+        ? l10n.reviewRoleDriver
+        : l10n.reviewRolePassenger;
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final pendingAsync = ref.watch(pendingReviewsControllerProvider(rideId));
 
     return SafeArea(
@@ -44,7 +52,7 @@ class PendingReviewsModal extends ConsumerWidget {
             Semantics(
               header: true,
               child: Text(
-                'Avaliações pendentes',
+                l10n.pendingReviewsTitle,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
@@ -54,25 +62,23 @@ class PendingReviewsModal extends ConsumerWidget {
                 padding: EdgeInsets.symmetric(vertical: 24),
                 child: CircularProgressIndicator(),
               ),
-              error: (error, _) => const Padding(
-                padding: EdgeInsets.symmetric(vertical: 24),
+              error: (error, _) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24),
                 child: Text(
-                  'Erro ao carregar avaliações pendentes.',
-                  style: TextStyle(color: Colors.red),
+                  l10n.pendingReviewsLoadError,
+                  style: const TextStyle(color: Colors.red),
                 ),
               ),
               data: (targets) {
                 if (targets.isEmpty) {
-                  return const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 24),
-                    child: Text('Nenhuma avaliação pendente. Obrigado!'),
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24),
+                    child: Text(l10n.noPendingReviews),
                   );
                 }
                 return Column(
                   children: targets.map((target) {
-                    final roleLabel = target.role == ReviewTargetRole.driver
-                        ? 'Motorista'
-                        : 'Passageiro';
+                    final roleLabel = _roleLabel(l10n, target.role);
                     return Card(
                       key: Key('pending_review_${target.userId}'),
                       margin: const EdgeInsets.symmetric(vertical: 6),
@@ -109,7 +115,7 @@ class PendingReviewsModal extends ConsumerWidget {
                                     'pending_review_button_${target.userId}'),
                                 onPressed: () =>
                                     _openReviewForm(context, target),
-                                child: const Text('Avaliar'),
+                                child: Text(l10n.rateAction),
                               ),
                             ),
                           ],
@@ -124,7 +130,7 @@ class PendingReviewsModal extends ConsumerWidget {
             TextButton(
               key: const Key('pending_reviews_close_button'),
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Fechar'),
+              child: Text(l10n.closeAction),
             ),
           ],
         ),
