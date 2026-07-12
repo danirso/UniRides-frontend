@@ -453,4 +453,78 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get saveProfileAction => 'Salvar Perfil';
+
+  @override
+  String get noRatingsYet => 'Ainda sem avaliações';
+
+  @override
+  String ratingSemanticLabel(String avg, int count) {
+    return 'Avaliação média $avg de 5, baseada em $count avaliações';
+  }
+
+  @override
+  String get rateDriverAction => 'Avaliar motorista';
+
+  @override
+  String get userReviewsModalTitle => 'Avaliações recebidas';
+
+  @override
+  String get reviewRoleDriver => 'Motorista';
+
+  @override
+  String get reviewRolePassenger => 'Passageiro';
+
+  @override
+  String get selectRatingError => 'Selecione uma nota de 1 a 5 estrelas.';
+
+  @override
+  String get duplicateReviewError =>
+      'Você já avaliou esta pessoa nesta carona.';
+
+  @override
+  String get submitReviewError => 'Erro ao enviar avaliação. Tente novamente.';
+
+  @override
+  String reviewFormTitle(String role, String name) {
+    return 'Avaliar $role: $name';
+  }
+
+  @override
+  String get commentOptionalHint => 'Comentário (opcional)';
+
+  @override
+  String get skipAction => 'Pular';
+
+  @override
+  String get submitReviewAction => 'Enviar avaliação';
+
+  @override
+  String get pendingReviewsTitle => 'Avaliações pendentes';
+
+  @override
+  String get pendingReviewsLoadError =>
+      'Erro ao carregar avaliações pendentes.';
+
+  @override
+  String get noPendingReviews => 'Nenhuma avaliação pendente. Obrigado!';
+
+  @override
+  String get rateAction => 'Avaliar';
+
+  @override
+  String get closeAction => 'Fechar';
+
+  @override
+  String get userReviewsLoadError => 'Erro ao carregar avaliações.';
+
+  @override
+  String get noUserReviewsYet => 'Ainda não há avaliações.';
+
+  @override
+  String reviewByLabel(String name, int rating) {
+    return '$name avaliou com $rating de 5 estrelas';
+  }
+
+  @override
+  String get ratePassengersAction => 'Avaliar passageiros';
 }

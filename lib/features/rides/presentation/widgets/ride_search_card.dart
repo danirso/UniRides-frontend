@@ -3,6 +3,7 @@ import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
 import '../../domain/entities/ride_entity.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../screens/ride_detail_passenger.dart';
+import '../../../review/presentation/widgets/rating_badge.dart';
 
 class RideSearchCard extends StatelessWidget {
   final RideEntity ride;
@@ -35,10 +36,19 @@ class RideSearchCard extends StatelessWidget {
                   const Icon(Icons.person,
                       size: 18, color: AppTheme.primaryTeal),
                   const SizedBox(width: 8),
-                  Text(
-                    ride.driverName,
-                    style: const TextStyle(
-                        fontSize: 15, fontWeight: FontWeight.w600),
+                  Flexible(
+                    child: Text(
+                      ride.driverName,
+                      style: const TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.w600),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  RatingBadge(
+                    ratingAvg: ride.driverRatingAvg,
+                    ratingCount: ride.driverRatingCount,
+                    userId: ride.driverId,
                   ),
                 ],
               ),

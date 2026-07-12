@@ -12,6 +12,8 @@
 .swiftpm/
 migrate_working_dir/
 a.txt
+analyze.md
+flutter_log.txt
 
 # IntelliJ related
 *.iml

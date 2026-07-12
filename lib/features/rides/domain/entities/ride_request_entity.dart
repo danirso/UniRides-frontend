@@ -1,10 +1,14 @@
 class PassengerSnippetEntity {
   final String id;
   final String name;
+  final double ratingAvg;
+  final int ratingCount;
 
   const PassengerSnippetEntity({
     required this.id,
     required this.name,
+    this.ratingAvg = 0.0,
+    this.ratingCount = 0,
   });
 }
 
@@ -13,12 +17,14 @@ class RideSnippetEntity {
   final String originAddress;
   final String destinationAddress;
   final DateTime departureTime;
+  final String status;
 
   const RideSnippetEntity({
     required this.id,
     required this.originAddress,
     required this.destinationAddress,
     required this.departureTime,
+    required this.status,
   });
 }
 

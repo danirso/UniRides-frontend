@@ -451,4 +451,77 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get saveProfileAction => 'Save Profile';
+
+  @override
+  String get noRatingsYet => 'No ratings yet';
+
+  @override
+  String ratingSemanticLabel(String avg, int count) {
+    return 'Average rating $avg out of 5, based on $count reviews';
+  }
+
+  @override
+  String get rateDriverAction => 'Rate driver';
+
+  @override
+  String get userReviewsModalTitle => 'Reviews received';
+
+  @override
+  String get reviewRoleDriver => 'Driver';
+
+  @override
+  String get reviewRolePassenger => 'Passenger';
+
+  @override
+  String get selectRatingError => 'Select a rating from 1 to 5 stars.';
+
+  @override
+  String get duplicateReviewError =>
+      'You\'ve already reviewed this person for this ride.';
+
+  @override
+  String get submitReviewError => 'Failed to submit review. Please try again.';
+
+  @override
+  String reviewFormTitle(String role, String name) {
+    return 'Rate $role: $name';
+  }
+
+  @override
+  String get commentOptionalHint => 'Comment (optional)';
+
+  @override
+  String get skipAction => 'Skip';
+
+  @override
+  String get submitReviewAction => 'Submit review';
+
+  @override
+  String get pendingReviewsTitle => 'Pending reviews';
+
+  @override
+  String get pendingReviewsLoadError => 'Failed to load pending reviews.';
+
+  @override
+  String get noPendingReviews => 'No pending reviews. Thank you!';
+
+  @override
+  String get rateAction => 'Rate';
+
+  @override
+  String get closeAction => 'Close';
+
+  @override
+  String get userReviewsLoadError => 'Failed to load reviews.';
+
+  @override
+  String get noUserReviewsYet => 'No reviews yet.';
+
+  @override
+  String reviewByLabel(String name, int rating) {
+    return '$name rated $rating out of 5 stars';
+  }
+
+  @override
+  String get ratePassengersAction => 'Rate passengers';
 }

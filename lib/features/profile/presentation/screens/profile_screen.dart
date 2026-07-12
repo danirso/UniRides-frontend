@@ -7,6 +7,7 @@ import '../../../auth/presentation/screens/login_screen.dart';
 import '../../../vehicles/presentation/screens/vehicle_list_screen.dart';
 import '../widgets/profile_edit_modal.dart';
 import 'package:tcc_caronas_frontend/core/providers/locale_provider.dart';
+import '../../../review/presentation/widgets/rating_badge.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -16,10 +17,7 @@ class ProfileScreen extends ConsumerWidget {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Semantics(
-          header: true,
-          child: Text(l10n.deleteProfileTitle),
-        ),
+        title: Semantics(header: true, child: Text(l10n.deleteProfileTitle)),
         content: Text(l10n.deleteProfileConfirmMessage),
         actions: [
           TextButton(
@@ -51,7 +49,9 @@ class ProfileScreen extends ConsumerWidget {
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context)!.profileDeletedError)),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.profileDeletedError),
+        ),
       );
     }
   }
@@ -68,7 +68,24 @@ class ProfileScreen extends ConsumerWidget {
         children: [
           ListTile(
             leading: const Icon(Icons.person),
-            title: Text(user?.name ?? ''),
+            title: Row(
+              children: [
+                Flexible(
+                  child: Text(
+                    user?.name ?? '',
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                if (user != null) ...[
+                  const SizedBox(width: 8),
+                  RatingBadge(
+                    ratingAvg: user.ratingAvg,
+                    ratingCount: user.ratingCount,
+                    userId: user.id,
+                  ),
+                ],
+              ],
+            ),
             subtitle: Text(user?.email ?? ''),
           ),
           const Divider(),
@@ -112,7 +129,9 @@ class ProfileScreen extends ConsumerWidget {
             title: Text(l10n.myVehiclesTitle),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const VehicleListScreen()),
+              MaterialPageRoute(
+                builder: (context) => const VehicleListScreen(),
+              ),
             ),
           ),
           const Divider(),

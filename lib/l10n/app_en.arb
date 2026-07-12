@@ -282,5 +282,58 @@
   "languageLabel": "Language",
   "myProfileTitle": "My Profile",
   "logoutTitle": "logout",
-  "saveProfileAction": "Save Profile"
+  "saveProfileAction": "Save Profile",
+  "noRatingsYet": "No ratings yet",
+  "@noRatingsYet": {},
+  "ratingSemanticLabel": "Average rating {avg} out of 5, based on {count} reviews",
+  "@ratingSemanticLabel": {
+    "placeholders": {
+      "avg": { "type": "String" },
+      "count": { "type": "int" }
+    }
+  },
+  "rateDriverAction": "Rate driver",
+  "@rateDriverAction": {},
+  "userReviewsModalTitle": "Reviews received",
+  "@userReviewsModalTitle": {},
+  "reviewRoleDriver": "Driver",
+  "@reviewRoleDriver": {},
+  "reviewRolePassenger": "Passenger",
+  "@reviewRolePassenger": {},
+  "selectRatingError": "Select a rating from 1 to 5 stars.",
+  "@selectRatingError": {},
+  "duplicateReviewError": "You've already reviewed this person for this ride.",
+  "@duplicateReviewError": {},
+  "submitReviewError": "Failed to submit review. Please try again.",
+  "@submitReviewError": {},
+  "reviewFormTitle": "Rate {role}: {name}",
+  "@reviewFormTitle": {
+    "placeholders": { "role": { "type": "String" }, "name": { "type": "String" } }
+  },
+  "commentOptionalHint": "Comment (optional)",
+  "@commentOptionalHint": {},
+  "skipAction": "Skip",
+  "@skipAction": {},
+  "submitReviewAction": "Submit review",
+  "@submitReviewAction": {},
+  "pendingReviewsTitle": "Pending reviews",
+  "@pendingReviewsTitle": {},
+  "pendingReviewsLoadError": "Failed to load pending reviews.",
+  "@pendingReviewsLoadError": {},
+  "noPendingReviews": "No pending reviews. Thank you!",
+  "@noPendingReviews": {},
+  "rateAction": "Rate",
+  "@rateAction": {},
+  "closeAction": "Close",
+  "@closeAction": {},
+  "userReviewsLoadError": "Failed to load reviews.",
+  "@userReviewsLoadError": {},
+  "noUserReviewsYet": "No reviews yet.",
+  "@noUserReviewsYet": {},
+  "reviewByLabel": "{name} rated {rating} out of 5 stars",
+  "@reviewByLabel": {
+    "placeholders": { "name": { "type": "String" }, "rating": { "type": "int" } }
+  },
+  "ratePassengersAction": "Rate passengers",
+  "@ratePassengersAction": {}
 }

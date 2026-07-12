@@ -357,5 +357,58 @@
   "languageLabel": "Idioma",
   "myProfileTitle": "Meu Perfil",
   "logoutTitle": "Sair",
-  "saveProfileAction": "Salvar Perfil"
+  "saveProfileAction": "Salvar Perfil",
+  "noRatingsYet": "Ainda sem avaliações",
+  "@noRatingsYet": {},
+  "ratingSemanticLabel": "Avaliação média {avg} de 5, baseada em {count} avaliações",
+  "@ratingSemanticLabel": {
+    "placeholders": {
+      "avg": { "type": "String" },
+      "count": { "type": "int" }
+    }
+  },
+  "rateDriverAction": "Avaliar motorista",
+  "@rateDriverAction": {},
+  "userReviewsModalTitle": "Avaliações recebidas",
+  "@userReviewsModalTitle": {},
+  "reviewRoleDriver": "Motorista",
+  "@reviewRoleDriver": {},
+  "reviewRolePassenger": "Passageiro",
+  "@reviewRolePassenger": {},
+  "selectRatingError": "Selecione uma nota de 1 a 5 estrelas.",
+  "@selectRatingError": {},
+  "duplicateReviewError": "Você já avaliou esta pessoa nesta carona.",
+  "@duplicateReviewError": {},
+  "submitReviewError": "Erro ao enviar avaliação. Tente novamente.",
+  "@submitReviewError": {},
+  "reviewFormTitle": "Avaliar {role}: {name}",
+  "@reviewFormTitle": {
+    "placeholders": { "role": { "type": "String" }, "name": { "type": "String" } }
+  },
+  "commentOptionalHint": "Comentário (opcional)",
+  "@commentOptionalHint": {},
+  "skipAction": "Pular",
+  "@skipAction": {},
+  "submitReviewAction": "Enviar avaliação",
+  "@submitReviewAction": {},
+  "pendingReviewsTitle": "Avaliações pendentes",
+  "@pendingReviewsTitle": {},
+  "pendingReviewsLoadError": "Erro ao carregar avaliações pendentes.",
+  "@pendingReviewsLoadError": {},
+  "noPendingReviews": "Nenhuma avaliação pendente. Obrigado!",
+  "@noPendingReviews": {},
+  "rateAction": "Avaliar",
+  "@rateAction": {},
+  "closeAction": "Fechar",
+  "@closeAction": {},
+  "userReviewsLoadError": "Erro ao carregar avaliações.",
+  "@userReviewsLoadError": {},
+  "noUserReviewsYet": "Ainda não há avaliações.",
+  "@noUserReviewsYet": {},
+  "reviewByLabel": "{name} avaliou com {rating} de 5 estrelas",
+  "@reviewByLabel": {
+    "placeholders": { "name": { "type": "String" }, "rating": { "type": "int" } }
+  },
+  "ratePassengersAction": "Avaliar passageiros",
+  "@ratePassengersAction": {}
 }

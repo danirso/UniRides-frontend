@@ -7,6 +7,7 @@ import '../controllers/ride_controller.dart';
 import '../widgets/ride_card.dart';
 import '../widgets/ride_edit_modal.dart';
 import 'ride_detail_screen.dart';
+import '../../../review/presentation/widgets/pending_reviews_modal.dart';
 
 class MyRidesScreen extends ConsumerStatefulWidget {
   const MyRidesScreen({super.key});
@@ -46,6 +47,7 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
     required Future<bool> Function() action,
     required String successMessage,
     required String errorMessage,
+    VoidCallback? onSuccess,
   }) async {
     final confirmed = await showDialog<bool>(
       context: context,
@@ -75,6 +77,10 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(success ? successMessage : errorMessage),
     ));
+
+    if (success && onSuccess != null) {
+      onSuccess();
+    }
   }
   
   Widget _buildDriverTab(BuildContext context, AppLocalizations l10n) {
@@ -132,6 +138,7 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
                 .completeRide(ride.id),
             successMessage: l10n.rideCompletedSuccess,
             errorMessage: l10n.rideCompletedError,
+            onSuccess: () => PendingReviewsModal.show(context, ride.id),
           ),
           onCancel: () => _confirmAction(
             context: context,
@@ -175,6 +182,7 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
         final request = requests[index];
         final isPending = request.status == 'PENDING';
         final isAccepted = request.status == 'ACCEPTED';
+        final isRideCompleted = request.ride.status == 'concluida';
 
         return Card(
           key: Key('my_request_card_${request.id}'),
@@ -283,6 +291,23 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
                       ),
                     ),
                   ],
+                if (isAccepted && isRideCompleted) ...[
+                  const SizedBox(height: 12),
+                  Semantics(
+                    button: true,
+                    label: l10n.rateDriverAction,
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: FilledButton.icon(
+                        key: Key('rate_driver_${request.rideId}'),
+                        onPressed: () =>
+                            PendingReviewsModal.show(context, request.rideId),
+                        icon: const Icon(Icons.star_rounded),
+                        label: Text(l10n.rateDriverAction),
+                      ),
+                    ),
+                  ),
+                ],
                 ],
               ),
             ),

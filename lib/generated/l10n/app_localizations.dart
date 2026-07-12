@@ -937,6 +937,138 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Salvar Perfil'**
   String get saveProfileAction;
+
+  /// No description provided for @noRatingsYet.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda sem avaliações'**
+  String get noRatingsYet;
+
+  /// No description provided for @ratingSemanticLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avaliação média {avg} de 5, baseada em {count} avaliações'**
+  String ratingSemanticLabel(String avg, int count);
+
+  /// No description provided for @rateDriverAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avaliar motorista'**
+  String get rateDriverAction;
+
+  /// No description provided for @userReviewsModalTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avaliações recebidas'**
+  String get userReviewsModalTitle;
+
+  /// No description provided for @reviewRoleDriver.
+  ///
+  /// In pt, this message translates to:
+  /// **'Motorista'**
+  String get reviewRoleDriver;
+
+  /// No description provided for @reviewRolePassenger.
+  ///
+  /// In pt, this message translates to:
+  /// **'Passageiro'**
+  String get reviewRolePassenger;
+
+  /// No description provided for @selectRatingError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Selecione uma nota de 1 a 5 estrelas.'**
+  String get selectRatingError;
+
+  /// No description provided for @duplicateReviewError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Você já avaliou esta pessoa nesta carona.'**
+  String get duplicateReviewError;
+
+  /// No description provided for @submitReviewError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao enviar avaliação. Tente novamente.'**
+  String get submitReviewError;
+
+  /// No description provided for @reviewFormTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avaliar {role}: {name}'**
+  String reviewFormTitle(String role, String name);
+
+  /// No description provided for @commentOptionalHint.
+  ///
+  /// In pt, this message translates to:
+  /// **'Comentário (opcional)'**
+  String get commentOptionalHint;
+
+  /// No description provided for @skipAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Pular'**
+  String get skipAction;
+
+  /// No description provided for @submitReviewAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Enviar avaliação'**
+  String get submitReviewAction;
+
+  /// No description provided for @pendingReviewsTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avaliações pendentes'**
+  String get pendingReviewsTitle;
+
+  /// No description provided for @pendingReviewsLoadError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao carregar avaliações pendentes.'**
+  String get pendingReviewsLoadError;
+
+  /// No description provided for @noPendingReviews.
+  ///
+  /// In pt, this message translates to:
+  /// **'Nenhuma avaliação pendente. Obrigado!'**
+  String get noPendingReviews;
+
+  /// No description provided for @rateAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avaliar'**
+  String get rateAction;
+
+  /// No description provided for @closeAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Fechar'**
+  String get closeAction;
+
+  /// No description provided for @userReviewsLoadError.
+  ///
+  /// In pt, this message translates to:
+  /// **'Erro ao carregar avaliações.'**
+  String get userReviewsLoadError;
+
+  /// No description provided for @noUserReviewsYet.
+  ///
+  /// In pt, this message translates to:
+  /// **'Ainda não há avaliações.'**
+  String get noUserReviewsYet;
+
+  /// No description provided for @reviewByLabel.
+  ///
+  /// In pt, this message translates to:
+  /// **'{name} avaliou com {rating} de 5 estrelas'**
+  String reviewByLabel(String name, int rating);
+
+  /// No description provided for @ratePassengersAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avaliar passageiros'**
+  String get ratePassengersAction;
 }
 
 class _AppLocalizationsDelegate

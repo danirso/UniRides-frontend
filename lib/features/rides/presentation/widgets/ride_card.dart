@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
 import '../../domain/entities/ride_entity.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../review/presentation/widgets/pending_reviews_modal.dart';
 
 class RideCard extends StatelessWidget {
   final RideEntity ride;
@@ -57,6 +58,7 @@ class RideCard extends StatelessWidget {
     final statusColor = _statusColor(ride.status);
     final isScheduled = ride.status == 'agendada';
     final isInProgress = ride.status == 'em_andamento';
+    final isCompleted = ride.status == 'concluida';
 
     return Card(
       key: Key('ride_card_${ride.id}'),
@@ -72,9 +74,13 @@ class RideCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Semantics(
-                  label: '${l10n.rideStatusScheduled}: ${_localizedStatus(l10n, ride.status)}',
+                  label:
+                      '${l10n.rideStatusScheduled}: ${_localizedStatus(l10n, ride.status)}',
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: statusColor.withOpacity(0.15),
                       borderRadius: BorderRadius.circular(20),
@@ -137,7 +143,11 @@ class RideCard extends StatelessWidget {
               label: '${l10n.originLabel}: ${ride.originAddress}',
               child: Row(
                 children: [
-                  const Icon(Icons.radio_button_checked, size: 18, color: Colors.black),
+                  const Icon(
+                    Icons.radio_button_checked,
+                    size: 18,
+                    color: Colors.black,
+                  ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
@@ -171,7 +181,11 @@ class RideCard extends StatelessWidget {
               label: '${l10n.departureDateLabel}: ${ride.departureTime}',
               child: Row(
                 children: [
-                  const Icon(Icons.access_time_filled, size: 18, color: AppTheme.primaryTeal),
+                  const Icon(
+                    Icons.access_time_filled,
+                    size: 18,
+                    color: AppTheme.primaryTeal,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     '${ride.departureTime.day.toString().padLeft(2, '0')}/'
@@ -189,7 +203,11 @@ class RideCard extends StatelessWidget {
               label: '${l10n.availableSeatsLabel}: ${ride.availableSeats}',
               child: Row(
                 children: [
-                  const Icon(Icons.people, size: 18, color: AppTheme.primaryTeal),
+                  const Icon(
+                    Icons.people,
+                    size: 18,
+                    color: AppTheme.primaryTeal,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     l10n.vehiclePassengersLabel(ride.availableSeats),
@@ -209,7 +227,11 @@ class RideCard extends StatelessWidget {
                       child: OutlinedButton(
                         key: Key('view_requests_${ride.id}'),
                         onPressed: onViewRequests,
-                        child: Text(l10n.viewRequestsAction, maxLines: 1, overflow: TextOverflow.ellipsis),
+                        child: Text(
+                          l10n.viewRequestsAction,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ),
                   ),
@@ -221,7 +243,11 @@ class RideCard extends StatelessWidget {
                       child: FilledButton(
                         key: Key('start_ride_${ride.id}'),
                         onPressed: onStart,
-                        child: Text(l10n.startRideAction, maxLines: 1, overflow: TextOverflow.ellipsis),
+                        child: Text(
+                          l10n.startRideAction,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ),
                   ),
@@ -244,7 +270,23 @@ class RideCard extends StatelessWidget {
                 ),
               ),
             ],
-          ],  
+            if (isCompleted) ...[
+              const SizedBox(height: 12),
+              Semantics(
+                button: true,
+                label: l10n.ratePassengersAction,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: FilledButton.icon(
+                    key: Key('rate_passengers_${ride.id}'),
+                    onPressed: () => PendingReviewsModal.show(context, ride.id),
+                    icon: const Icon(Icons.star_rounded),
+                    label: Text(l10n.ratePassengersAction),
+                  ),
+                ),
+              ),
+            ],
+          ],
         ),
       ),
     );

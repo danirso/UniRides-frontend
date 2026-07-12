@@ -4,12 +4,16 @@ class PassengerSnippetModel extends PassengerSnippetEntity {
   const PassengerSnippetModel({
     required super.id,
     required super.name,
+    super.ratingAvg,
+    super.ratingCount,
   });
 
   factory PassengerSnippetModel.fromJson(Map<String, dynamic> json) {
     return PassengerSnippetModel(
       id: json['id'].toString(),
       name: json['name'],
+      ratingAvg: (json['rating_avg'] as num?)?.toDouble() ?? 0.0,
+      ratingCount: json['rating_count'] ?? 0,
     );
   }
 }
@@ -20,6 +24,7 @@ class RideSnippetModel extends RideSnippetEntity {
     required super.originAddress,
     required super.destinationAddress,
     required super.departureTime,
+    required super.status,
   });
 
   factory RideSnippetModel.fromJson(Map<String, dynamic> json) {
@@ -28,6 +33,7 @@ class RideSnippetModel extends RideSnippetEntity {
       originAddress: json['origin_address'],
       destinationAddress: json['destination_address'],
       departureTime: DateTime.parse(json['departure_time']),
+      status: json['status'],
     );
   }
 }
