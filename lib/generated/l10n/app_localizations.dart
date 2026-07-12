@@ -1063,6 +1063,12 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'{name} avaliou com {rating} de 5 estrelas'**
   String reviewByLabel(String name, int rating);
+
+  /// No description provided for @ratePassengersAction.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avaliar passageiros'**
+  String get ratePassengersAction;
 }
 
 class _AppLocalizationsDelegate

@@ -524,4 +524,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String reviewByLabel(String name, int rating) {
     return '$name avaliou com $rating de 5 estrelas';
   }
+
+  @override
+  String get ratePassengersAction => 'Avaliar passageiros';
 }

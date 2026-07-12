@@ -521,4 +521,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String reviewByLabel(String name, int rating) {
     return '$name rated $rating out of 5 stars';
   }
+
+  @override
+  String get ratePassengersAction => 'Rate passengers';
 }

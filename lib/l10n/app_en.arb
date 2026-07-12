@@ -333,5 +333,7 @@
   "reviewByLabel": "{name} rated {rating} out of 5 stars",
   "@reviewByLabel": {
     "placeholders": { "name": { "type": "String" }, "rating": { "type": "int" } }
-  }
+  },
+  "ratePassengersAction": "Rate passengers",
+  "@ratePassengersAction": {}
 }

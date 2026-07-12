@@ -408,5 +408,7 @@
   "reviewByLabel": "{name} avaliou com {rating} de 5 estrelas",
   "@reviewByLabel": {
     "placeholders": { "name": { "type": "String" }, "rating": { "type": "int" } }
-  }
+  },
+  "ratePassengersAction": "Avaliar passageiros",
+  "@ratePassengersAction": {}
 }
