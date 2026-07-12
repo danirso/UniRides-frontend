@@ -464,4 +464,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get rateDriverAction => 'Avaliar motorista';
+
+  @override
+  String get userReviewsModalTitle => 'Avaliações recebidas';
 }

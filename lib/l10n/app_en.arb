@@ -293,5 +293,7 @@
     }
   },
   "rateDriverAction": "Rate driver",
-  "@rateDriverAction": {}
+  "@rateDriverAction": {},
+  "userReviewsModalTitle": "Reviews received",
+  "@userReviewsModalTitle": {}
 }

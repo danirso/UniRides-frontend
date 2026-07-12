@@ -955,6 +955,12 @@ abstract class AppLocalizations {
   /// In pt, this message translates to:
   /// **'Avaliar motorista'**
   String get rateDriverAction;
+
+  /// No description provided for @userReviewsModalTitle.
+  ///
+  /// In pt, this message translates to:
+  /// **'Avaliações recebidas'**
+  String get userReviewsModalTitle;
 }
 
 class _AppLocalizationsDelegate

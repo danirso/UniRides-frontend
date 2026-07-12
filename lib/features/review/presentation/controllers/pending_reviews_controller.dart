@@ -48,7 +48,7 @@ class PendingReviewsController
   }
 }
 
-final pendingReviewsControllerProvider = NotifierProvider.family<
+final pendingReviewsControllerProvider = NotifierProvider.autoDispose.family<
     PendingReviewsController,
     AsyncValue<List<PendingReviewTargetEntity>>,
     String>(PendingReviewsController.new);

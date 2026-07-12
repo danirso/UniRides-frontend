@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tcc_caronas_frontend/generated/l10n/app_localizations.dart';
 import '../../domain/entities/ride_request_entity.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../review/presentation/widgets/rating_badge.dart';
 
 class RideRequestCard extends StatelessWidget {
   final RideRequestWithPassengerEntity request;
@@ -63,21 +64,32 @@ class RideRequestCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Semantics(
-                  label: request.passenger.name,
-                  child: Row(
-                    children: [
-                      const Icon(Icons.person,
-                          size: 20, color: AppTheme.primaryTeal),
-                      const SizedBox(width: 8),
-                      Text(
-                        request.passenger.name,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
+                Expanded(
+                  child: Semantics(
+                    label: request.passenger.name,
+                    child: Row(
+                      children: [
+                        const Icon(Icons.person,
+                            size: 20, color: AppTheme.primaryTeal),
+                        const SizedBox(width: 8),
+                        Flexible(
+                          child: Text(
+                            request.passenger.name,
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                      ),
-                    ],
+                        const SizedBox(width: 8),
+                        RatingBadge(
+                          ratingAvg: request.passenger.ratingAvg,
+                          ratingCount: request.passenger.ratingCount,
+                          userId: request.passengerId,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Container(

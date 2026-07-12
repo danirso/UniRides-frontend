@@ -462,4 +462,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get rateDriverAction => 'Rate driver';
+
+  @override
+  String get userReviewsModalTitle => 'Reviews received';
 }

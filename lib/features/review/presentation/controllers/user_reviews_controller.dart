@@ -30,7 +30,7 @@ class UserReviewsController
   }
 }
 
-final userReviewsControllerProvider = NotifierProvider.family<
+final userReviewsControllerProvider = NotifierProvider.autoDispose.family<
     UserReviewsController,
     AsyncValue<List<ReviewWithReviewerEntity>>,
     String>(UserReviewsController.new);

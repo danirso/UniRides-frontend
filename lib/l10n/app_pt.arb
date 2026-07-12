@@ -368,5 +368,7 @@
     }
   },
   "rateDriverAction": "Avaliar motorista",
-  "@rateDriverAction": {}
+  "@rateDriverAction": {},
+  "userReviewsModalTitle": "Avaliações recebidas",
+  "@userReviewsModalTitle": {}
 }
