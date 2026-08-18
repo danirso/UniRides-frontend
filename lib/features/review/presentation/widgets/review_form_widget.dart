@@ -76,76 +76,90 @@ class _ReviewFormWidgetState extends ConsumerState<ReviewFormWidget> {
     final l10n = AppLocalizations.of(context)!;
     final roleLabel = _roleLabel(l10n);
 
-    return Padding(
-      padding: EdgeInsets.only(
-        left: 24,
-        right: 24,
-        top: 24,
-        bottom: MediaQuery.of(context).viewInsets.bottom + 24,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Semantics(
-            header: true,
-            child: Text(
-              l10n.reviewFormTitle(roleLabel, widget.target.name),
-              style: Theme.of(context).textTheme.titleMedium,
-              textAlign: TextAlign.center,
-            ),
-          ),
-          const SizedBox(height: 16),
-          StarRatingInput(
-            rating: _rating,
-            onChanged: (value) => setState(() => _rating = value),
-          ),
-          const SizedBox(height: 16),
-          Semantics(
-            textField: true,
-            label: l10n.commentOptionalHint,
-            child: TextField(
-              key: const Key('review_comment_field'),
-              controller: _commentController,
-              maxLines: 3,
-              maxLength: 500,
-              decoration: InputDecoration(
-                hintText: l10n.commentOptionalHint,
-                border: const OutlineInputBorder(),
+    return Semantics(
+      identifier: 'modal_review_form',
+      container: true,
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: 24,
+          right: 24,
+          top: 24,
+          bottom: MediaQuery.of(context).viewInsets.bottom + 24,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Semantics(
+              header: true,
+              child: Text(
+                l10n.reviewFormTitle(roleLabel, widget.target.name),
+                style: Theme.of(context).textTheme.titleMedium,
+                textAlign: TextAlign.center,
               ),
             ),
-          ),
-          if (_errorMessage != null) ...[
-            const SizedBox(height: 4),
-            Text(_errorMessage!, style: const TextStyle(color: Colors.red)),
-          ],
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              Expanded(
-                child: TextButton(
-                  key: const Key('review_skip_button'),
-                  onPressed:
-                      _isSubmitting ? null : () => Navigator.of(context).pop(),
-                  child: Text(l10n.skipAction),
+            const SizedBox(height: 16),
+            StarRatingInput(
+              rating: _rating,
+              onChanged: (value) => setState(() => _rating = value),
+            ),
+            const SizedBox(height: 16),
+            Semantics(
+              identifier: 'review_comment_field',
+              textField: true,
+              label: l10n.commentOptionalHint,
+              child: TextField(
+                key: const Key('review_comment_field'),
+                controller: _commentController,
+                maxLines: 3,
+                maxLength: 500,
+                decoration: InputDecoration(
+                  hintText: l10n.commentOptionalHint,
+                  border: const OutlineInputBorder(),
                 ),
               ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: ElevatedButton(
-                  key: const Key('review_submit_button'),
-                  onPressed: _isSubmitting ? null : _submit,
-                  child: _isSubmitting
-                      ? const SizedBox(
-                          height: 18,
-                          width: 18,
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        )
-                      : Text(l10n.submitReviewAction),
-                ),
-              ),
+            ),
+            if (_errorMessage != null) ...[
+              const SizedBox(height: 4),
+              Text(_errorMessage!, style: const TextStyle(color: Colors.red)),
             ],
-          ),
-        ],
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Expanded(
+                  child: Semantics(
+                    identifier: 'review_skip_button',
+                    button: true,
+                    child: TextButton(
+                      key: const Key('review_skip_button'),
+                      onPressed: _isSubmitting
+                          ? null
+                          : () => Navigator.of(context).pop(),
+                      child: Text(l10n.skipAction),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Semantics(
+                    identifier: 'review_submit_button',
+                    button: true,
+                    child: ElevatedButton(
+                      key: const Key('review_submit_button'),
+                      onPressed: _isSubmitting ? null : _submit,
+                      child: _isSubmitting
+                          ? const SizedBox(
+                              height: 18,
+                              width: 18,
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                          : Text(l10n.submitReviewAction),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

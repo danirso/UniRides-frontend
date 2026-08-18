@@ -18,9 +18,11 @@ class _RideDetailScreenState extends ConsumerState<RideDetailScreen> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => ref
-        .read(rideRequestsControllerProvider(widget.ride.id).notifier)
-        .fetchRequests());
+    Future.microtask(
+      () => ref
+          .read(rideRequestsControllerProvider(widget.ride.id).notifier)
+          .fetchRequests(),
+    );
   }
 
   Future<void> _handleAccept(String requestId) async {
@@ -29,10 +31,13 @@ class _RideDetailScreenState extends ConsumerState<RideDetailScreen> {
         .read(rideRequestsControllerProvider(widget.ride.id).notifier)
         .acceptRequest(requestId);
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(
-          success ? l10n.requestAcceptedSuccess : l10n.requestAcceptedError),
-    ));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          success ? l10n.requestAcceptedSuccess : l10n.requestAcceptedError,
+        ),
+      ),
+    );
   }
 
   Future<void> _handleReject(String requestId) async {
@@ -41,10 +46,13 @@ class _RideDetailScreenState extends ConsumerState<RideDetailScreen> {
         .read(rideRequestsControllerProvider(widget.ride.id).notifier)
         .rejectRequest(requestId);
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(
-          success ? l10n.requestRejectedSuccess : l10n.requestRejectedError),
-    ));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          success ? l10n.requestRejectedSuccess : l10n.requestRejectedError,
+        ),
+      ),
+    );
   }
 
   @override
@@ -55,6 +63,7 @@ class _RideDetailScreenState extends ConsumerState<RideDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Semantics(
+          identifier: 'screen_ride_requests',
           header: true,
           child: Text(l10n.rideRequestsTitle),
         ),
@@ -62,6 +71,7 @@ class _RideDetailScreenState extends ConsumerState<RideDetailScreen> {
       body: requests.isEmpty
           ? Center(
               child: Semantics(
+                identifier: 'ride_requests_empty_state',
                 label: l10n.noRequests,
                 child: Text(
                   l10n.noRequests,
@@ -70,23 +80,23 @@ class _RideDetailScreenState extends ConsumerState<RideDetailScreen> {
               ),
             )
           : RefreshIndicator(
-            onRefresh: () => ref
-              .read(rideRequestsControllerProvider(widget.ride.id).notifier)
-              .fetchRequests(),
-             child: ListView.builder(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              itemCount: requests.length,
-              itemBuilder: (context, index) {
-                final request = requests[index];
-                return RideRequestCard(
-                  key: Key('request_card_${request.id}'),
-                  request: request,
-                  onAccept: () => _handleAccept(request.id),
-                  onReject: () => _handleReject(request.id),
-                );
-              },
+              onRefresh: () => ref
+                  .read(rideRequestsControllerProvider(widget.ride.id).notifier)
+                  .fetchRequests(),
+              child: ListView.builder(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                itemCount: requests.length,
+                itemBuilder: (context, index) {
+                  final request = requests[index];
+                  return RideRequestCard(
+                    key: Key('request_card_${request.id}'),
+                    request: request,
+                    onAccept: () => _handleAccept(request.id),
+                    onReject: () => _handleReject(request.id),
+                  );
+                },
+              ),
             ),
-      )
     );
   }
 }

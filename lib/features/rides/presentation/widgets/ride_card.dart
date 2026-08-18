@@ -60,233 +60,249 @@ class RideCard extends StatelessWidget {
     final isInProgress = ride.status == 'em_andamento';
     final isCompleted = ride.status == 'concluida';
 
-    return Card(
-      key: Key('ride_card_${ride.id}'),
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 2,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Semantics(
-                  label:
-                      '${l10n.rideStatusScheduled}: ${_localizedStatus(l10n, ride.status)}',
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: statusColor.withOpacity(0.15),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: statusColor),
-                    ),
-                    child: Text(
-                      _localizedStatus(l10n, ride.status),
-                      style: TextStyle(
-                        color: statusColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
+    return Semantics(
+      identifier: 'ride_card_${ride.id}',
+      container: true,
+      child: Card(
+        key: Key('ride_card_${ride.id}'),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        elevation: 2,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Semantics(
+                    label:
+                        '${l10n.rideStatusScheduled}: ${_localizedStatus(l10n, ride.status)}',
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: statusColor.withOpacity(0.15),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: statusColor),
+                      ),
+                      child: Text(
+                        _localizedStatus(l10n, ride.status),
+                        style: TextStyle(
+                          color: statusColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                   ),
+                  Row(
+                    children: [
+                      if (isScheduled) ...[
+                        Semantics(
+                          identifier: 'edit_ride_${ride.id}',
+                          button: true,
+                          label: l10n.editRideAction,
+                          child: IconButton(
+                            key: Key('edit_ride_${ride.id}'),
+                            icon: const Icon(Icons.edit),
+                            color: AppTheme.primaryTeal,
+                            tooltip: l10n.editRideAction,
+                            onPressed: onEdit,
+                          ),
+                        ),
+                        Semantics(
+                          identifier: 'cancel_ride_${ride.id}',
+                          button: true,
+                          label: l10n.cancelRideAction,
+                          child: IconButton(
+                            key: Key('cancel_ride_${ride.id}'),
+                            icon: const Icon(Icons.cancel),
+                            color: AppTheme.dangerRed,
+                            tooltip: l10n.cancelRideAction,
+                            onPressed: onCancel,
+                          ),
+                        ),
+                      ],
+                      if (isInProgress)
+                        Semantics(
+                          identifier: 'complete_ride_${ride.id}',
+                          button: true,
+                          label: l10n.completeRideAction,
+                          child: IconButton(
+                            key: Key('complete_ride_${ride.id}'),
+                            icon: const Icon(Icons.check_circle),
+                            color: Colors.green,
+                            tooltip: l10n.completeRideAction,
+                            onPressed: onComplete,
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              Semantics(
+                label: '${l10n.originLabel}: ${ride.originAddress}',
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.radio_button_checked,
+                      size: 18,
+                      color: Colors.black,
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        ride.originAddress,
+                        style: const TextStyle(fontSize: 14),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
                 ),
+              ),
+              const SizedBox(height: 6),
+              Semantics(
+                label: '${l10n.destinationLabel}: ${ride.destinationAddress}',
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.place,
+                      size: 18,
+                      color: AppTheme.dangerRed,
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        ride.destinationAddress,
+                        style: const TextStyle(fontSize: 14),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 6),
+              Semantics(
+                label: '${l10n.departureDateLabel}: ${ride.departureTime}',
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.access_time_filled,
+                      size: 18,
+                      color: AppTheme.primaryTeal,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      '${ride.departureTime.day.toString().padLeft(2, '0')}/'
+                      '${ride.departureTime.month.toString().padLeft(2, '0')}/'
+                      '${ride.departureTime.year} '
+                      '${ride.departureTime.hour.toString().padLeft(2, '0')}:'
+                      '${ride.departureTime.minute.toString().padLeft(2, '0')}',
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 6),
+              Semantics(
+                label: '${l10n.availableSeatsLabel}: ${ride.availableSeats}',
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.people,
+                      size: 18,
+                      color: AppTheme.primaryTeal,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      l10n.vehiclePassengersLabel(ride.availableSeats),
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
+              ),
+              if (isScheduled) ...[
+                const SizedBox(height: 12),
                 Row(
                   children: [
-                    if (isScheduled) ...[
-                      Semantics(
+                    Expanded(
+                      child: Semantics(
+                        identifier: 'view_requests_${ride.id}',
                         button: true,
-                        label: l10n.editRideAction,
-                        child: IconButton(
-                          key: Key('edit_ride_${ride.id}'),
-                          icon: const Icon(Icons.edit),
-                          color: AppTheme.primaryTeal,
-                          tooltip: l10n.editRideAction,
-                          onPressed: onEdit,
+                        label: l10n.viewRequestsAction,
+                        child: OutlinedButton(
+                          key: Key('view_requests_${ride.id}'),
+                          onPressed: onViewRequests,
+                          child: Text(
+                            l10n.viewRequestsAction,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ),
-                      Semantics(
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Semantics(
+                        identifier: 'start_ride_${ride.id}',
                         button: true,
-                        label: l10n.cancelRideAction,
-                        child: IconButton(
-                          key: Key('cancel_ride_${ride.id}'),
-                          icon: const Icon(Icons.cancel),
-                          color: AppTheme.dangerRed,
-                          tooltip: l10n.cancelRideAction,
-                          onPressed: onCancel,
+                        label: l10n.startRideAction,
+                        child: FilledButton(
+                          key: Key('start_ride_${ride.id}'),
+                          onPressed: onStart,
+                          child: Text(
+                            l10n.startRideAction,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ),
-                    ],
-                    if (isInProgress)
-                      Semantics(
-                        button: true,
-                        label: l10n.completeRideAction,
-                        child: IconButton(
-                          key: Key('complete_ride_${ride.id}'),
-                          icon: const Icon(Icons.check_circle),
-                          color: Colors.green,
-                          tooltip: l10n.completeRideAction,
-                          onPressed: onComplete,
-                        ),
-                      ),
+                    ),
                   ],
                 ),
               ],
-            ),
-            const SizedBox(height: 12),
-            Semantics(
-              label: '${l10n.originLabel}: ${ride.originAddress}',
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.radio_button_checked,
-                    size: 18,
-                    color: Colors.black,
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      ride.originAddress,
-                      style: const TextStyle(fontSize: 14),
-                      overflow: TextOverflow.ellipsis,
+              if (isInProgress) ...[
+                const SizedBox(height: 12),
+                Semantics(
+                  identifier: 'view_requests_${ride.id}',
+                  button: true,
+                  label: l10n.viewRequestsAction,
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton.icon(
+                      key: Key('view_requests_${ride.id}'),
+                      onPressed: onViewRequests,
+                      icon: const Icon(Icons.people),
+                      label: Text(l10n.viewRequestsAction),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 6),
-            Semantics(
-              label: '${l10n.destinationLabel}: ${ride.destinationAddress}',
-              child: Row(
-                children: [
-                  const Icon(Icons.place, size: 18, color: AppTheme.dangerRed),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      ride.destinationAddress,
-                      style: const TextStyle(fontSize: 14),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 6),
-            Semantics(
-              label: '${l10n.departureDateLabel}: ${ride.departureTime}',
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.access_time_filled,
-                    size: 18,
-                    color: AppTheme.primaryTeal,
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    '${ride.departureTime.day.toString().padLeft(2, '0')}/'
-                    '${ride.departureTime.month.toString().padLeft(2, '0')}/'
-                    '${ride.departureTime.year} '
-                    '${ride.departureTime.hour.toString().padLeft(2, '0')}:'
-                    '${ride.departureTime.minute.toString().padLeft(2, '0')}',
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 6),
-            Semantics(
-              label: '${l10n.availableSeatsLabel}: ${ride.availableSeats}',
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.people,
-                    size: 18,
-                    color: AppTheme.primaryTeal,
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    l10n.vehiclePassengersLabel(ride.availableSeats),
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                ],
-              ),
-            ),
-            if (isScheduled) ...[
-              const SizedBox(height: 12),
-              Row(
-                children: [
-                  Expanded(
-                    child: Semantics(
-                      button: true,
-                      label: l10n.viewRequestsAction,
-                      child: OutlinedButton(
-                        key: Key('view_requests_${ride.id}'),
-                        onPressed: onViewRequests,
-                        child: Text(
-                          l10n.viewRequestsAction,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Semantics(
-                      button: true,
-                      label: l10n.startRideAction,
-                      child: FilledButton(
-                        key: Key('start_ride_${ride.id}'),
-                        onPressed: onStart,
-                        child: Text(
-                          l10n.startRideAction,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-            if (isInProgress) ...[
-              const SizedBox(height: 12),
-              Semantics(
-                button: true,
-                label: l10n.viewRequestsAction,
-                child: SizedBox(
-                  width: double.infinity,
-                  child: OutlinedButton.icon(
-                    key: Key('view_requests_${ride.id}'),
-                    onPressed: onViewRequests,
-                    icon: const Icon(Icons.people),
-                    label: Text(l10n.viewRequestsAction),
                   ),
                 ),
-              ),
-            ],
-            if (isCompleted) ...[
-              const SizedBox(height: 12),
-              Semantics(
-                button: true,
-                label: l10n.ratePassengersAction,
-                child: SizedBox(
-                  width: double.infinity,
-                  child: FilledButton.icon(
-                    key: Key('rate_passengers_${ride.id}'),
-                    onPressed: () => PendingReviewsModal.show(context, ride.id),
-                    icon: const Icon(Icons.star_rounded),
-                    label: Text(l10n.ratePassengersAction),
+              ],
+              if (isCompleted) ...[
+                const SizedBox(height: 12),
+                Semantics(
+                  identifier: 'rate_passengers_${ride.id}',
+                  button: true,
+                  label: l10n.ratePassengersAction,
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: FilledButton.icon(
+                      key: Key('rate_passengers_${ride.id}'),
+                      onPressed: () =>
+                          PendingReviewsModal.show(context, ride.id),
+                      icon: const Icon(Icons.star_rounded),
+                      label: Text(l10n.ratePassengersAction),
+                    ),
                   ),
                 ),
-              ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

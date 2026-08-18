@@ -24,10 +24,7 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
   void initState() {
     super.initState();
     final canDrive = ref.read(userControllerProvider).value?.canDrive ?? false;
-    _tabController = TabController(
-      length: canDrive ? 2 : 1,
-      vsync: this,
-    );
+    _tabController = TabController(length: canDrive ? 2 : 1, vsync: this);
     Future.microtask(() {
       ref.read(rideControllerProvider.notifier).fetchMyRides();
       ref.read(myRequestsControllerProvider.notifier).fetchMyRequests();
@@ -51,21 +48,33 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
   }) async {
     final confirmed = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Semantics(header: true, child: Text(title)),
-        content: Text(message),
-        actions: [
-          TextButton(
-            key: const Key('cancel_action_button'),
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text(AppLocalizations.of(context)!.cancel),
-          ),
-          ElevatedButton(
-            key: const Key('confirm_action_button'),
-            onPressed: () => Navigator.of(context).pop(true),
-            child: Text(AppLocalizations.of(context)!.confirmAction),
-          ),
-        ],
+      builder: (context) => Semantics(
+        identifier: 'dialog_confirm_ride_action',
+        container: true,
+        child: AlertDialog(
+          title: Semantics(header: true, child: Text(title)),
+          content: Text(message),
+          actions: [
+            Semantics(
+              identifier: 'cancel_action_button',
+              button: true,
+              child: TextButton(
+                key: const Key('cancel_action_button'),
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text(AppLocalizations.of(context)!.cancel),
+              ),
+            ),
+            Semantics(
+              identifier: 'confirm_action_button',
+              button: true,
+              child: ElevatedButton(
+                key: const Key('confirm_action_button'),
+                onPressed: () => Navigator.of(context).pop(true),
+                child: Text(AppLocalizations.of(context)!.confirmAction),
+              ),
+            ),
+          ],
+        ),
       ),
     );
 
@@ -74,15 +83,15 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
     final success = await action();
     if (!context.mounted) return;
 
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(success ? successMessage : errorMessage),
-    ));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(success ? successMessage : errorMessage)),
+    );
 
     if (success && onSuccess != null) {
       onSuccess();
     }
   }
-  
+
   Widget _buildDriverTab(BuildContext context, AppLocalizations l10n) {
     final rides = ref.watch(rideControllerProvider);
 
@@ -97,62 +106,59 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
         ),
       );
     }
- 
+
     return RefreshIndicator(
-      onRefresh: () => ref
-      .read(myRequestsControllerProvider.notifier)
-      .fetchMyRequests(), 
+      onRefresh: () =>
+          ref.read(myRequestsControllerProvider.notifier).fetchMyRequests(),
       child: ListView.builder(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      itemCount: rides.length,
-      itemBuilder: (context, index) {
-        final ride = rides[index];
-        return RideCard(
-          ride: ride,
-          onEdit: () => showModalBottomSheet(
-            context: context,
-            isScrollControlled: true,
-            builder: (context) => RideEditModal(ride: ride),
-          ),
-          onViewRequests: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => RideDetailScreen(ride: ride),
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        itemCount: rides.length,
+        itemBuilder: (context, index) {
+          final ride = rides[index];
+          return RideCard(
+            ride: ride,
+            onEdit: () => showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: (context) => RideEditModal(ride: ride),
             ),
-          ),
-          onStart: () => _confirmAction(
-          context: context,
-          title: l10n.confirmStartRideTitle,
-          message: l10n.confirmStartRideMessage,
-          action: () => ref
-              .read(rideControllerProvider.notifier)
-              .startRide(ride.id),
-          successMessage: l10n.rideStartedSuccess,
-          errorMessage: l10n.rideStartedError,
-        ),
-          onComplete: () => _confirmAction(
-            context: context,
-            title: l10n.confirmCompleteRideTitle,
-            message: l10n.confirmCompleteRideMessage,
-            action: () => ref
-                .read(rideControllerProvider.notifier)
-                .completeRide(ride.id),
-            successMessage: l10n.rideCompletedSuccess,
-            errorMessage: l10n.rideCompletedError,
-            onSuccess: () => PendingReviewsModal.show(context, ride.id),
-          ),
-          onCancel: () => _confirmAction(
-            context: context,
-            title: l10n.confirmCancelRideTitle,
-            message: l10n.confirmCancelRideMessage,
-            action: () => ref
-                .read(rideControllerProvider.notifier)
-                .cancelRide(ride.id),
-            successMessage: l10n.rideCanceledSuccess,
-            errorMessage: l10n.rideCanceledError,
+            onViewRequests: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => RideDetailScreen(ride: ride),
+              ),
+            ),
+            onStart: () => _confirmAction(
+              context: context,
+              title: l10n.confirmStartRideTitle,
+              message: l10n.confirmStartRideMessage,
+              action: () =>
+                  ref.read(rideControllerProvider.notifier).startRide(ride.id),
+              successMessage: l10n.rideStartedSuccess,
+              errorMessage: l10n.rideStartedError,
+            ),
+            onComplete: () => _confirmAction(
+              context: context,
+              title: l10n.confirmCompleteRideTitle,
+              message: l10n.confirmCompleteRideMessage,
+              action: () => ref
+                  .read(rideControllerProvider.notifier)
+                  .completeRide(ride.id),
+              successMessage: l10n.rideCompletedSuccess,
+              errorMessage: l10n.rideCompletedError,
+              onSuccess: () => PendingReviewsModal.show(context, ride.id),
+            ),
+            onCancel: () => _confirmAction(
+              context: context,
+              title: l10n.confirmCancelRideTitle,
+              message: l10n.confirmCancelRideMessage,
+              action: () =>
+                  ref.read(rideControllerProvider.notifier).cancelRide(ride.id),
+              successMessage: l10n.rideCanceledSuccess,
+              errorMessage: l10n.rideCanceledError,
             ),
           );
         },
-      )
+      ),
     );
   }
 
@@ -162,6 +168,7 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
     if (requests.isEmpty) {
       return Center(
         child: Semantics(
+          identifier: 'my_requests_empty_state',
           label: l10n.noRidesAsPassenger,
           child: Text(
             l10n.noRidesAsPassenger,
@@ -172,148 +179,169 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
     }
 
     return RefreshIndicator(
-      onRefresh: () => ref
-        .read(myRequestsControllerProvider.notifier)
-        .fetchMyRequests(),
-       child: ListView.builder(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      itemCount: requests.length,
-      itemBuilder: (context, index) {
-        final request = requests[index];
-        final isPending = request.status == 'PENDING';
-        final isAccepted = request.status == 'ACCEPTED';
-        final isRideCompleted = request.ride.status == 'concluida';
+      onRefresh: () =>
+          ref.read(myRequestsControllerProvider.notifier).fetchMyRequests(),
+      child: ListView.builder(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        itemCount: requests.length,
+        itemBuilder: (context, index) {
+          final request = requests[index];
+          final isPending = request.status == 'PENDING';
+          final isAccepted = request.status == 'ACCEPTED';
+          final isRideCompleted = request.ride.status == 'concluida';
 
-        return Card(
-          key: Key('my_request_card_${request.id}'),
-          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12)),
-          elevation: 2,
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Semantics(
-                  label: request.ride.originAddress,
-                  child: Row(
-                    children: [
-                      const Icon(Icons.radio_button_checked,
-                          size: 18, color: Colors.black),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Text(
-                          request.ride.originAddress,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(fontSize: 14),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Semantics(
-                  label: request.ride.destinationAddress,
-                  child: Row(
-                    children: [
-                      const Icon(Icons.place,
-                          size: 18, color: AppTheme.dangerRed),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Text(
-                          request.ride.destinationAddress,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(fontSize: 14),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          return Semantics(
+            identifier: 'my_request_card_${request.id}',
+            container: true,
+            child: Card(
+              key: Key('my_request_card_${request.id}'),
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              elevation: 2,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '${request.ride.departureTime.day.toString().padLeft(2, '0')}/'
-                      '${request.ride.departureTime.month.toString().padLeft(2, '0')}/'
-                      '${request.ride.departureTime.year} '
-                      '${request.ride.departureTime.hour.toString().padLeft(2, '0')}:'
-                      '${request.ride.departureTime.minute.toString().padLeft(2, '0')}',
-                      style: const TextStyle(fontSize: 13, color: Colors.grey),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: _requestStatusColor(request.status)
-                            .withOpacity(0.15),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                            color: _requestStatusColor(request.status)),
+                    Semantics(
+                      label: request.ride.originAddress,
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.radio_button_checked,
+                            size: 18,
+                            color: Colors.black,
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              request.ride.originAddress,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(fontSize: 14),
+                            ),
+                          ),
+                        ],
                       ),
-                      child: Text(
-                        _localizedRequestStatus(l10n, request.status),
-                        style: TextStyle(
-                          color: _requestStatusColor(request.status),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
+                    ),
+                    const SizedBox(height: 6),
+                    Semantics(
+                      label: request.ride.destinationAddress,
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.place,
+                            size: 18,
+                            color: AppTheme.dangerRed,
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              request.ride.destinationAddress,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(fontSize: 14),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '${request.ride.departureTime.day.toString().padLeft(2, '0')}/'
+                          '${request.ride.departureTime.month.toString().padLeft(2, '0')}/'
+                          '${request.ride.departureTime.year} '
+                          '${request.ride.departureTime.hour.toString().padLeft(2, '0')}:'
+                          '${request.ride.departureTime.minute.toString().padLeft(2, '0')}',
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: _requestStatusColor(
+                              request.status,
+                            ).withOpacity(0.15),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: _requestStatusColor(request.status),
+                            ),
+                          ),
+                          child: Text(
+                            _localizedRequestStatus(l10n, request.status),
+                            style: TextStyle(
+                              color: _requestStatusColor(request.status),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    if (isPending || isAccepted) ...[
+                      const SizedBox(height: 12),
+                      Semantics(
+                        identifier: 'cancel_request_${request.id}',
+                        button: true,
+                        label: l10n.cancelRequestAction,
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: OutlinedButton(
+                            key: Key('cancel_request_${request.id}'),
+                            onPressed: () => _confirmAction(
+                              context: context,
+                              title: l10n.confirmCancelRequestTitle,
+                              message: l10n.confirmCancelRequestMessage,
+                              action: () => ref
+                                  .read(myRequestsControllerProvider.notifier)
+                                  .cancelRequest(request.rideId, request.id),
+                              successMessage: l10n.requestCanceledSuccess,
+                              errorMessage: l10n.requestCanceledError,
+                            ),
+                            style: OutlinedButton.styleFrom(
+                              foregroundColor: AppTheme.dangerRed,
+                              side: const BorderSide(color: AppTheme.dangerRed),
+                            ),
+                            child: Text(l10n.cancelRequestAction),
+                          ),
                         ),
                       ),
-                    ),
+                    ],
+                    if (isAccepted && isRideCompleted) ...[
+                      const SizedBox(height: 12),
+                      Semantics(
+                        identifier: 'rate_driver_${request.rideId}',
+                        button: true,
+                        label: l10n.rateDriverAction,
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: FilledButton.icon(
+                            key: Key('rate_driver_${request.rideId}'),
+                            onPressed: () => PendingReviewsModal.show(
+                              context,
+                              request.rideId,
+                            ),
+                            icon: const Icon(Icons.star_rounded),
+                            label: Text(l10n.rateDriverAction),
+                          ),
+                        ),
+                      ),
+                    ],
                   ],
                 ),
-                if (isPending || isAccepted) ...[
-                  const SizedBox(height: 12),
-                  Semantics(
-                    button: true,
-                    label: l10n.cancelRequestAction,
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: OutlinedButton(
-                        key: Key('cancel_request_${request.id}'),
-                        onPressed: () => _confirmAction(
-                          context: context,
-                          title: l10n.confirmCancelRequestTitle,
-                          message: l10n.confirmCancelRequestMessage,
-                          action: () => ref
-                              .read(myRequestsControllerProvider.notifier)
-                              .cancelRequest(request.rideId, request.id),
-                          successMessage: l10n.requestCanceledSuccess,
-                          errorMessage: l10n.requestCanceledError,
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: AppTheme.dangerRed,
-                          side: const BorderSide(color: AppTheme.dangerRed),
-                        ),
-                        child: Text(l10n.cancelRequestAction),
-                        ),
-                      ),
-                    ),
-                  ],
-                if (isAccepted && isRideCompleted) ...[
-                  const SizedBox(height: 12),
-                  Semantics(
-                    button: true,
-                    label: l10n.rateDriverAction,
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: FilledButton.icon(
-                        key: Key('rate_driver_${request.rideId}'),
-                        onPressed: () =>
-                            PendingReviewsModal.show(context, request.rideId),
-                        icon: const Icon(Icons.star_rounded),
-                        label: Text(l10n.rateDriverAction),
-                      ),
-                    ),
-                  ),
-                ],
-                ],
               ),
             ),
           );
         },
-      )
+      ),
     );
   }
 
@@ -354,6 +382,7 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
     return Scaffold(
       appBar: AppBar(
         title: Semantics(
+          identifier: 'screen_my_rides',
           header: true,
           child: Text(l10n.myRidesTitle),
         ),
@@ -363,11 +392,17 @@ class _MyRidesScreenState extends ConsumerState<MyRidesScreen>
             if (canDrive)
               Tab(
                 key: const Key('driver_tab'),
-                text: l10n.ridesAsDriverTab,
+                child: Semantics(
+                  identifier: 'driver_tab',
+                  child: Text(l10n.ridesAsDriverTab),
+                ),
               ),
             Tab(
               key: const Key('passenger_tab'),
-              text: l10n.ridesAsPassengerTab,
+              child: Semantics(
+                identifier: 'passenger_tab',
+                child: Text(l10n.ridesAsPassengerTab),
+              ),
             ),
           ],
         ),

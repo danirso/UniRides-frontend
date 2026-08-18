@@ -28,45 +28,51 @@ class UserReviewsListWidget extends ConsumerWidget {
         }
         return Column(
           children: reviews.map((review) {
-            return Card(
-              margin: const EdgeInsets.symmetric(vertical: 4),
-              child: Padding(
-                padding: const EdgeInsets.all(12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Semantics(
-                      label: l10n.reviewByLabel(
-                        review.reviewerName,
-                        review.rating,
+            return Semantics(
+              identifier: 'user_review_${review.id}',
+              container: true,
+              child: Card(
+                margin: const EdgeInsets.symmetric(vertical: 4),
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Semantics(
+                        label: l10n.reviewByLabel(
+                          review.reviewerName,
+                          review.rating,
+                        ),
+                        child: Row(
+                          children: [
+                            Row(
+                              children: List.generate(5, (index) {
+                                return Icon(
+                                  index < review.rating
+                                      ? Icons.star_rounded
+                                      : Icons.star_border_rounded,
+                                  size: 16,
+                                  color: Colors.amber,
+                                );
+                              }),
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              review.reviewerName,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      child: Row(
-                        children: [
-                          Row(
-                            children: List.generate(5, (index) {
-                              return Icon(
-                                index < review.rating
-                                    ? Icons.star_rounded
-                                    : Icons.star_border_rounded,
-                                size: 16,
-                                color: Colors.amber,
-                              );
-                            }),
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            review.reviewerName,
-                            style: const TextStyle(fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                    ),
-                    if (review.comment != null &&
-                        review.comment!.isNotEmpty) ...[
-                      const SizedBox(height: 4),
-                      Text(review.comment!),
+                      if (review.comment != null &&
+                          review.comment!.isNotEmpty) ...[
+                        const SizedBox(height: 4),
+                        Text(review.comment!),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               ),
             );

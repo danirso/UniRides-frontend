@@ -86,14 +86,15 @@ class _AddressSearchFieldState extends State<AddressSearchField> {
 
         if (data['status'] == 'OK') {
           final predictions = (data['predictions'] as List)
-              .map((p) => _SimplePrediction(
-                    placeId: p['place_id'],
-                    primaryText:
-                        p['structured_formatting']['main_text'] ?? '',
-                    secondaryText:
-                        p['structured_formatting']['secondary_text'] ?? '',
-                    fullText: p['description'] ?? '',
-                  ))
+              .map(
+                (p) => _SimplePrediction(
+                  placeId: p['place_id'],
+                  primaryText: p['structured_formatting']['main_text'] ?? '',
+                  secondaryText:
+                      p['structured_formatting']['secondary_text'] ?? '',
+                  fullText: p['description'] ?? '',
+                ),
+              )
               .toList();
           setState(() => _predictions = predictions);
         } else {
@@ -134,7 +135,8 @@ class _AddressSearchFieldState extends State<AddressSearchField> {
         widget.controller.text = address;
         setState(() => _placeSelected = true);
         widget.onPlaceSelected(
-            PlaceResult(address: address, lat: lat, lng: lng));
+          PlaceResult(address: address, lat: lat, lng: lng),
+        );
       }
     } catch (e) {
       debugPrint('Erro geocoding: $e');
@@ -149,6 +151,7 @@ class _AddressSearchFieldState extends State<AddressSearchField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Semantics(
+          identifier: '${widget.widgetKey}_input',
           label: widget.label,
           textField: true,
           child: TextField(
@@ -167,8 +170,8 @@ class _AddressSearchFieldState extends State<AddressSearchField> {
                       ),
                     )
                   : _placeSelected
-                      ? const Icon(Icons.check_circle, color: Colors.green)
-                      : const Icon(Icons.search),
+                  ? const Icon(Icons.check_circle, color: Colors.green)
+                  : const Icon(Icons.search),
             ),
           ),
         ),
@@ -177,36 +180,35 @@ class _AddressSearchFieldState extends State<AddressSearchField> {
             margin: const EdgeInsets.only(top: 2),
             elevation: 4,
             child: ConstrainedBox(
-            constraints: const BoxConstraints(maxHeight: 200),
-            child:
-            ListView.separated(
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              itemCount: _predictions.length,
-              separatorBuilder: (_, __) => const Divider(height: 1),
-              itemBuilder: (context, index) {
-                final prediction = _predictions[index];
-                return Semantics(
-                  button: true,
-                  label: prediction.fullText,
-                  child: ListTile(
-                    key: Key('${widget.widgetKey}_prediction_$index'),
-                    leading: const Icon(Icons.location_on_outlined),
-                    title: Text(
-                      prediction.primaryText,
-                      style:
-                          const TextStyle(fontWeight: FontWeight.w500),
+              constraints: const BoxConstraints(maxHeight: 200),
+              child: ListView.separated(
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                itemCount: _predictions.length,
+                separatorBuilder: (_, __) => const Divider(height: 1),
+                itemBuilder: (context, index) {
+                  final prediction = _predictions[index];
+                  return Semantics(
+                    identifier: '${widget.widgetKey}_prediction_$index',
+                    button: true,
+                    label: prediction.fullText,
+                    child: ListTile(
+                      key: Key('${widget.widgetKey}_prediction_$index'),
+                      leading: const Icon(Icons.location_on_outlined),
+                      title: Text(
+                        prediction.primaryText,
+                        style: const TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                      subtitle: Text(
+                        prediction.secondaryText,
+                        style: const TextStyle(fontSize: 12),
+                      ),
+                      onTap: () => _onPredictionSelected(prediction),
                     ),
-                    subtitle: Text(
-                      prediction.secondaryText,
-                      style: const TextStyle(fontSize: 12),
-                    ),
-                    onTap: () => _onPredictionSelected(prediction),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
-          ),
           ),
       ],
     );

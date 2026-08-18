@@ -34,7 +34,10 @@ class VehicleCard extends StatelessWidget {
                 Semantics(
                   label: '${l10n.vehiclePlateLabel}: ${vehicle.plate}',
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: AppTheme.darkBackground,
                       borderRadius: BorderRadius.circular(8),
@@ -53,6 +56,7 @@ class VehicleCard extends StatelessWidget {
                 Row(
                   children: [
                     Semantics(
+                      identifier: 'edit_vehicle_${vehicle.id}',
                       button: true,
                       label: l10n.editVehicleAction,
                       child: IconButton(
@@ -64,6 +68,7 @@ class VehicleCard extends StatelessWidget {
                       ),
                     ),
                     Semantics(
+                      identifier: 'delete_vehicle_${vehicle.id}',
                       button: true,
                       label: l10n.deleteVehicleAction,
                       child: IconButton(
@@ -80,14 +85,22 @@ class VehicleCard extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Semantics(
-              label: '${l10n.vehicleBrandLabel}: ${vehicle.brand} ${vehicle.model}',
+              label:
+                  '${l10n.vehicleBrandLabel}: ${vehicle.brand} ${vehicle.model}',
               child: Row(
                 children: [
-                  const Icon(Icons.directions_car, size: 18, color: AppTheme.primaryTeal),
+                  const Icon(
+                    Icons.directions_car,
+                    size: 18,
+                    color: AppTheme.primaryTeal,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     '${vehicle.brand} ${vehicle.model}',
-                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               ),
@@ -97,7 +110,11 @@ class VehicleCard extends StatelessWidget {
               label: '${l10n.vehicleColorLabel}: ${vehicle.color}',
               child: Row(
                 children: [
-                  const Icon(Icons.palette_outlined, size: 18, color: AppTheme.primaryTeal),
+                  const Icon(
+                    Icons.palette_outlined,
+                    size: 18,
+                    color: AppTheme.primaryTeal,
+                  ),
                   const SizedBox(width: 8),
                   Text(vehicle.color, style: const TextStyle(fontSize: 14)),
                 ],
@@ -108,7 +125,11 @@ class VehicleCard extends StatelessWidget {
               label: l10n.vehiclePassengersLabel(vehicle.capacity),
               child: Row(
                 children: [
-                  const Icon(Icons.people_outline, size: 18, color: AppTheme.primaryTeal),
+                  const Icon(
+                    Icons.people_outline,
+                    size: 18,
+                    color: AppTheme.primaryTeal,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     l10n.vehiclePassengersLabel(vehicle.capacity),

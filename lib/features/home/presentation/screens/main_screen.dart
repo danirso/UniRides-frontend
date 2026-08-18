@@ -23,26 +23,40 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     final l10n = AppLocalizations.of(context)!;
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.noVehicleTitle),
-        content: Text(l10n.noVehicleMessage),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(l10n.cancel),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-              showModalBottomSheet(
-                context: context,
-                isScrollControlled:true,
-                builder: (context) => const VehicleRegistrationModal(),
-                );
-            },
-            child: Text(l10n.registerVehicleAction),
-          ),
-        ],
+      builder: (context) => Semantics(
+        identifier: 'dialog_no_vehicle',
+        container: true,
+        child: AlertDialog(
+          title: Text(l10n.noVehicleTitle),
+          content: Text(l10n.noVehicleMessage),
+          actions: [
+            Semantics(
+              identifier: 'no_vehicle_cancel_button',
+              button: true,
+              child: TextButton(
+                key: const Key('no_vehicle_cancel_button'),
+                onPressed: () => Navigator.pop(context),
+                child: Text(l10n.cancel),
+              ),
+            ),
+            Semantics(
+              identifier: 'no_vehicle_register_button',
+              button: true,
+              child: ElevatedButton(
+                key: const Key('no_vehicle_register_button'),
+                onPressed: () {
+                  Navigator.pop(context);
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (context) => const VehicleRegistrationModal(),
+                  );
+                },
+                child: Text(l10n.registerVehicleAction),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -59,7 +73,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         return;
       }
     }
-    
+
     setState(() => _selectedIndex = index);
   }
 
@@ -71,6 +85,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     return userState.when(
       loading: () => Scaffold(
         body: Semantics(
+          identifier: 'screen_main_loading',
           label: l10n.semanticLoadingProfile,
           child: const Center(child: CircularProgressIndicator()),
         ),
@@ -78,6 +93,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
       error: (err, stack) {
         return Scaffold(
           body: Semantics(
+            identifier: 'screen_main_error',
             label: l10n.errorProfileLoad,
             child: Center(child: Text(l10n.errorProfileLoad)),
           ),
@@ -96,6 +112,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         final List<NavigationDestination> destinations = [
           NavigationDestination(
             icon: Semantics(
+              identifier: 'nav_search_key',
               label: l10n.navSearchLabel,
               child: const Icon(Icons.search),
             ),
@@ -104,6 +121,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
           ),
           NavigationDestination(
             icon: Semantics(
+              identifier: 'nav_rides_key',
               label: l10n.navRidesLabel,
               child: const Icon(Icons.list_alt),
             ),
@@ -113,6 +131,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
           if (canDrive)
             NavigationDestination(
               icon: Semantics(
+                identifier: 'nav_offer_key',
                 label: l10n.navOfferLabel,
                 child: const Icon(Icons.add_circle),
               ),
@@ -121,6 +140,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
             ),
           NavigationDestination(
             icon: Semantics(
+              identifier: 'nav_profile_key',
               label: l10n.navProfileLabel,
               child: const Icon(Icons.account_circle),
             ),
@@ -129,15 +149,16 @@ class _MainScreenState extends ConsumerState<MainScreen> {
           ),
         ];
 
-        final safeIndex = _selectedIndex >= destinations.length ? 0 : _selectedIndex;
+        final safeIndex = _selectedIndex >= destinations.length
+            ? 0
+            : _selectedIndex;
 
         return Scaffold(
           body: Semantics(
+            identifier: 'screen_main',
+            container: true,
             label: l10n.semanticMainContent,
-            child: IndexedStack(
-              index: safeIndex,
-              children: screens,
-            ),
+            child: IndexedStack(index: safeIndex, children: screens),
           ),
           bottomNavigationBar: NavigationBar(
             selectedIndex: safeIndex,
