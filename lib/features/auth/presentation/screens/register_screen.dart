@@ -1,3 +1,4 @@
+import 'package:tcc_caronas_frontend/core/validation/auth_email_policy.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../controllers/auth_controller.dart';
@@ -124,18 +125,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                         prefixIcon: const Icon(Icons.email_outlined),
                       ),
                       validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            !value.contains('@')) {
-                          return AppLocalizations.of(
-                            context,
-                          )!.errorInvalidEmail;
-                        }
-                        final email = value.trim().toLowerCase();
-                        final isPuc = email.endsWith('@puccampinas.edu.br');
-                        final isUnicamp = email.endsWith('@dac.unicamp.br');
-
-                        if (!isPuc && !isUnicamp) {
+                        if (value == null || !isAllowedAuthEmail(value)) {
                           return AppLocalizations.of(
                             context,
                           )!.errorInvalidEmail;

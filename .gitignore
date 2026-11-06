@@ -22,9 +22,7 @@ keys_inventory/
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
+# Local editor configuration
 .vscode/
 
 # Flutter/Dart/Pub related
@@ -47,3 +45,22 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Environment files and signing credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+*.jks
+key.properties
+*.mobileprovision
+*credentials*.json
+*service-account*.json
+
+# Android generated build files and reports
+/android/build/
+/android/app/build/
