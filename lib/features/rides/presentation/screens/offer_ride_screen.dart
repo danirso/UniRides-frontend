@@ -30,8 +30,9 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
     super.initState();
     _originController = TextEditingController();
     _destinationController = TextEditingController();
-    Future.microtask(() =>
-        ref.read(vehicleControllerProvider.notifier).fetchVehicles());
+    Future.microtask(
+      () => ref.read(vehicleControllerProvider.notifier).fetchVehicles(),
+    );
   }
 
   @override
@@ -59,8 +60,11 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
 
     setState(() {
       _departureTime = DateTime(
-        date.year, date.month, date.day,
-        time.hour, time.minute,
+        date.year,
+        date.month,
+        date.day,
+        time.hour,
+        time.minute,
       );
     });
   }
@@ -87,18 +91,20 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
 
     setState(() => _isLoading = true);
 
-    final ride = await ref.read(rideControllerProvider.notifier).createRide(
-      vehicleId: _selectedVehicle!.id,
-      originLat: _origin!.lat,
-      originLng: _origin!.lng,
-      destinationLat: _destination!.lat,
-      destinationLng: _destination!.lng,
-      originAddress: _origin!.address,
-      destinationAddress: _destination!.address,
-      departureTime: _departureTime!,
-      availableSeats: _availableSeats,
-      maxDetourMeters: _maxDetourKm * 1000,
-    );
+    final ride = await ref
+        .read(rideControllerProvider.notifier)
+        .createRide(
+          vehicleId: _selectedVehicle!.id,
+          originLat: _origin!.lat,
+          originLng: _origin!.lng,
+          destinationLat: _destination!.lat,
+          destinationLng: _destination!.lng,
+          originAddress: _origin!.address,
+          destinationAddress: _destination!.address,
+          departureTime: _departureTime!,
+          availableSeats: _availableSeats,
+          maxDetourMeters: _maxDetourKm * 1000,
+        );
 
     if (!mounted) return;
     setState(() => _isLoading = false);
@@ -113,9 +119,9 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
   }
 
   void _showSnack(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   void _resetForm() {
@@ -139,6 +145,7 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Semantics(
+          identifier: 'screen_offer_ride',
           header: true,
           child: Text(l10n.offerRideTitle),
         ),
@@ -163,6 +170,7 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
             ),
             const SizedBox(height: 16),
             Semantics(
+              identifier: 'departure_time_button',
               button: true,
               label: l10n.departureDateLabel,
               child: OutlinedButton.icon(
@@ -173,10 +181,10 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
                   _departureTime == null
                       ? l10n.departureDateLabel
                       : '${_departureTime!.day.toString().padLeft(2, '0')}/'
-                          '${_departureTime!.month.toString().padLeft(2, '0')}/'
-                          '${_departureTime!.year} '
-                          '${_departureTime!.hour.toString().padLeft(2, '0')}:'
-                          '${_departureTime!.minute.toString().padLeft(2, '0')}',
+                            '${_departureTime!.month.toString().padLeft(2, '0')}/'
+                            '${_departureTime!.year} '
+                            '${_departureTime!.hour.toString().padLeft(2, '0')}:'
+                            '${_departureTime!.minute.toString().padLeft(2, '0')}',
                 ),
               ),
             ),
@@ -187,11 +195,13 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
               data: (vehicles) {
                 if (vehicles.isEmpty) return const SizedBox.shrink();
                 return Semantics(
+                  identifier: 'vehicle_dropdown',
                   label: l10n.selectVehicleLabel,
                   child: DropdownButtonFormField<VehicleEntity>(
                     key: const Key('vehicle_dropdown'),
                     decoration: InputDecoration(
-                        labelText: l10n.selectVehicleLabel),
+                      labelText: l10n.selectVehicleLabel,
+                    ),
                     initialValue: _selectedVehicle,
                     items: vehicles.map((v) {
                       return DropdownMenuItem(
@@ -211,82 +221,118 @@ class _OfferRideScreenState extends ConsumerState<OfferRideScreen> {
             ),
             const SizedBox(height: 16),
             Semantics(
+              identifier: 'offer_ride_seats_control',
               label: '${l10n.availableSeatsLabel}: $_availableSeats',
               child: Row(
                 children: [
                   Text(l10n.availableSeatsLabel),
                   const Spacer(),
-                  IconButton(
-                    key: const Key('seats_decrement_button'),
-                    icon: const Icon(Icons.remove_circle_outline),
-                    onPressed: _availableSeats > 1
-                        ? () => setState(() => _availableSeats--)
-                        : null,
+                  Semantics(
+                    identifier: 'seats_decrement_button',
+                    button: true,
+                    child: IconButton(
+                      key: const Key('seats_decrement_button'),
+                      icon: const Icon(Icons.remove_circle_outline),
+                      onPressed: _availableSeats > 1
+                          ? () => setState(() => _availableSeats--)
+                          : null,
+                    ),
                   ),
                   Text(
                     '$_availableSeats',
                     style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  IconButton(
-                    key: const Key('seats_increment_button'),
-                    icon: const Icon(Icons.add_circle_outline),
-                    onPressed: _selectedVehicle != null &&
-                            _availableSeats < _selectedVehicle!.capacity
-                        ? () => setState(() => _availableSeats++)
-                        : null,
+                  Semantics(
+                    identifier: 'seats_increment_button',
+                    button: true,
+                    child: IconButton(
+                      key: const Key('seats_increment_button'),
+                      icon: const Icon(Icons.add_circle_outline),
+                      onPressed:
+                          _selectedVehicle != null &&
+                              _availableSeats < _selectedVehicle!.capacity
+                          ? () => setState(() => _availableSeats++)
+                          : null,
+                    ),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 8),
             Semantics(
-              label: '${l10n.maxDetourLabel}: ${l10n.maxDetourValue(_maxDetourKm)}',
+              label:
+                  '${l10n.maxDetourLabel}: ${l10n.maxDetourValue(_maxDetourKm)}',
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      Text('${l10n.maxDetourLabel}: ${l10n.maxDetourValue(_maxDetourKm)}'),
+                      Text(
+                        '${l10n.maxDetourLabel}: ${l10n.maxDetourValue(_maxDetourKm)}',
+                      ),
                       const SizedBox(width: 4),
                       Semantics(
+                        identifier: 'max_detour_info_button',
                         button: true,
                         label: l10n.maxDetourInfoLabel,
                         child: GestureDetector(
                           key: const Key('max_detour_info_button'),
                           onTap: () => showDialog(
                             context: context,
-                            builder: (context) => AlertDialog(
-                              title: Text(l10n.maxDetourLabel),
-                              content: Text(l10n.maxDetourInfoMessage),
-                              actions: [
-                                TextButton(
-                                  key: const Key('max_detour_info_close_button'),
-                                  onPressed: () => Navigator.of(context).pop(),
-                                  child: Text(l10n.confirmAction),
-                                ),
-                              ],
+                            builder: (context) => Semantics(
+                              identifier: 'dialog_max_detour_info',
+                              container: true,
+                              child: AlertDialog(
+                                title: Text(l10n.maxDetourLabel),
+                                content: Text(l10n.maxDetourInfoMessage),
+                                actions: [
+                                  Semantics(
+                                    identifier: 'max_detour_info_close_button',
+                                    button: true,
+                                    child: TextButton(
+                                      key: const Key(
+                                        'max_detour_info_close_button',
+                                      ),
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                      child: Text(l10n.confirmAction),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          child: const Icon(Icons.help_outline, size: 18, color: Colors.grey),
+                          child: const Icon(
+                            Icons.help_outline,
+                            size: 18,
+                            color: Colors.grey,
+                          ),
                         ),
                       ),
                     ],
                   ),
-                  Slider(
-                    key: const Key('max_detour_slider'),
-                    value: _maxDetourKm.toDouble(),
-                    min: 0,
-                    max: 10,
-                    divisions: 10,
-                    label: l10n.maxDetourValue(_maxDetourKm),
-                    onChanged: (v) => setState(() => _maxDetourKm = v.toInt()),
+                  Semantics(
+                    identifier: 'max_detour_slider',
+                    child: Slider(
+                      key: const Key('max_detour_slider'),
+                      value: _maxDetourKm.toDouble(),
+                      min: 0,
+                      max: 10,
+                      divisions: 10,
+                      label: l10n.maxDetourValue(_maxDetourKm),
+                      onChanged: (v) =>
+                          setState(() => _maxDetourKm = v.toInt()),
+                    ),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 24),
             Semantics(
+              identifier: 'offer_ride_submit_button',
               button: true,
               label: l10n.offerRideAction,
               child: ElevatedButton(

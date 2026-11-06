@@ -43,97 +43,115 @@ class PendingReviewsModal extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
     final pendingAsync = ref.watch(pendingReviewsControllerProvider(rideId));
 
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Semantics(
-              header: true,
-              child: Text(
-                l10n.pendingReviewsTitle,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-            ),
-            const SizedBox(height: 16),
-            pendingAsync.when(
-              loading: () => const Padding(
-                padding: EdgeInsets.symmetric(vertical: 24),
-                child: CircularProgressIndicator(),
-              ),
-              error: (error, _) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24),
+    return Semantics(
+      identifier: 'modal_pending_reviews',
+      container: true,
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Semantics(
+                header: true,
                 child: Text(
-                  l10n.pendingReviewsLoadError,
-                  style: const TextStyle(color: Colors.red),
+                  l10n.pendingReviewsTitle,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
-              data: (targets) {
-                if (targets.isEmpty) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24),
-                    child: Text(l10n.noPendingReviews),
-                  );
-                }
-                return Column(
-                  children: targets.map((target) {
-                    final roleLabel = _roleLabel(l10n, target.role);
-                    return Card(
-                      key: Key('pending_review_${target.userId}'),
-                      margin: const EdgeInsets.symmetric(vertical: 6),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    target.name,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  Text(
-                                    roleLabel,
-                                    style: TextStyle(
-                                      color: Colors.grey.shade600,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Flexible(
-                              fit: FlexFit.loose,
-                              child: ElevatedButton(
-                                key: Key(
-                                  'pending_review_button_${target.userId}',
-                                ),
-                                onPressed: () =>
-                                    _openReviewForm(context, target),
-                                child: Text(l10n.rateAction),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+              const SizedBox(height: 16),
+              pendingAsync.when(
+                loading: () => const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 24),
+                  child: CircularProgressIndicator(),
+                ),
+                error: (error, _) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  child: Text(
+                    l10n.pendingReviewsLoadError,
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                ),
+                data: (targets) {
+                  if (targets.isEmpty) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24),
+                      child: Text(l10n.noPendingReviews),
                     );
-                  }).toList(),
-                );
-              },
-            ),
-            const SizedBox(height: 8),
-            TextButton(
-              key: const Key('pending_reviews_close_button'),
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(l10n.closeAction),
-            ),
-          ],
+                  }
+                  return Column(
+                    children: targets.map((target) {
+                      final roleLabel = _roleLabel(l10n, target.role);
+                      return Semantics(
+                        identifier: 'pending_review_${target.userId}',
+                        container: true,
+                        child: Card(
+                          key: Key('pending_review_${target.userId}'),
+                          margin: const EdgeInsets.symmetric(vertical: 6),
+                          child: Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        target.name,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      Text(
+                                        roleLabel,
+                                        style: TextStyle(
+                                          color: Colors.grey.shade600,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Flexible(
+                                  fit: FlexFit.loose,
+                                  child: Semantics(
+                                    identifier:
+                                        'pending_review_button_${target.userId}',
+                                    button: true,
+                                    child: ElevatedButton(
+                                      key: Key(
+                                        'pending_review_button_${target.userId}',
+                                      ),
+                                      onPressed: () =>
+                                          _openReviewForm(context, target),
+                                      child: Text(l10n.rateAction),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  );
+                },
+              ),
+              const SizedBox(height: 8),
+              Semantics(
+                identifier: 'pending_reviews_close_button',
+                button: true,
+                child: TextButton(
+                  key: const Key('pending_reviews_close_button'),
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Text(l10n.closeAction),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

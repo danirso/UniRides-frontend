@@ -18,6 +18,7 @@ class StarRatingInput extends StatelessWidget {
         final starValue = index + 1;
         final filled = starValue <= rating;
         return Semantics(
+          identifier: 'review_star_$starValue',
           button: true,
           selected: filled,
           label: '$starValue de 5 estrelas',

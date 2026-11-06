@@ -54,7 +54,9 @@ class _SearchRidesScreenState extends ConsumerState<SearchRidesScreen> {
       _searched = false;
     });
 
-    await ref.read(rideSearchControllerProvider.notifier).searchRides(
+    await ref
+        .read(rideSearchControllerProvider.notifier)
+        .searchRides(
           originLat: _origin!.lat,
           originLng: _origin!.lng,
           destinationLat: _destination!.lat,
@@ -95,9 +97,9 @@ class _SearchRidesScreenState extends ConsumerState<SearchRidesScreen> {
   }
 
   void _showSnack(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override
@@ -108,6 +110,7 @@ class _SearchRidesScreenState extends ConsumerState<SearchRidesScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Semantics(
+          identifier: 'screen_search_rides',
           header: true,
           child: Text(l10n.searchRidesTitle),
         ),
@@ -132,6 +135,7 @@ class _SearchRidesScreenState extends ConsumerState<SearchRidesScreen> {
             ),
             const SizedBox(height: 12),
             Semantics(
+              identifier: 'search_rides_button',
               button: true,
               label: l10n.searchRidesAction,
               child: ElevatedButton(
@@ -152,6 +156,7 @@ class _SearchRidesScreenState extends ConsumerState<SearchRidesScreen> {
             else if (_searched && rides.isEmpty)
               Center(
                 child: Semantics(
+                  identifier: 'search_rides_empty_state',
                   label: l10n.noRidesFound,
                   child: Text(
                     l10n.noRidesFound,

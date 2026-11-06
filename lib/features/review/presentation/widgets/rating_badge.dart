@@ -22,24 +22,28 @@ class RatingBadge extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
-      builder: (_) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Semantics(
-                  header: true,
-                  child: Text(
-                    l10n.userReviewsModalTitle,
-                    style: Theme.of(context).textTheme.titleLarge,
+      builder: (_) => Semantics(
+        identifier: 'modal_user_reviews_$userId',
+        container: true,
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Semantics(
+                    header: true,
+                    child: Text(
+                      l10n.userReviewsModalTitle,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                UserReviewsListWidget(userId: userId!),
-              ],
+                  const SizedBox(height: 16),
+                  UserReviewsListWidget(userId: userId!),
+                ],
+              ),
             ),
           ),
         ),
@@ -88,6 +92,7 @@ class RatingBadge extends StatelessWidget {
     if (userId == null) return content;
 
     return Semantics(
+      identifier: 'rating_badge_$userId',
       button: true,
       label: l10n.userReviewsModalTitle,
       child: InkWell(

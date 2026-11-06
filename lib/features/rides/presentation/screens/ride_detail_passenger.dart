@@ -19,7 +19,9 @@ class RideDetailPassengerScreen extends StatelessWidget {
 
   List<LatLng> _decodePolyline(String encoded) {
     final decoded = decodePolyline(encoded);
-    return decoded.map((p) => LatLng(p[0].toDouble(), p[1].toDouble())).toList();
+    return decoded
+        .map((p) => LatLng(p[0].toDouble(), p[1].toDouble()))
+        .toList();
   }
 
   @override
@@ -31,6 +33,7 @@ class RideDetailPassengerScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Semantics(
+          identifier: 'screen_ride_detail_passenger',
           header: true,
           child: Text(l10n.rideDetailsTitle),
         ),
@@ -48,7 +51,8 @@ class RideDetailPassengerScreen extends StatelessWidget {
               ),
               children: [
                 TileLayer(
-                  urlTemplate: 'https://tile-a.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+                  urlTemplate:
+                      'https://tile-a.openstreetmap.fr/hot/{z}/{x}/{y}.png',
                   userAgentPackageName: 'com.tcc.caronas',
                 ),
                 PolylineLayer(
@@ -98,14 +102,19 @@ class RideDetailPassengerScreen extends StatelessWidget {
                     label: '${l10n.driverLabel}: ${ride.driverName}',
                     child: Row(
                       children: [
-                        const Icon(Icons.person,
-                            size: 18, color: AppTheme.primaryTeal),
+                        const Icon(
+                          Icons.person,
+                          size: 18,
+                          color: AppTheme.primaryTeal,
+                        ),
                         const SizedBox(width: 8),
                         Flexible(
                           child: Text(
                             ride.driverName,
                             style: const TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.w600),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
@@ -123,8 +132,11 @@ class RideDetailPassengerScreen extends StatelessWidget {
                     label: '${l10n.originLabel}: ${ride.originAddress}',
                     child: Row(
                       children: [
-                        const Icon(Icons.radio_button_checked,
-                            size: 18, color: Colors.black),
+                        const Icon(
+                          Icons.radio_button_checked,
+                          size: 18,
+                          color: Colors.black,
+                        ),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
@@ -137,11 +149,15 @@ class RideDetailPassengerScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Semantics(
-                    label: '${l10n.destinationLabel}: ${ride.destinationAddress}',
+                    label:
+                        '${l10n.destinationLabel}: ${ride.destinationAddress}',
                     child: Row(
                       children: [
-                        const Icon(Icons.place,
-                            size: 18, color: AppTheme.dangerRed),
+                        const Icon(
+                          Icons.place,
+                          size: 18,
+                          color: AppTheme.dangerRed,
+                        ),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
@@ -155,8 +171,11 @@ class RideDetailPassengerScreen extends StatelessWidget {
                   const SizedBox(height: 6),
                   Row(
                     children: [
-                      const Icon(Icons.access_time_filled,
-                          size: 18, color: AppTheme.primaryTeal),
+                      const Icon(
+                        Icons.access_time_filled,
+                        size: 18,
+                        color: AppTheme.primaryTeal,
+                      ),
                       const SizedBox(width: 8),
                       Text(
                         '${ride.departureTime.day.toString().padLeft(2, '0')}/'
@@ -171,29 +190,45 @@ class RideDetailPassengerScreen extends StatelessWidget {
                   const SizedBox(height: 6),
                   Row(
                     children: [
-                      const Icon(Icons.timer,
-                          size: 16, color: AppTheme.primaryTeal),
-                      const SizedBox(width: 8),
-                      Text(l10n.minutesLabel(ride.estimatedDurationMins),
-                          style: const TextStyle(fontSize: 13)),
-                      const SizedBox(width: 16),
-                      const Icon(Icons.route,
-                          size: 16, color: AppTheme.primaryTeal),
+                      const Icon(
+                        Icons.timer,
+                        size: 16,
+                        color: AppTheme.primaryTeal,
+                      ),
                       const SizedBox(width: 8),
                       Text(
-                          l10n.kilometersLabel(
-                              ride.distanceKm.toStringAsFixed(1)),
-                          style: const TextStyle(fontSize: 13)),
+                        l10n.minutesLabel(ride.estimatedDurationMins),
+                        style: const TextStyle(fontSize: 13),
+                      ),
                       const SizedBox(width: 16),
-                      const Icon(Icons.people,
-                          size: 16, color: AppTheme.primaryTeal),
+                      const Icon(
+                        Icons.route,
+                        size: 16,
+                        color: AppTheme.primaryTeal,
+                      ),
                       const SizedBox(width: 8),
-                      Text(l10n.vehiclePassengersLabel(ride.availableSeats),
-                          style: const TextStyle(fontSize: 13)),
+                      Text(
+                        l10n.kilometersLabel(
+                          ride.distanceKm.toStringAsFixed(1),
+                        ),
+                        style: const TextStyle(fontSize: 13),
+                      ),
+                      const SizedBox(width: 16),
+                      const Icon(
+                        Icons.people,
+                        size: 16,
+                        color: AppTheme.primaryTeal,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        l10n.vehiclePassengersLabel(ride.availableSeats),
+                        style: const TextStyle(fontSize: 13),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 16),
                   Semantics(
+                    identifier: 'request_seat_detail_button',
                     button: true,
                     label: l10n.requestSeatAction,
                     child: ElevatedButton(
